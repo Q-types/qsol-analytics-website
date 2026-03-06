@@ -1,0 +1,86 @@
+---
+interface Props {
+  formspreeId?: string;
+}
+
+const { formspreeId = 'YOUR_FORMSPREE_ID' } = Astro.props;
+---
+
+<form
+  action={`https://formspree.io/f/${formspreeId}`}
+  method="POST"
+  class="space-y-6"
+>
+  <div>
+    <label for="name" class="block text-sm font-medium text-slate">Your name *</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      required
+      class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-brand-blue focus:ring-brand-blue focus:outline-none"
+    />
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-slate">Email address *</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      required
+      class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-brand-blue focus:ring-brand-blue focus:outline-none"
+    />
+  </div>
+
+  <div>
+    <label for="company" class="block text-sm font-medium text-slate">Company name</label>
+    <input
+      type="text"
+      name="company"
+      id="company"
+      class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-brand-blue focus:ring-brand-blue focus:outline-none"
+    />
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-slate">Your message *</label>
+    <textarea
+      name="message"
+      id="message"
+      rows="4"
+      required
+      class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-brand-blue focus:ring-brand-blue focus:outline-none"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="source" class="block text-sm font-medium text-slate">How did you find us?</label>
+    <select
+      name="source"
+      id="source"
+      class="mt-1 block w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-brand-blue focus:ring-brand-blue focus:outline-none"
+    >
+      <option value="">Please select</option>
+      <option value="google">Google search</option>
+      <option value="linkedin">LinkedIn</option>
+      <option value="referral">Referral</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+  <!-- Honeypot for spam -->
+  <input type="text" name="_gotcha" style="display:none" />
+
+  <button
+    type="submit"
+    class="w-full btn-primary"
+  >
+    Send My Enquiry
+  </button>
+
+  <p class="text-xs text-slate-light">
+    Your information is handled per our <a href="/privacy/" class="underline hover:text-brand-blue">Privacy Policy</a>.
+    We typically respond within one business day.
+  </p>
+</form>

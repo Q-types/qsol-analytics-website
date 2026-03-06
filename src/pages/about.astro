@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="About QSol Analytics"
+  description="Data science consultancy founded by David J. McCann. Physics-trained rigour applied to business problems for UK SMEs."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <h1 class="text-4xl font-bold text-slate">About QSol Analytics</h1>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <p class="text-xl">
+          QSol Analytics helps UK SMEs turn messy data into clear decisions and manual processes into automated workflows.
+        </p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Founder</h2>
+        <p>
+          I'm David J. McCann, founder of QSol Analytics. My background is in physics—trained to find patterns in complex systems and extract signal from noise.
+        </p>
+        <p>
+          Before starting QSol, I saw the same pattern repeatedly: businesses sitting on valuable data but struggling to extract insights. Enterprise consultancies quoted six-figure projects. Off-the-shelf tools never quite fit. Internal teams were stretched too thin.
+        </p>
+        <p>
+          QSol Analytics exists to bridge that gap—bringing rigorous data science to SMEs at a scale and price that makes sense.
+        </p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Our Approach</h2>
+        <div class="grid md:grid-cols-2 gap-6 not-prose mt-6">
+          <div class="bg-brand-blue-pale p-6 rounded-lg">
+            <h3 class="font-semibold text-slate">Rapid Time-to-Value</h3>
+            <p class="mt-2 text-slate-light text-sm">From discovery call to working prototype in 2-4 weeks. No death by PowerPoint.</p>
+          </div>
+          <div class="bg-brand-blue-pale p-6 rounded-lg">
+            <h3 class="font-semibold text-slate">Signal Over Noise</h3>
+            <p class="mt-2 text-slate-light text-sm">We cut through complexity to surface what matters. Clarity, not more dashboards.</p>
+          </div>
+          <div class="bg-brand-blue-pale p-6 rounded-lg">
+            <h3 class="font-semibold text-slate">Measurable Outcomes</h3>
+            <p class="mt-2 text-slate-light text-sm">Success metrics agreed upfront. You see the ROI before the final invoice.</p>
+          </div>
+          <div class="bg-brand-blue-pale p-6 rounded-lg">
+            <h3 class="font-semibold text-slate">Founder Access</h3>
+            <p class="mt-2 text-slate-light text-sm">You work directly with me, not handed to junior staff.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Who We Work With</h2>
+        <p>
+          We specialise in operations-heavy UK SMEs—businesses with 10-500 employees where data is plentiful but insights are scarce. Our clients typically operate in:
+        </p>
+        <ul>
+          <li>Logistics and distribution</li>
+          <li>Manufacturing</li>
+          <li>Retail and ecommerce</li>
+          <li>Professional services</li>
+          <li>Property and facilities management</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Name</h2>
+        <p>
+          QSol stands for "Quantitative Solutions"—a reminder that everything we do is grounded in measurable outcomes, not vague promises.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to talk?"
+    description="Book a free discovery call to discuss your challenges and see if we're a fit."
+  />
+</BaseLayout>

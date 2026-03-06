@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const insights = [
+  {
+    title: 'Automation for Small Business UK: A Practical Guide',
+    description: 'Which processes to automate first, realistic ROI expectations, and how to identify high-impact automation opportunities.',
+    href: '/insights/automation-small-business-uk/',
+    date: '2024-02-15',
+    tags: ['automation', 'sme']
+  },
+  {
+    title: 'Data Dashboards for SMEs: Why Most Fail and How to Succeed',
+    description: 'The common reasons dashboard projects fail, and practical steps to build dashboards that actually get used.',
+    href: '/insights/data-dashboards-smes/',
+    date: '2024-02-10',
+    tags: ['dashboards', 'analytics']
+  },
+  {
+    title: 'Customer Segmentation Examples: Real-World Approaches',
+    description: 'Segmentation approaches for ecommerce, B2B services, and subscription businesses—with practical implementation guidance.',
+    href: '/insights/customer-segmentation-examples/',
+    date: '2024-02-05',
+    tags: ['segmentation', 'customers']
+  },
+  {
+    title: 'Time Series Forecasting for Business: A Practical Introduction',
+    description: 'How forecasting works, when it helps, and what you need to get started with demand prediction.',
+    href: '/insights/time-series-forecasting-business/',
+    date: '2024-01-30',
+    tags: ['forecasting', 'planning']
+  },
+  {
+    title: 'Anomaly Detection in Operations: Catching Problems Early',
+    description: 'How anomaly detection works and practical applications for operations teams who want to stop firefighting.',
+    href: '/insights/anomaly-detection-operations/',
+    date: '2024-01-25',
+    tags: ['anomaly-detection', 'operations']
+  }
+];
+---
+
+<BaseLayout
+  title="Insights"
+  description="Practical articles on automation, dashboards, segmentation, and forecasting for UK SMEs."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl font-bold text-slate">Insights</h1>
+        <p class="mt-6 text-xl text-slate-light">
+          Practical articles on data science and automation for UK SMEs. No jargon, no hype—just actionable guidance.
+        </p>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {insights.map((post) => (
+          <a
+            href={post.href}
+            class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-brand-blue-light transition-all group"
+          >
+            <div class="flex flex-wrap gap-2 mb-4">
+              {post.tags.map((tag) => (
+                <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h2 class="text-lg font-semibold text-slate group-hover:text-brand-blue transition-colors">
+              {post.title}
+            </h2>
+            <p class="mt-2 text-slate-light text-sm">
+              {post.description}
+            </p>
+            <p class="mt-4 text-xs text-slate-light">
+              {new Date(post.date).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+              })}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

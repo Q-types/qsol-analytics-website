@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const caseStudies = [
+  {
+    title: 'Logistics Reporting Automation',
+    category: 'Automation',
+    description: 'Automated multi-source report preparation, reducing weekly reporting time from 15+ hours to 15 minutes of review.',
+    result: '15+ hours saved per week',
+    href: '/case-studies/logistics-automation-demo/',
+    isDemo: true
+  },
+  {
+    title: 'Retail Customer Segmentation',
+    category: 'Segmentation',
+    description: 'Data-driven customer segmentation enabling targeted marketing campaigns with measurable ROI improvement.',
+    result: '24% increase in repeat purchases',
+    href: '/case-studies/retail-segmentation-demo/',
+    isDemo: true
+  },
+  {
+    title: 'Manufacturing Operations Dashboard',
+    category: 'Dashboards',
+    description: 'Real-time operations visibility replacing manual reporting, enabling proactive issue resolution.',
+    result: '28% reduction in production delays',
+    href: '/case-studies/manufacturing-dashboard-demo/',
+    isDemo: true
+  },
+  {
+    title: 'Distribution Demand Forecasting',
+    category: 'Forecasting',
+    description: 'Time series forecasting model improving inventory planning and reducing both stockouts and overstock.',
+    result: '34% reduction in stockouts',
+    href: '/case-studies/distribution-forecasting-demo/',
+    isDemo: true
+  }
+];
+---
+
+<BaseLayout
+  title="Case Studies"
+  description="Data science case studies showing typical results from automation, dashboards, segmentation, and forecasting projects."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl font-bold text-slate">Case Studies</h1>
+        <p class="mt-6 text-xl text-slate-light">
+          Examples of typical project outcomes across automation, dashboards, segmentation, and forecasting.
+        </p>
+        <p class="mt-4 text-sm text-slate-light bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <strong>Note:</strong> These are demo projects illustrating typical outcomes. Specific results vary by data quality, scope, and implementation. We agree success metrics upfront for every engagement.
+        </p>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-2 gap-8">
+        {caseStudies.map((study) => (
+          <a
+            href={study.href}
+            class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-brand-blue-light transition-all group"
+          >
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm font-medium text-brand-blue bg-brand-blue-pale px-3 py-1 rounded-full">
+                {study.category}
+              </span>
+              {study.isDemo && (
+                <span class="text-xs text-slate-light bg-gray-100 px-2 py-1 rounded">
+                  Demo Project
+                </span>
+              )}
+            </div>
+            <h2 class="text-xl font-semibold text-slate group-hover:text-brand-blue transition-colors">
+              {study.title}
+            </h2>
+            <p class="mt-2 text-slate-light text-sm">
+              {study.description}
+            </p>
+            <div class="mt-4 pt-4 border-t border-gray-100">
+              <span class="text-sm font-semibold text-success">{study.result}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to see results like these?"
+    description="Book a discovery call to discuss your specific challenges and opportunities."
+  />
+</BaseLayout>

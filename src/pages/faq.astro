@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const faqs = [
+  {
+    category: 'Getting Started',
+    questions: [
+      {
+        q: 'How much does this cost?',
+        a: 'Projects typically range from £3,000 for focused automation to £25,000+ for comprehensive analytics builds. We provide fixed quotes after the discovery call—no surprise invoices. For lower-risk entry, we offer Assessments (£500-1,500) that deliver a written evaluation of opportunities.'
+      },
+      {
+        q: 'How long do projects take?',
+        a: 'Most projects deliver working solutions in 2-4 weeks. Larger engagements may run 6-8 weeks. We aim for rapid time-to-value—you see results before the main investment.'
+      },
+      {
+        q: 'Do I need to prepare anything before we start?',
+        a: 'Not really. Access to your data and 30 minutes for a discovery call is enough to begin. We\'ll guide you through what\'s needed from there.'
+      },
+      {
+        q: 'What if I don\'t have "good" data?',
+        a: 'Most businesses don\'t. Part of our job is working with messy reality—fixing data quality issues is often the highest-ROI work we do.'
+      }
+    ]
+  },
+  {
+    category: 'Working Together',
+    questions: [
+      {
+        q: 'Who do I work with?',
+        a: 'You work directly with the founder, David J. McCann. No handoff to junior staff, no account manager layer.'
+      },
+      {
+        q: 'What do we receive at the end?',
+        a: 'Every project includes: working solution (code, dashboard, model), full documentation, recorded walkthrough, and a handover pack. Everything is version-controlled and yours to keep.'
+      },
+      {
+        q: 'Can we maintain this ourselves afterwards?',
+        a: 'Yes. We build solutions your team can maintain, with full documentation. We also offer ongoing support if preferred—you choose the level of involvement.'
+      },
+      {
+        q: 'What if we need changes after delivery?',
+        a: 'Minor refinements are included in the project. For ongoing development, we offer support packages or can scope additional work.'
+      }
+    ]
+  },
+  {
+    category: 'Security & Compliance',
+    questions: [
+      {
+        q: 'How do you handle our data?',
+        a: 'We follow least-privilege access principles: we only access the data needed for the project, store it encrypted, and delete it after project completion unless you request otherwise. No offshore teams—all work stays in the UK.'
+      },
+      {
+        q: 'Can you sign an NDA?',
+        a: 'Yes. We\'re happy to sign your NDA or provide our standard confidentiality agreement before any data access.'
+      },
+      {
+        q: 'Are you GDPR compliant?',
+        a: 'Yes. We process data in accordance with GDPR requirements and can support your compliance documentation.'
+      }
+    ]
+  },
+  {
+    category: 'Technology',
+    questions: [
+      {
+        q: 'What technologies do you use?',
+        a: 'Primarily Python for automation and data science, with dashboards in Power BI, Tableau, or custom web applications depending on your needs. We\'re technology-agnostic—we recommend what fits your situation.'
+      },
+      {
+        q: 'Will this work with our existing systems?',
+        a: 'Usually yes. We work with most common business systems (CRMs, ERPs, spreadsheets, databases). Part of our assessment is confirming integration feasibility.'
+      },
+      {
+        q: 'Do we need to change our existing tools?',
+        a: 'Rarely. We typically work with your existing data sources rather than requiring new systems.'
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="FAQ"
+  description="Common questions about QSol Analytics data science consulting services, pricing, process, and security."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <h1 class="text-4xl font-bold text-slate">Frequently Asked Questions</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        Answers to common questions about working with QSol Analytics.
+      </p>
+
+      <div class="mt-12 space-y-12">
+        {faqs.map((category) => (
+          <div>
+            <h2 class="text-2xl font-bold text-slate border-b border-gray-200 pb-4">
+              {category.category}
+            </h2>
+            <div class="mt-6 space-y-6">
+              {category.questions.map((faq) => (
+                <div class="border-b border-gray-100 pb-6">
+                  <h3 class="font-semibold text-slate">{faq.q}</h3>
+                  <p class="mt-2 text-slate-light">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Still have questions?"
+    description="Book a discovery call and we'll answer any questions directly."
+  />
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.flatMap(cat => cat.questions.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    })))
+  })} />
+</BaseLayout>

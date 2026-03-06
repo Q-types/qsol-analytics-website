@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CTASection from '../components/CTASection.astro';
+
+const services = [
+  {
+    title: 'Automation & Workflow',
+    description: 'Stop copying data between systems. We build Python-based automation that handles the repetitive work—so your team can focus on decisions.',
+    href: '/services/automation-workflow/',
+    icon: '⚙️'
+  },
+  {
+    title: 'Analytics & Dashboards',
+    description: 'A dashboard that everyone trusts. KPIs that actually matter. Answers in seconds, not hours.',
+    href: '/services/analytics-dashboards/',
+    icon: '📊'
+  },
+  {
+    title: 'Customer Segmentation',
+    description: 'Know which customers are worth more, predict who\'s about to leave, and focus resources where they matter.',
+    href: '/services/customer-segmentation/',
+    icon: '👥'
+  },
+  {
+    title: 'Forecasting & Anomaly Detection',
+    description: 'See demand shifts before they hit your supply chain. Spot anomalies before they become costly incidents.',
+    href: '/services/forecasting-anomaly-detection/',
+    icon: '📈'
+  }
+];
+
+const processSteps = [
+  { title: 'Discovery', duration: '30 min call', description: 'We discuss your setup, pain points, and goals. No jargon, no hard sell.' },
+  { title: 'Assessment', duration: '1-3 days', description: 'We review your data and systems. You receive a written assessment with quick wins and opportunities.' },
+  { title: 'Build', duration: '2-4 weeks', description: 'We build a working solution you can test with real data. Results before the main investment.' },
+  { title: 'Refine', duration: '1 week', description: 'We refine based on feedback and ensure everything works in your environment.' },
+  { title: 'Deploy', duration: 'Ongoing', description: 'Full documentation and handover—or ongoing support. You choose.' }
+];
+
+const differentiators = [
+  { title: 'Rapid Time-to-Value', description: 'From discovery call to working prototype in 2-4 weeks. No six-month scoping phases.' },
+  { title: 'Signal Over Noise', description: 'Physics-trained rigour applied to business problems. You get clarity, not more dashboards.' },
+  { title: 'Measurable Outcomes', description: 'Success metrics agreed upfront. You see the ROI before the final invoice.' },
+  { title: 'Right-Sized Solutions', description: 'If a spreadsheet fix solves your problem, we\'ll say so. No overselling.' },
+  { title: 'Founder Access', description: 'Work directly with the founder, not handed to junior staff.' }
+];
+
+const sectors = ['Logistics', 'Distribution', 'Manufacturing', 'Retail', 'Professional Services', 'Facilities'];
+---
+
+<BaseLayout
+  title="Data Science & Automation for UK SMEs"
+  description="Drowning in spreadsheets? QSol Analytics delivers automation, dashboards, and forecasting for UK SMEs—measurable results in weeks, not months."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-brand-blue-pale to-white py-20 lg:py-28">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl lg:text-5xl font-bold text-slate leading-tight">
+          Data Science Consultancy for UK SMEs
+        </h1>
+        <p class="mt-6 text-xl text-slate-light leading-relaxed">
+          Stop firefighting. Start forecasting. Automation, dashboards, and analytics that deliver measurable results in weeks, not months.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="/contact/" class="btn-primary text-lg px-8 py-4">
+            Book a Discovery Call
+          </a>
+          <a href="#how-it-works" class="btn-secondary text-lg px-8 py-4">
+            See How It Works
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem/Solution Section -->
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <h2 class="text-3xl font-bold text-slate">
+        Your Data Should Work for You, Not the Other Way Around
+      </h2>
+      <div class="mt-8 space-y-4 text-slate-light">
+        <p>If you're running operations, finance, or commercial functions in a growing SME, you've probably noticed:</p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Spreadsheets multiply faster than you can maintain them</li>
+          <li>"Quick" reports take hours to pull together</li>
+          <li>Problems become visible only after they've become expensive</li>
+          <li>Your team spends more time gathering data than acting on it</li>
+        </ul>
+        <p class="pt-4">
+          You know there's a better way. But enterprise consultancies quote six-figure projects, and off-the-shelf tools never quite fit.
+        </p>
+        <p class="font-semibold text-slate pt-4">
+          That's where we come in.
+        </p>
+        <p>
+          QSol Analytics bridges the gap between your data reality and your business ambitions—with automation, dashboards, and forecasting built specifically for operations-heavy SMEs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="container-wide">
+      <h2 class="text-3xl font-bold text-slate text-center">What We Do</h2>
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {services.map((service) => (
+          <ServiceCard {...service} />
+        ))}
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/services/" class="btn-secondary">
+          View All Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="how-it-works" class="py-16 lg:py-24">
+    <div class="container-wide">
+      <h2 class="text-3xl font-bold text-slate text-center">How It Works</h2>
+      <p class="mt-4 text-center text-slate-light">A lightweight process designed for busy teams</p>
+      <div class="mt-12 grid md:grid-cols-5 gap-6">
+        {processSteps.map((step, index) => (
+          <div class="text-center">
+            <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center mx-auto font-bold text-lg">
+              {index + 1}
+            </div>
+            <h3 class="mt-4 font-semibold text-slate">{step.title}</h3>
+            <p class="text-sm text-brand-blue font-medium">{step.duration}</p>
+            <p class="mt-2 text-sm text-slate-light">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why QSol Section -->
+  <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="container-wide">
+      <h2 class="text-3xl font-bold text-slate text-center">Why Work With QSol Analytics?</h2>
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {differentiators.map((item) => (
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-slate">{item.title}</h3>
+            <p class="mt-2 text-slate-light text-sm">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sectors Section -->
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow text-center">
+      <h2 class="text-3xl font-bold text-slate">Built for Businesses Like Yours</h2>
+      <p class="mt-4 text-slate-light">
+        We work with UK SMEs across industries where operations are complex and data is plentiful, but insights are scarce.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        {sectors.map((sector) => (
+          <span class="px-4 py-2 bg-brand-blue-pale text-brand-blue rounded-full text-sm font-medium">
+            {sector}
+          </span>
+        ))}
+      </div>
+      <div class="mt-8 grid grid-cols-3 gap-6 max-w-md mx-auto text-center">
+        <div>
+          <div class="text-2xl font-bold text-brand-blue">10-500</div>
+          <div class="text-sm text-slate-light">Employees</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-brand-blue">Weeks</div>
+          <div class="text-sm text-slate-light">Not quarters</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-brand-blue">100%</div>
+          <div class="text-sm text-slate-light">Measurable</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTASection
+    title="Ready to Put Your Data to Work?"
+    description="Book a free 30-minute discovery call. We'll discuss your challenges, explore whether we're a fit, and outline a clear path to results. No commitment. No hard sell."
+  />
+
+  <!-- FAQ Preview -->
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <h2 class="text-3xl font-bold text-slate text-center">Common Questions</h2>
+      <div class="mt-12 space-y-6">
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="font-semibold text-slate">How much does this cost?</h3>
+          <p class="mt-2 text-slate-light">Projects typically range from £3,000 for focused automation to £25,000+ for comprehensive analytics builds. We provide fixed quotes after the discovery call—no surprise invoices.</p>
+        </div>
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="font-semibold text-slate">Do I need to prepare anything before we start?</h3>
+          <p class="mt-2 text-slate-light">Not really. Access to your data and 30 minutes for a discovery call is enough to begin. We'll guide you through what's needed from there.</p>
+        </div>
+        <div class="pb-6">
+          <h3 class="font-semibold text-slate">What if I don't have "good" data?</h3>
+          <p class="mt-2 text-slate-light">Most businesses don't. Part of our job is working with messy reality—fixing data quality issues is often the highest-ROI work we do.</p>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/faq/" class="btn-secondary">View All FAQs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "QSol Analytics",
+    "url": "https://qsol-analytics.co.uk",
+    "logo": "https://qsol-analytics.co.uk/images/logo.png",
+    "description": "Practical data science and automation consultancy for UK SMEs, delivering dashboards, forecasting, and workflow automation with measurable ROI.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "David J. McCann"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@qsol-analytics.co.uk",
+      "contactType": "sales"
+    }
+  })} />
+</BaseLayout>

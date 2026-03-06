@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Forecasting & Anomaly Detection Services"
+  description="See demand shifts before they hit your supply chain. Spot anomalies before they become costly. Time series forecasting for UK SMEs."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <h1 class="text-4xl font-bold text-slate">Forecasting & Anomaly Detection</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        See demand shifts before they hit your supply chain. Spot anomalies before they become costly incidents. Turn reactive firefighting into proactive planning.
+      </p>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">The Problem</h2>
+        <p>
+          Last month's stock-out cost you £4,000. The warning signs were in your data—you just couldn't see them. Without proper forecasting:
+        </p>
+        <ul>
+          <li>Inventory is either too high (tying up cash) or too low (missed sales)</li>
+          <li>Problems become visible only after they've become expensive</li>
+          <li>Planning is based on gut feel, not data</li>
+          <li>You're always reacting, never anticipating</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">What We Build</h2>
+        <div class="not-prose grid md:grid-cols-2 gap-6 mt-6">
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h3 class="font-semibold text-slate">Demand Forecasting</h3>
+            <p class="mt-2 text-slate-light text-sm">Predict demand at SKU, category, or aggregate level—with confidence intervals.</p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h3 class="font-semibold text-slate">Anomaly Detection</h3>
+            <p class="mt-2 text-slate-light text-sm">Automatic alerts when something's unusual—before it becomes a crisis.</p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h3 class="font-semibold text-slate">Cash Flow Forecasting</h3>
+            <p class="mt-2 text-slate-light text-sm">Predict cash position with confidence—better numbers for banks and boards.</p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h3 class="font-semibold text-slate">Capacity Planning</h3>
+            <p class="mt-2 text-slate-light text-sm">Forecast resource needs so you can staff appropriately.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Typical Results</h2>
+        <p>
+          Based on our project patterns, forecasting typically delivers:
+        </p>
+        <ul>
+          <li><strong>15-30% reduction in stockouts</strong></li>
+          <li><strong>15-25% reduction in overstock</strong></li>
+          <li><strong>85% of problems caught</strong> before escalation (anomaly detection)</li>
+          <li><strong>Cash flow visibility</strong> that satisfies banks and investors</li>
+        </ul>
+        <p class="text-sm italic">Results vary by data quality and business context. We agree success metrics upfront.</p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">How It Works</h2>
+        <p>
+          We use proven time series methods—from classical statistics to modern machine learning—chosen based on your data, not our preference. Every model is:
+        </p>
+        <ul>
+          <li><strong>Explainable:</strong> You understand why it predicts what it predicts</li>
+          <li><strong>Validated:</strong> Tested on historical data before deployment</li>
+          <li><strong>Practical:</strong> Integrated into your workflow, not a standalone curiosity</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to start forecasting?"
+    description="Book a discovery call to discuss your forecasting challenges."
+  />
+</BaseLayout>

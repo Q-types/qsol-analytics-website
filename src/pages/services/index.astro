@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const services = [
+  {
+    title: 'Automation & Workflow',
+    description: 'Stop copying data between systems. Stop reformatting the same report every Monday. We build Python-based automation that handles the repetitive work—so your team can focus on decisions, not data entry.',
+    href: '/services/automation-workflow/',
+    icon: '⚙️'
+  },
+  {
+    title: 'Analytics & Dashboards',
+    description: 'A dashboard that everyone trusts. KPIs that actually matter. Answers in seconds, not hours. We design and build business intelligence that fits how you work.',
+    href: '/services/analytics-dashboards/',
+    icon: '📊'
+  },
+  {
+    title: 'Customer Segmentation',
+    description: 'Know which customers are worth more, predict who\'s about to leave, and focus resources where they matter. Turn customer data into actionable segments.',
+    href: '/services/customer-segmentation/',
+    icon: '👥'
+  },
+  {
+    title: 'Forecasting & Anomaly Detection',
+    description: 'See demand shifts before they hit your supply chain. Spot anomalies before they become costly incidents. Turn reactive firefighting into proactive planning.',
+    href: '/services/forecasting-anomaly-detection/',
+    icon: '📈'
+  }
+];
+---
+
+<BaseLayout
+  title="Data Science Services for UK SMEs"
+  description="Automation, dashboards, segmentation, and forecasting built for operations-heavy UK SMEs. Measurable results in weeks, not months."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl font-bold text-slate">Our Services</h1>
+        <p class="mt-6 text-xl text-slate-light">
+          Practical data science solutions designed for UK SMEs. Every service delivers measurable outcomes—agreed upfront, visible before the final invoice.
+        </p>
+      </div>
+
+      <div class="mt-16 grid md:grid-cols-2 gap-8">
+        {services.map((service) => (
+          <ServiceCard {...service} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="container-narrow">
+      <h2 class="text-3xl font-bold text-slate text-center">How We Work</h2>
+      <div class="mt-12 space-y-8">
+        <div class="flex gap-6">
+          <div class="flex-shrink-0 w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold">1</div>
+          <div>
+            <h3 class="font-semibold text-slate">Discovery Call (30 minutes)</h3>
+            <p class="mt-2 text-slate-light">We discuss your current setup, pain points, and goals. You'll leave with a clear sense of whether we're a fit—no hard sell.</p>
+          </div>
+        </div>
+        <div class="flex gap-6">
+          <div class="flex-shrink-0 w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold">2</div>
+          <div>
+            <h3 class="font-semibold text-slate">Assessment (1-3 days)</h3>
+            <p class="mt-2 text-slate-light">We review your existing data and systems. You receive a written assessment highlighting quick wins and strategic opportunities.</p>
+          </div>
+        </div>
+        <div class="flex gap-6">
+          <div class="flex-shrink-0 w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold">3</div>
+          <div>
+            <h3 class="font-semibold text-slate">Build & Deliver (2-4 weeks)</h3>
+            <p class="mt-2 text-slate-light">We build a working solution you can test with real data. Full documentation and handover—or ongoing support. You choose.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
