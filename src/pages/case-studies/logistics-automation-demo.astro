@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Logistics Reporting Automation | Case Study"
+  description="How automated reporting saved a logistics company 15+ hours per week on manual report preparation."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <div class="mb-8">
+        <span class="text-sm font-medium text-brand-blue bg-brand-blue-pale px-3 py-1 rounded-full">Demo Project</span>
+        <span class="ml-2 text-sm text-slate-light">Automation</span>
+      </div>
+
+      <h1 class="text-4xl font-bold text-slate">Logistics Reporting Automation</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        Automated multi-source report preparation, reducing weekly reporting time from 15+ hours to 15 minutes of review.
+      </p>
+
+      <div class="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <p class="text-sm text-amber-800">
+          <strong>Note:</strong> This is a demo project illustrating typical automation outcomes. Results vary by data quality and implementation scope.
+        </p>
+      </div>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">The Challenge</h2>
+        <p>
+          A regional logistics company was spending 15+ hours per week on manual reporting. The operations team pulled data from multiple sources—their TMS, Excel spreadsheets, and email updates—to compile weekly performance reports for management.
+        </p>
+        <ul>
+          <li>Data scattered across 5+ systems</li>
+          <li>Manual copy-paste between spreadsheets</li>
+          <li>Reports often delayed or inconsistent</li>
+          <li>Operations team spending Monday mornings on admin, not operations</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Solution</h2>
+        <p>
+          We built a Python-based automation pipeline that:
+        </p>
+        <ul>
+          <li>Connects to all data sources via APIs and scheduled exports</li>
+          <li>Consolidates and validates data automatically</li>
+          <li>Generates formatted reports on a schedule</li>
+          <li>Delivers reports to stakeholders via email</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Typical Results</h2>
+        <div class="not-prose grid md:grid-cols-2 gap-6 mt-6">
+          <div class="bg-gray-50 p-6 rounded-lg text-center">
+            <div class="text-3xl font-bold text-success">15+ hrs</div>
+            <div class="text-sm text-slate-light mt-1">Saved per week</div>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg text-center">
+            <div class="text-3xl font-bold text-success">15 min</div>
+            <div class="text-sm text-slate-light mt-1">Review time only</div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Key Takeaways</h2>
+        <ul>
+          <li>Automation works best when processes are already defined (even if manual)</li>
+          <li>Starting with high-frequency, high-effort tasks delivers fastest ROI</li>
+          <li>Building in validation steps catches errors that manual processes missed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Want results like this?"
+    description="Book a discovery call to identify your highest-impact automation opportunities."
+  />
+</BaseLayout>

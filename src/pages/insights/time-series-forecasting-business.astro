@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Time Series Forecasting for Business: A Practical Introduction"
+  description="How forecasting works, when it helps, and what you need to get started with demand prediction."
+>
+  <article class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">forecasting</span>
+          <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">planning</span>
+        </div>
+        <p class="text-sm text-slate-light">30 January 2024</p>
+      </div>
+
+      <h1 class="text-4xl font-bold text-slate">Time Series Forecasting for Business: A Practical Introduction</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        How forecasting works, when it helps, and what you need to get started with demand prediction.
+      </p>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">What Is Time Series Forecasting?</h2>
+        <p>
+          Time series forecasting uses historical data to predict future values. If you have sales data from the last two years, forecasting can estimate next month's sales—with a confidence range.
+        </p>
+        <p>
+          The key word is <strong>confidence range</strong>. Good forecasting doesn't give you a single number; it gives you a likely range and helps you understand uncertainty.
+        </p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">When Forecasting Helps</h2>
+        <ul>
+          <li><strong>Inventory planning:</strong> How much stock to hold, when to reorder</li>
+          <li><strong>Capacity planning:</strong> How many staff needed, equipment required</li>
+          <li><strong>Cash flow:</strong> When money comes in and goes out</li>
+          <li><strong>Budgeting:</strong> Revenue and cost projections</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">When Forecasting Doesn't Help</h2>
+        <ul>
+          <li><strong>Unpredictable events:</strong> Pandemics, competitor moves, regulatory changes</li>
+          <li><strong>New products:</strong> No history to learn from</li>
+          <li><strong>Small sample sizes:</strong> Not enough data to identify patterns</li>
+          <li><strong>Highly irregular demand:</strong> One-off projects, bespoke services</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">What You Need to Get Started</h2>
+        <ol>
+          <li><strong>Historical data:</strong> Ideally 2+ years, minimum 6 months</li>
+          <li><strong>Consistent measurement:</strong> Same definition over time</li>
+          <li><strong>Known anomalies:</strong> Context for unusual periods (COVID, promotions, etc.)</li>
+          <li><strong>Clear use case:</strong> What decisions will this forecast inform?</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Forecasting Reality Check</h2>
+        <p>
+          All forecasts are wrong. The question is whether they're useful.
+        </p>
+        <p>
+          A forecast that's 80% accurate is valuable if you're currently guessing. But if you need 99% accuracy, forecasting might not be the right tool.
+        </p>
+        <p>
+          The best forecasting systems are honest about uncertainty and help you plan for multiple scenarios—not just the "most likely" outcome.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <CTASection
+    title="Ready to start forecasting?"
+    description="Book a discovery call to discuss your forecasting needs."
+  />
+</BaseLayout>

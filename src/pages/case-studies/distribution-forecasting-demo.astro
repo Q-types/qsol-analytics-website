@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Distribution Demand Forecasting | Case Study"
+  description="How demand forecasting reduced stockouts by 34% and overstock by 22% for a UK distributor."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <div class="mb-8">
+        <span class="text-sm font-medium text-brand-blue bg-brand-blue-pale px-3 py-1 rounded-full">Demo Project</span>
+        <span class="ml-2 text-sm text-slate-light">Forecasting</span>
+      </div>
+
+      <h1 class="text-4xl font-bold text-slate">Distribution Demand Forecasting</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        Time series forecasting model improving inventory planning and reducing both stockouts and overstock.
+      </p>
+
+      <div class="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <p class="text-sm text-amber-800">
+          <strong>Note:</strong> This is a demo project illustrating typical forecasting outcomes. Results vary by data quality and business context.
+        </p>
+      </div>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">The Challenge</h2>
+        <p>
+          A regional distributor was constantly fighting inventory problems. Too much stock tied up cash; too little meant missed sales and unhappy customers.
+        </p>
+        <ul>
+          <li>Forecasting based on gut feel and simple averages</li>
+          <li>Seasonal patterns not properly accounted for</li>
+          <li>New product forecasting essentially guesswork</li>
+          <li>Cash tied up in overstock while key items ran out</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Solution</h2>
+        <p>
+          We built a demand forecasting model using time series analysis:
+        </p>
+        <ul>
+          <li>SKU-level forecasts with confidence intervals</li>
+          <li>Seasonal and trend decomposition</li>
+          <li>Automatic reorder point recommendations</li>
+          <li>Integration with existing inventory system</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Typical Results</h2>
+        <div class="not-prose grid md:grid-cols-2 gap-6 mt-6">
+          <div class="bg-gray-50 p-6 rounded-lg text-center">
+            <div class="text-3xl font-bold text-success">34%</div>
+            <div class="text-sm text-slate-light mt-1">Reduction in stockouts</div>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg text-center">
+            <div class="text-3xl font-bold text-success">22%</div>
+            <div class="text-sm text-slate-light mt-1">Reduction in overstock</div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Key Takeaways</h2>
+        <ul>
+          <li>Forecasting with confidence intervals beats point estimates</li>
+          <li>Start with high-volume SKUs where errors are most costly</li>
+          <li>Model validation on historical data builds trust before deployment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to start forecasting?"
+    description="Book a discovery call to discuss your forecasting challenges."
+  />
+</BaseLayout>

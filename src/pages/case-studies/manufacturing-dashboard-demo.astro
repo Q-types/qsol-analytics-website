@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Manufacturing Operations Dashboard | Case Study"
+  description="How real-time operations visibility reduced production delays by 28% for a UK manufacturer."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <div class="mb-8">
+        <span class="text-sm font-medium text-brand-blue bg-brand-blue-pale px-3 py-1 rounded-full">Demo Project</span>
+        <span class="ml-2 text-sm text-slate-light">Dashboards</span>
+      </div>
+
+      <h1 class="text-4xl font-bold text-slate">Manufacturing Operations Dashboard</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        Real-time operations visibility replacing manual reporting, enabling proactive issue resolution.
+      </p>
+
+      <div class="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <p class="text-sm text-amber-800">
+          <strong>Note:</strong> This is a demo project illustrating typical dashboard outcomes. Results vary by data quality and implementation.
+        </p>
+      </div>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">The Challenge</h2>
+        <p>
+          A mid-sized manufacturer had no real-time visibility into production. The Operations Director started each day not knowing what had actually happened overnight.
+        </p>
+        <ul>
+          <li>Production data locked in disparate systems</li>
+          <li>Daily reports prepared manually, often delayed</li>
+          <li>Problems discovered hours or days after they occurred</li>
+          <li>No single source of truth for KPIs</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Solution</h2>
+        <p>
+          We built a real-time operations dashboard connecting to production systems:
+        </p>
+        <ul>
+          <li>Live production metrics updated every 15 minutes</li>
+          <li>Exception-based alerts for issues requiring attention</li>
+          <li>Historical trend analysis for pattern identification</li>
+          <li>Mobile-friendly design for floor access</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Typical Results</h2>
+        <div class="not-prose grid md:grid-cols-2 gap-6 mt-6">
+          <div class="bg-gray-50 p-6 rounded-lg text-center">
+            <div class="text-3xl font-bold text-success">28%</div>
+            <div class="text-sm text-slate-light mt-1">Reduction in production delays</div>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg text-center">
+            <div class="text-3xl font-bold text-success">Real-time</div>
+            <div class="text-sm text-slate-light mt-1">Visibility vs. next-day reports</div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Key Takeaways</h2>
+        <ul>
+          <li>Start with the decisions people need to make, not the data available</li>
+          <li>Alerts should be actionable, not just informational</li>
+          <li>Adoption requires designing for actual workflows</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready for dashboards that work?"
+    description="Book a discovery call to discuss your reporting challenges."
+  />
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Data Dashboards for SMEs: Why Most Fail and How to Succeed"
+  description="The common reasons dashboard projects fail, and practical steps to build dashboards that actually get used."
+>
+  <article class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">dashboards</span>
+          <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">analytics</span>
+        </div>
+        <p class="text-sm text-slate-light">10 February 2024</p>
+      </div>
+
+      <h1 class="text-4xl font-bold text-slate">Data Dashboards for SMEs: Why Most Fail and How to Succeed</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        The common reasons dashboard projects fail, and practical steps to build dashboards that actually get used.
+      </p>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">The Dashboard Graveyard</h2>
+        <p>
+          Most businesses have at least one: a dashboard that was expensive to build, looked impressive in the demo, and now sits unused. Why do so many dashboard projects fail?
+        </p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Why Dashboards Fail</h2>
+        <h3 class="text-xl font-semibold text-slate mt-8">1. They Answer the Wrong Questions</h3>
+        <p>
+          Many dashboards are built around available data rather than business questions. Result: lots of charts, no insights.
+        </p>
+
+        <h3 class="text-xl font-semibold text-slate mt-8">2. Nobody Trusts the Numbers</h3>
+        <p>
+          If data quality is poor, or if the dashboard shows different numbers than other reports, people won't use it. They'll go back to their spreadsheets.
+        </p>
+
+        <h3 class="text-xl font-semibold text-slate mt-8">3. Too Much Information</h3>
+        <p>
+          The classic mistake: cramming every possible metric onto one screen. Cognitive overload means nothing gets attention.
+        </p>
+
+        <h3 class="text-xl font-semibold text-slate mt-8">4. Wrong Refresh Frequency</h3>
+        <p>
+          A dashboard that updates monthly isn't useful for daily decisions. One that updates in real-time might be overkill for strategic planning.
+        </p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">How to Build Dashboards That Work</h2>
+        <ol>
+          <li><strong>Start with decisions:</strong> What decisions does this dashboard need to support? Work backwards from there.</li>
+          <li><strong>Fix the data first:</strong> Establish a single source of truth before visualising anything.</li>
+          <li><strong>Limit metrics:</strong> 5-7 key metrics per view. If everything's important, nothing is.</li>
+          <li><strong>Design for the workflow:</strong> When will people look at this? On what device? In what context?</li>
+          <li><strong>Build in validation:</strong> Show when data was last updated. Flag anomalies.</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Test of a Good Dashboard</h2>
+        <p>
+          A dashboard is successful when people <strong>stop asking for ad-hoc reports</strong> because the dashboard answers their questions faster and more reliably.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <CTASection
+    title="Ready for dashboards that people actually use?"
+    description="Book a discovery call to discuss your reporting challenges."
+  />
+</BaseLayout>

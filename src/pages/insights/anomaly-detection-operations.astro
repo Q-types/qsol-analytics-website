@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Anomaly Detection in Operations: Catching Problems Early"
+  description="How anomaly detection works and practical applications for operations teams who want to stop firefighting."
+>
+  <article class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">anomaly-detection</span>
+          <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">operations</span>
+        </div>
+        <p class="text-sm text-slate-light">25 January 2024</p>
+      </div>
+
+      <h1 class="text-4xl font-bold text-slate">Anomaly Detection in Operations: Catching Problems Early</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        How anomaly detection works and practical applications for operations teams who want to stop firefighting.
+      </p>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">The Firefighting Problem</h2>
+        <p>
+          Operations teams spend too much time reacting to problems that could have been caught earlier. That £4,000 stock-out? The warning signs were in the data a week ago. The production delay? Yield rates had been drifting for days.
+        </p>
+        <p>
+          Anomaly detection is about catching these signals <strong>before</strong> they become crises.
+        </p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">How Anomaly Detection Works</h2>
+        <p>
+          At its core, anomaly detection learns what "normal" looks like, then flags when something is significantly different.
+        </p>
+        <ul>
+          <li><strong>Statistical methods:</strong> Flag values outside expected ranges (e.g., 3 standard deviations)</li>
+          <li><strong>Trend detection:</strong> Identify when patterns change direction</li>
+          <li><strong>Seasonal adjustment:</strong> Account for expected variations (weekends, holidays, seasons)</li>
+          <li><strong>Machine learning:</strong> Learn complex patterns across multiple variables</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Practical Applications</h2>
+        <h3 class="text-xl font-semibold text-slate mt-8">Inventory & Supply Chain</h3>
+        <ul>
+          <li>Unusual demand spikes or drops</li>
+          <li>Supplier delivery time changes</li>
+          <li>Stock level drift from expected patterns</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-slate mt-8">Production & Manufacturing</h3>
+        <ul>
+          <li>Yield rate changes</li>
+          <li>Quality metric drift</li>
+          <li>Equipment performance degradation</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-slate mt-8">Financial Operations</h3>
+        <ul>
+          <li>Unusual transaction patterns</li>
+          <li>Payment timing changes</li>
+          <li>Cost category anomalies</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Alert Balance</h2>
+        <p>
+          Too few alerts: problems slip through. Too many: alert fatigue, everything gets ignored.
+        </p>
+        <p>
+          Good anomaly detection systems let you tune sensitivity and prioritise alerts by business impact. Not every anomaly matters equally.
+        </p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Getting Started</h2>
+        <ol>
+          <li><strong>Pick one metric:</strong> Start with something important that changes often</li>
+          <li><strong>Define "normal":</strong> Establish baseline behaviour with historical data</li>
+          <li><strong>Set thresholds:</strong> How unusual is unusual enough to flag?</li>
+          <li><strong>Create response playbook:</strong> What happens when an alert fires?</li>
+          <li><strong>Iterate:</strong> Adjust sensitivity based on false positive/negative rates</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <CTASection
+    title="Ready to catch problems before they escalate?"
+    description="Book a discovery call to discuss anomaly detection for your operations."
+  />
+</BaseLayout>

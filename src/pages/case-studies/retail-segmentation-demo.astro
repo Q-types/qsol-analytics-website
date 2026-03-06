@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Retail Customer Segmentation | Case Study"
+  description="How data-driven customer segmentation increased repeat purchases by 24% for a UK retailer."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <div class="mb-8">
+        <span class="text-sm font-medium text-brand-blue bg-brand-blue-pale px-3 py-1 rounded-full">Demo Project</span>
+        <span class="ml-2 text-sm text-slate-light">Segmentation</span>
+      </div>
+
+      <h1 class="text-4xl font-bold text-slate">Retail Customer Segmentation</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        Data-driven customer segmentation enabling targeted marketing campaigns with measurable ROI improvement.
+      </p>
+
+      <div class="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <p class="text-sm text-amber-800">
+          <strong>Note:</strong> This is a demo project illustrating typical segmentation outcomes. Results vary by data quality and implementation.
+        </p>
+      </div>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">The Challenge</h2>
+        <p>
+          A multi-channel retailer was treating all customers the same. Marketing campaigns went to everyone, with no differentiation based on purchase history, value, or behaviour.
+        </p>
+        <ul>
+          <li>Same promotions sent to high-value and low-value customers</li>
+          <li>No visibility into customer lifetime value</li>
+          <li>Churn happening without warning</li>
+          <li>Marketing budget spread thin across all segments</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">The Solution</h2>
+        <p>
+          We built a customer segmentation model using RFM analysis (Recency, Frequency, Monetary value) enhanced with behavioural clustering:
+        </p>
+        <ul>
+          <li>Identified 6 distinct customer segments</li>
+          <li>Built churn prediction model for at-risk identification</li>
+          <li>Created segment-specific campaign recommendations</li>
+          <li>Delivered actionable dashboard for ongoing monitoring</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Typical Results</h2>
+        <div class="not-prose grid md:grid-cols-2 gap-6 mt-6">
+          <div class="bg-gray-50 p-6 rounded-lg text-center">
+            <div class="text-3xl font-bold text-success">24%</div>
+            <div class="text-sm text-slate-light mt-1">Increase in repeat purchases</div>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg text-center">
+            <div class="text-3xl font-bold text-success">6</div>
+            <div class="text-sm text-slate-light mt-1">Actionable segments identified</div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Key Takeaways</h2>
+        <ul>
+          <li>Segmentation is only valuable if it drives different actions</li>
+          <li>Start with simple models (RFM) before adding complexity</li>
+          <li>Ongoing monitoring catches segment drift over time</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to know your customers better?"
+    description="Book a discovery call to discuss your customer data and segmentation opportunities."
+  />
+</BaseLayout>

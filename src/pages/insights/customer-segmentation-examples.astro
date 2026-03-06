@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="Customer Segmentation Examples: Real-World Approaches"
+  description="Segmentation approaches for ecommerce, B2B services, and subscription businesses—with practical implementation guidance."
+>
+  <article class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">segmentation</span>
+          <span class="text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded">customers</span>
+        </div>
+        <p class="text-sm text-slate-light">5 February 2024</p>
+      </div>
+
+      <h1 class="text-4xl font-bold text-slate">Customer Segmentation Examples: Real-World Approaches</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        Segmentation approaches for ecommerce, B2B services, and subscription businesses—with practical implementation guidance.
+      </p>
+
+      <div class="mt-12 prose prose-lg max-w-none text-slate-light">
+        <h2 class="text-2xl font-bold text-slate">Why Segment at All?</h2>
+        <p>
+          Segmentation exists to drive different actions for different customers. If you're going to treat everyone the same anyway, don't bother segmenting.
+        </p>
+        <p>
+          Good segmentation answers: <strong>"What should we do differently for this group?"</strong>
+        </p>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Ecommerce: RFM Segmentation</h2>
+        <p>
+          For online retail, RFM (Recency, Frequency, Monetary value) is the practical starting point:
+        </p>
+        <ul>
+          <li><strong>Champions:</strong> Recent, frequent, high-value buyers → VIP treatment, early access</li>
+          <li><strong>Loyal:</strong> Regular buyers → Loyalty rewards, referral programs</li>
+          <li><strong>At-risk:</strong> Previously good, now gone quiet → Win-back campaigns</li>
+          <li><strong>New:</strong> Recent first purchase → Onboarding, second purchase incentives</li>
+          <li><strong>Hibernating:</strong> Long-inactive → Reactivation or let go</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">B2B Services: Value-Based Segmentation</h2>
+        <p>
+          For B2B, segment by current value and potential:
+        </p>
+        <ul>
+          <li><strong>Strategic accounts:</strong> High value, high potential → Dedicated account management</li>
+          <li><strong>Growth accounts:</strong> Lower value, high potential → Investment in expansion</li>
+          <li><strong>Maintain accounts:</strong> High value, limited growth → Efficient service, protect revenue</li>
+          <li><strong>Transactional:</strong> Lower value, limited potential → Standardised, efficient service</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Subscription: Engagement Segmentation</h2>
+        <p>
+          For subscription businesses, behaviour predicts churn better than demographics:
+        </p>
+        <ul>
+          <li><strong>Power users:</strong> Heavy engagement → Beta features, community building</li>
+          <li><strong>Regular users:</strong> Consistent usage → Feature education, upsell</li>
+          <li><strong>Light users:</strong> Minimal engagement → Re-engagement, value demonstration</li>
+          <li><strong>Dormant:</strong> No recent activity → Churn risk intervention</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-slate mt-12">Implementation Tips</h2>
+        <ol>
+          <li><strong>Start simple:</strong> 4-6 segments is usually enough to start</li>
+          <li><strong>Make it actionable:</strong> Each segment needs a clear "what we do differently"</li>
+          <li><strong>Refresh regularly:</strong> Customers move between segments; update monthly or quarterly</li>
+          <li><strong>Measure outcomes:</strong> Track whether segment-specific actions improve results</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+
+  <CTASection
+    title="Ready to segment your customers?"
+    description="Book a discovery call to discuss your customer data and segmentation opportunities."
+  />
+</BaseLayout>
