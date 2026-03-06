@@ -1,13 +1,9 @@
 ---
-interface Props {
-  formspreeId?: string;
-}
 
-const { formspreeId = 'YOUR_FORMSPREE_ID' } = Astro.props;
 ---
 
 <form
-  action={`https://formspree.io/f/${formspreeId}`}
+  action="https://formspree.io/f/mnjgqjjr"
   method="POST"
   class="space-y-6"
 >

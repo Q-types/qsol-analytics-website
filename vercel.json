@@ -1,5 +1,17 @@
 {
   "framework": "astro",
+  "redirects": [
+    {
+      "source": "/call",
+      "destination": "https://cal.com/q-types/30-minute-discovery-call",
+      "permanent": false
+    },
+    {
+      "source": "/book",
+      "destination": "https://cal.com/q-types/30-minute-discovery-call",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
