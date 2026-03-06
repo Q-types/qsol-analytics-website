@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://qsol-analytics.co.uk',
+  site: 'https://qsol-analytics.com',
   integrations: [
     mdx(),
     tailwind()

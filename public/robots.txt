@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qsol-analytics.co.uk/sitemap-index.xml
+Sitemap: https://qsol-analytics.com/sitemap.xml
