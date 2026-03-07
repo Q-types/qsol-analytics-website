@@ -5,28 +5,32 @@ import CTASection from '../components/CTASection.astro';
 
 const services = [
   {
-    title: 'Automation & Workflow',
-    description: 'Stop copying data between systems. We build Python-based automation that handles the repetitive work—so your team can focus on decisions.',
+    title: 'Operational Data Systems',
+    description: 'Automation pipelines, live dashboards, and data integration that eliminate manual work and give your team real-time visibility.',
     href: '/services/automation-workflow/',
-    icon: '⚙️'
+    icon: '⚙️',
+    timeline: '2–4 weeks'
   },
   {
-    title: 'Analytics & Dashboards',
-    description: 'A dashboard that everyone trusts. KPIs that actually matter. Answers in seconds, not hours.',
-    href: '/services/analytics-dashboards/',
-    icon: '📊'
-  },
-  {
-    title: 'Customer Segmentation',
-    description: 'Know which customers are worth more, predict who\'s about to leave, and focus resources where they matter.',
-    href: '/services/customer-segmentation/',
-    icon: '👥'
-  },
-  {
-    title: 'Forecasting & Anomaly Detection',
-    description: 'See demand shifts before they hit your supply chain. Spot anomalies before they become costly incidents.',
+    title: 'Predictive Analytics & Forecasting',
+    description: 'Demand forecasting, anomaly detection, and trend analysis that help you plan ahead and respond before problems escalate.',
     href: '/services/forecasting-anomaly-detection/',
-    icon: '📈'
+    icon: '📈',
+    timeline: '3–6 weeks'
+  },
+  {
+    title: 'Machine Learning & Pattern Discovery',
+    description: 'Customer clustering, recommendation systems, and ensemble models that uncover hidden patterns and drive better decisions.',
+    href: '/services/customer-segmentation/',
+    icon: '🔍',
+    timeline: '4–8 weeks'
+  },
+  {
+    title: 'AI & Generative Tools',
+    description: 'Neural networks, intelligent assistants, and AI-powered automation that bring advanced capabilities within reach of growing businesses.',
+    href: '/services/analytics-dashboards/',
+    icon: '🤖',
+    timeline: '3–6 weeks'
   }
 ];
 
@@ -47,21 +51,99 @@ const differentiators = [
 ];
 
 const sectors = ['Logistics', 'Distribution', 'Manufacturing', 'Retail', 'Professional Services', 'Facilities'];
+
+const engagements = [
+  {
+    title: 'Data & Reporting Automation Sprint',
+    description: 'Designed for businesses spending too much time on manual reporting, spreadsheet copying, and disconnected admin workflows.',
+    bullets: [
+      'Automate repetitive reporting processes',
+      'Connect and structure operational data',
+      'Reduce spreadsheet dependency',
+      'Create a reliable dashboard or reporting workflow'
+    ],
+    investment: '£3k–£8k',
+    timeline: '2–4 weeks',
+    icon: '⚡'
+  },
+  {
+    title: 'Forecasting & Decision Support Project',
+    description: 'Built for teams that need better planning, earlier warning signals, and more confidence in operational decisions.',
+    bullets: [
+      'Demand / workload forecasting',
+      'Anomaly detection',
+      'Predictive models for operational risk',
+      'Decision-support dashboards'
+    ],
+    investment: '£5k–£15k',
+    timeline: '3–6 weeks',
+    icon: '📊'
+  },
+  {
+    title: 'Customer Intelligence & Recommendation System',
+    description: 'For businesses with customer or client data who want better segmentation, prioritisation, and smarter targeting.',
+    bullets: [
+      'Clustering and customer segmentation',
+      'Recommendation systems',
+      'Lead / opportunity prioritisation',
+      'Pattern discovery in customer behaviour'
+    ],
+    investment: '£6k–£20k',
+    timeline: '4–8 weeks',
+    icon: '🎯'
+  }
+];
+
+const projects = [
+  {
+    title: 'AI Lesson Planner for Science Cover Teaching',
+    category: 'Workflow Automation & Intelligent Content',
+    problem: 'Teachers and cover staff often lose time preparing lessons at different difficulty levels and adapting content quickly.',
+    solution: 'Developed a Python-based lesson planning system that integrates educational best practice, syllabus content, challenge tasks, and knowledge-check questions to generate structured lesson plans efficiently.',
+    outcomes: [
+      'Reduces lesson preparation time',
+      'Improves consistency of lesson structure',
+      'Supports differentiated delivery across ability levels'
+    ]
+  },
+  {
+    title: 'Estimating and MIS System for Bespoke Manufacturing',
+    category: 'Operational Data Systems',
+    problem: 'A bespoke packaging manufacturer relied on manual estimating processes and fragmented management information, making quoting and decision-making slow and inconsistent.',
+    solution: 'Designed and scoped a smarter estimating / MIS system to centralise operational variables, automate parts of the quoting process, and support more reliable management insight.',
+    outcomes: [
+      'Reduces estimating friction',
+      'Improves consistency in quoting',
+      'Lays the foundation for stronger operational reporting and future forecasting'
+    ]
+  },
+  {
+    title: 'Customer Clustering and Recommendation Modelling',
+    category: 'Machine Learning & Customer Intelligence',
+    problem: 'Businesses often hold customer data but lack clear ways to identify meaningful groups, prioritise opportunities, or understand which customers are likely to respond to different products or services.',
+    solution: 'Developed clustering and recommendation approaches to uncover behavioural patterns in customer data and support smarter targeting and prioritisation.',
+    outcomes: [
+      'Helps businesses understand customer segments',
+      'Improves targeting and prioritisation',
+      'Supports more informed commercial decision-making'
+    ]
+  }
+];
 ---
 
 <BaseLayout
-  title="Data Science & Automation for UK SMEs"
-  description="Drowning in spreadsheets? QSol Analytics delivers automation, dashboards, and forecasting for UK SMEs—measurable results in weeks, not months."
+  title="Data Science & Automation for Growing UK SMEs"
+  description="QSol Analytics builds practical data systems — automation, dashboards, forecasting, machine learning and AI tools — designed for real operational businesses. Measurable results in weeks."
 >
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-brand-blue-pale to-white py-20 lg:py-28">
     <div class="container-wide">
       <div class="max-w-3xl">
         <h1 class="text-4xl lg:text-5xl font-bold text-slate leading-tight">
-          Data Science Consultancy for UK SMEs
+          Data Science & Automation for Growing UK SMEs
         </h1>
         <p class="mt-6 text-xl text-slate-light leading-relaxed">
-          Stop firefighting. Start forecasting. Automation, dashboards, and analytics that deliver measurable results in weeks, not months.
+          We build practical data systems — from automation and dashboards to forecasting, machine learning and AI tools — designed for real operational businesses.
         </p>
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
           <a href="/call" class="btn-primary text-lg px-8 py-4">
@@ -96,7 +178,7 @@ const sectors = ['Logistics', 'Distribution', 'Manufacturing', 'Retail', 'Profes
           That's where we come in.
         </p>
         <p>
-          QSol Analytics bridges the gap between your data reality and your business ambitions—with automation, dashboards, and forecasting built specifically for operations-heavy SMEs.
+          QSol Analytics bridges the gap between your data reality and your business ambitions—with automation, dashboards, forecasting, machine learning, and AI tools built specifically for operations-heavy SMEs.
         </p>
       </div>
     </div>
@@ -119,11 +201,96 @@ const sectors = ['Logistics', 'Distribution', 'Manufacturing', 'Retail', 'Profes
     </div>
   </section>
 
+  <!-- Real Problems We Solve Section -->
+  <section class="py-12 lg:py-16 border-y border-gray-200">
+    <div class="container-wide">
+      <h2 class="text-xl font-semibold text-slate text-center mb-8">Real Problems We Solve</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="flex flex-col items-center">
+          <div class="w-12 h-12 bg-brand-blue-pale rounded-full flex items-center justify-center mb-3">
+            <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <p class="text-sm text-slate-light">Forecasting demand before it hits</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-12 h-12 bg-brand-blue-pale rounded-full flex items-center justify-center mb-3">
+            <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <p class="text-sm text-slate-light">Detecting anomalies before they escalate</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-12 h-12 bg-brand-blue-pale rounded-full flex items-center justify-center mb-3">
+            <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <p class="text-sm text-slate-light">Automating reporting pipelines</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-12 h-12 bg-brand-blue-pale rounded-full flex items-center justify-center mb-3">
+            <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <p class="text-sm text-slate-light">Prioritising high-value customers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typical Engagements Section -->
+  <section class="py-16 lg:py-24">
+    <div class="container-wide">
+      <h2 class="text-3xl font-bold text-slate text-center">Typical Engagements</h2>
+      <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
+        Clear, scoped projects with fixed pricing. Choose the engagement that fits your current challenge.
+      </p>
+      <div class="mt-12 grid md:grid-cols-3 gap-8">
+        {engagements.map((engagement) => (
+          <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">{engagement.icon}</span>
+              <h3 class="text-lg font-semibold text-slate">{engagement.title}</h3>
+            </div>
+            <p class="text-slate-light text-sm mb-4">{engagement.description}</p>
+            <ul class="space-y-2 mb-6">
+              {engagement.bullets.map((bullet) => (
+                <li class="flex items-start gap-2 text-sm text-slate-light">
+                  <svg class="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="border-t border-gray-100 pt-4 mt-auto">
+              <div class="flex justify-between items-center text-sm">
+                <div>
+                  <span class="text-slate-light">Investment:</span>
+                  <span class="font-semibold text-slate ml-1">{engagement.investment}</span>
+                </div>
+                <div>
+                  <span class="text-slate-light">Timeline:</span>
+                  <span class="font-semibold text-brand-blue ml-1">{engagement.timeline}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Process Section -->
   <section id="how-it-works" class="py-16 lg:py-24">
     <div class="container-wide">
       <h2 class="text-3xl font-bold text-slate text-center">How It Works</h2>
       <p class="mt-4 text-center text-slate-light">A lightweight process designed for busy teams</p>
+      <p class="mt-2 text-center text-slate-light text-sm">Many projects begin with a small diagnostic or prototype so you can see real value before committing to larger systems.</p>
       <div class="mt-12 grid md:grid-cols-5 gap-6">
         {processSteps.map((step, index) => (
           <div class="text-center">
@@ -139,8 +306,56 @@ const sectors = ['Logistics', 'Distribution', 'Manufacturing', 'Retail', 'Profes
     </div>
   </section>
 
-  <!-- Why QSol Section -->
+  <!-- Selected Projects Section -->
   <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="container-wide">
+      <h2 class="text-3xl font-bold text-slate text-center">Selected Projects</h2>
+      <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
+        Recent work across automation, machine learning, and intelligent systems.
+      </p>
+      <div class="mt-12 grid lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="bg-brand-blue-pale px-6 py-4">
+              <span class="text-xs font-medium text-brand-blue uppercase tracking-wide">{project.category}</span>
+              <h3 class="mt-1 text-lg font-semibold text-slate">{project.title}</h3>
+            </div>
+            <div class="p-6 space-y-4">
+              <div>
+                <h4 class="text-sm font-semibold text-slate mb-1">Problem</h4>
+                <p class="text-sm text-slate-light">{project.problem}</p>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-slate mb-1">Solution</h4>
+                <p class="text-sm text-slate-light">{project.solution}</p>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-slate mb-2">Outcomes</h4>
+                <ul class="space-y-1">
+                  {project.outcomes.map((outcome) => (
+                    <li class="flex items-start gap-2 text-sm text-slate-light">
+                      <svg class="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span>{outcome}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/case-studies/" class="btn-secondary">
+          View All Case Studies
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why QSol Section -->
+  <section class="py-16 lg:py-24">
     <div class="container-wide">
       <h2 class="text-3xl font-bold text-slate text-center">Why Work With QSol Analytics?</h2>
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -198,15 +413,25 @@ const sectors = ['Logistics', 'Distribution', 'Manufacturing', 'Retail', 'Profes
       <div class="mt-12 space-y-6">
         <div class="border-b border-gray-200 pb-6">
           <h3 class="font-semibold text-slate">How much does this cost?</h3>
-          <p class="mt-2 text-slate-light">Projects typically range from £3,000 for focused automation to £25,000+ for comprehensive analytics builds. We provide fixed quotes after the discovery call—no surprise invoices.</p>
+          <p class="mt-2 text-slate-light">Pricing depends on project complexity. Approximate ranges:</p>
+          <ul class="mt-2 text-slate-light text-sm space-y-1 pl-4">
+            <li>Automation systems: approximately £3k – £8k</li>
+            <li>Analytics / forecasting models: approximately £5k – £15k</li>
+            <li>Decision systems (ML/AI): approximately £15k – £25k+</li>
+          </ul>
+          <p class="mt-2 text-slate-light">We provide fixed quotes after the discovery call—no surprise invoices.</p>
         </div>
         <div class="border-b border-gray-200 pb-6">
           <h3 class="font-semibold text-slate">Do I need to prepare anything before we start?</h3>
           <p class="mt-2 text-slate-light">Not really. Access to your data and 30 minutes for a discovery call is enough to begin. We'll guide you through what's needed from there.</p>
         </div>
+        <div class="border-b border-gray-200 pb-6">
+          <h3 class="font-semibold text-slate">Do we need good data before working with you?</h3>
+          <p class="mt-2 text-slate-light">Not necessarily. Many projects start by cleaning and structuring existing data before more advanced modelling is introduced. Part of our job is working with messy reality—fixing data quality issues is often the highest-ROI work we do.</p>
+        </div>
         <div class="pb-6">
-          <h3 class="font-semibold text-slate">What if I don't have "good" data?</h3>
-          <p class="mt-2 text-slate-light">Most businesses don't. Part of our job is working with messy reality—fixing data quality issues is often the highest-ROI work we do.</p>
+          <h3 class="font-semibold text-slate">How quickly can we see results?</h3>
+          <p class="mt-2 text-slate-light">Most projects deliver a working prototype within 2–4 weeks. We focus on rapid time-to-value so you can see real results before committing to larger systems.</p>
         </div>
       </div>
       <div class="mt-8 text-center">
@@ -222,7 +447,7 @@ const sectors = ['Logistics', 'Distribution', 'Manufacturing', 'Retail', 'Profes
     "name": "QSol Analytics",
     "url": "https://qsol-analytics.com",
     "logo": "https://qsol-analytics.com/images/logo.png",
-    "description": "Practical data science and automation consultancy for UK SMEs, delivering dashboards, forecasting, and workflow automation with measurable ROI.",
+    "description": "Practical data science and automation consultancy for UK SMEs. We build operational data systems, predictive analytics, machine learning solutions, and AI tools — with measurable ROI.",
     "areaServed": {
       "@type": "Country",
       "name": "United Kingdom"

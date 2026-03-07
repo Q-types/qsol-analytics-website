@@ -4,9 +4,10 @@ interface Props {
   description: string;
   href: string;
   icon?: string;
+  timeline?: string;
 }
 
-const { title, description, href, icon } = Astro.props;
+const { title, description, href, icon, timeline } = Astro.props;
 ---
 
 <a
@@ -24,6 +25,11 @@ const { title, description, href, icon } = Astro.props;
   <p class="mt-2 text-slate-light text-sm">
     {description}
   </p>
+  {timeline && (
+    <p class="mt-2 text-brand-blue text-xs font-medium">
+      Typical timeline: {timeline}
+    </p>
+  )}
   <span class="mt-4 inline-flex items-center text-brand-blue text-sm font-medium">
     Learn more
     <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
