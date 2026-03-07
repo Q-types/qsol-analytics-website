@@ -127,6 +127,17 @@ const projects = [
       'Improves targeting and prioritisation',
       'Supports more informed commercial decision-making'
     ]
+  },
+  {
+    title: 'Automated Data Processing for Acoustic Consultancy',
+    category: 'Automation & Data Engineering',
+    problem: 'Noise and acoustic consultancies collect large volumes of measurement data during investigations. Processing this data and producing formal reports requires repetitive manual steps—importing data, filtering signals, performing calculations, and formatting results—which is time-consuming and prone to error.',
+    solution: 'Developed a Python-based automation system that imports and processes acoustic measurement datasets, performs required calculations and transformations, and generates formatted report sections referencing relevant regulatory standards.',
+    outcomes: [
+      'Reduced manual data processing effort',
+      'Improved consistency of calculations and reporting',
+      'Enabled faster turnaround of consultancy reports'
+    ]
   }
 ];
 ---
@@ -313,7 +324,7 @@ const projects = [
       <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
         Recent work across automation, machine learning, and intelligent systems.
       </p>
-      <div class="mt-12 grid lg:grid-cols-3 gap-8">
+      <div class="mt-12 grid md:grid-cols-2 gap-8">
         {projects.map((project) => (
           <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
             <div class="bg-brand-blue-pale px-6 py-4">
