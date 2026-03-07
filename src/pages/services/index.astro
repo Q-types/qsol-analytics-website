@@ -5,48 +5,62 @@ import CTASection from '../../components/CTASection.astro';
 
 const services = [
   {
-    title: 'Automation & Workflow',
-    description: 'Stop copying data between systems. Stop reformatting the same report every Monday. We build Python-based automation that handles the repetitive work—so your team can focus on decisions, not data entry.',
+    title: 'Operational Data Systems',
+    description: 'Automation and reporting systems that remove manual work. Workflow automation, reporting pipelines, dashboards, and MIS / operational systems that give your team real-time visibility.',
     href: '/services/automation-workflow/',
-    icon: '⚙️'
+    icon: '⚙️',
+    timeline: '2–4 weeks'
   },
   {
-    title: 'Analytics & Dashboards',
-    description: 'A dashboard that everyone trusts. KPIs that actually matter. Answers in seconds, not hours. We design and build business intelligence that fits how you work.',
-    href: '/services/analytics-dashboards/',
-    icon: '📊'
-  },
-  {
-    title: 'Customer Segmentation',
-    description: 'Know which customers are worth more, predict who\'s about to leave, and focus resources where they matter. Turn customer data into actionable segments.',
-    href: '/services/customer-segmentation/',
-    icon: '👥'
-  },
-  {
-    title: 'Forecasting & Anomaly Detection',
-    description: 'See demand shifts before they hit your supply chain. Spot anomalies before they become costly incidents. Turn reactive firefighting into proactive planning.',
+    title: 'Predictive Analytics & Forecasting',
+    description: 'Models that forecast demand and detect operational risk. Time-series forecasting, anomaly detection, predictive maintenance, and demand modelling to help you plan ahead.',
     href: '/services/forecasting-anomaly-detection/',
-    icon: '📈'
+    icon: '📈',
+    timeline: '3–6 weeks'
+  },
+  {
+    title: 'Machine Learning Solutions',
+    description: 'Models that uncover patterns in complex business data. Clustering & segmentation, recommendation systems, classification models, and ensemble approaches for smarter decisions.',
+    href: '/services/customer-segmentation/',
+    icon: '🔍',
+    timeline: '4–8 weeks'
+  },
+  {
+    title: 'AI & Intelligent Automation',
+    description: 'Custom AI tools integrated into operations. GenAI internal tools, AI assistants, agent workflows, and knowledge retrieval systems that bring advanced capabilities within reach.',
+    href: '/services/analytics-dashboards/',
+    icon: '🤖',
+    timeline: '3–6 weeks'
   }
 ];
 ---
 
 <BaseLayout
-  title="Data Science Services for UK SMEs"
-  description="Automation, dashboards, segmentation, and forecasting built for operations-heavy UK SMEs. Measurable results in weeks, not months."
+  title="Data Science & AI Services for UK SMEs"
+  description="Operational data systems, predictive analytics, machine learning, and AI tools built for operations-heavy UK SMEs. Measurable results in weeks, not months."
 >
   <section class="py-16 lg:py-24">
     <div class="container-wide">
       <div class="max-w-3xl">
         <h1 class="text-4xl font-bold text-slate">Our Services</h1>
         <p class="mt-6 text-xl text-slate-light">
-          Practical data science solutions designed for UK SMEs. Every service delivers measurable outcomes—agreed upfront, visible before the final invoice.
+          From automation and dashboards to machine learning and AI tools—practical data science solutions designed for UK SMEs. Every service delivers measurable outcomes, agreed upfront.
         </p>
       </div>
 
       <div class="mt-16 grid md:grid-cols-2 gap-8">
         {services.map((service) => (
-          <ServiceCard {...service} />
+          <a href={service.href} class="block bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-brand-blue-light transition-all group">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">{service.icon}</span>
+              <h2 class="text-xl font-semibold text-slate group-hover:text-brand-blue transition-colors">{service.title}</h2>
+            </div>
+            <p class="text-slate-light">{service.description}</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-sm text-brand-blue font-medium">Typical timeline: {service.timeline}</span>
+              <span class="text-brand-blue group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
         ))}
       </div>
     </div>

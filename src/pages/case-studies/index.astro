@@ -4,82 +4,88 @@ import CTASection from '../../components/CTASection.astro';
 
 const caseStudies = [
   {
-    title: 'Logistics Reporting Automation',
-    category: 'Automation',
-    description: 'Automated multi-source report preparation, reducing weekly reporting time from 15+ hours to 15 minutes of review.',
-    result: '15+ hours saved per week',
-    href: '/case-studies/logistics-automation-demo/',
-    isDemo: true
+    title: 'AI Lesson Planner for Science Cover Teaching',
+    category: 'Workflow Automation & AI',
+    problem: 'Teachers and cover staff often lose time preparing lessons at different difficulty levels and adapting content quickly.',
+    solution: 'Developed a Python-based lesson planning system that integrates educational best practice, syllabus content, challenge tasks, and knowledge-check questions to generate structured lesson plans efficiently.',
+    outcomes: [
+      'Reduces lesson preparation time',
+      'Improves consistency of lesson structure',
+      'Supports differentiated delivery across ability levels'
+    ],
+    href: '/case-studies/ai-lesson-planner/'
   },
   {
-    title: 'Retail Customer Segmentation',
-    category: 'Segmentation',
-    description: 'Data-driven customer segmentation enabling targeted marketing campaigns with measurable ROI improvement.',
-    result: '24% increase in repeat purchases',
-    href: '/case-studies/retail-segmentation-demo/',
-    isDemo: true
+    title: 'Estimating and MIS System for Bespoke Manufacturing',
+    category: 'Operational Data Systems',
+    problem: 'A bespoke packaging manufacturer relied on manual estimating processes and fragmented management information, making quoting and decision-making slow and inconsistent.',
+    solution: 'Designed and scoped a smarter estimating / MIS system to centralise operational variables, automate parts of the quoting process, and support more reliable management insight.',
+    outcomes: [
+      'Reduces estimating friction',
+      'Improves consistency in quoting',
+      'Lays the foundation for stronger operational reporting'
+    ],
+    href: '/case-studies/manufacturing-mis/'
   },
   {
-    title: 'Manufacturing Operations Dashboard',
-    category: 'Dashboards',
-    description: 'Real-time operations visibility replacing manual reporting, enabling proactive issue resolution.',
-    result: '28% reduction in production delays',
-    href: '/case-studies/manufacturing-dashboard-demo/',
-    isDemo: true
-  },
-  {
-    title: 'Distribution Demand Forecasting',
-    category: 'Forecasting',
-    description: 'Time series forecasting model improving inventory planning and reducing both stockouts and overstock.',
-    result: '34% reduction in stockouts',
-    href: '/case-studies/distribution-forecasting-demo/',
-    isDemo: true
+    title: 'Customer Clustering and Recommendation Modelling',
+    category: 'Machine Learning & Customer Intelligence',
+    problem: 'Businesses often hold customer data but lack clear ways to identify meaningful groups, prioritise opportunities, or understand which customers respond to different products.',
+    solution: 'Developed clustering and recommendation approaches to uncover behavioural patterns in customer data and support smarter targeting and prioritisation.',
+    outcomes: [
+      'Helps businesses understand customer segments',
+      'Improves targeting and prioritisation',
+      'Supports more informed commercial decision-making'
+    ],
+    href: '/case-studies/customer-clustering/'
   }
 ];
 ---
 
 <BaseLayout
-  title="Case Studies"
-  description="Data science case studies showing typical results from automation, dashboards, segmentation, and forecasting projects."
+  title="Selected Projects"
+  description="Real data science projects across automation, machine learning, and AI — from workflow automation to customer intelligence systems."
 >
   <section class="py-16 lg:py-24">
     <div class="container-wide">
       <div class="max-w-3xl">
-        <h1 class="text-4xl font-bold text-slate">Case Studies</h1>
+        <h1 class="text-4xl font-bold text-slate">Selected Projects</h1>
         <p class="mt-6 text-xl text-slate-light">
-          Examples of typical project outcomes across automation, dashboards, segmentation, and forecasting.
-        </p>
-        <p class="mt-4 text-sm text-slate-light bg-amber-50 border border-amber-200 rounded-lg p-4">
-          <strong>Note:</strong> These are demo projects illustrating typical outcomes. Specific results vary by data quality, scope, and implementation. We agree success metrics upfront for every engagement.
+          Recent work across automation, machine learning, and intelligent systems. Each project focused on practical business outcomes.
         </p>
       </div>
 
-      <div class="mt-12 grid md:grid-cols-2 gap-8">
+      <div class="mt-12 grid lg:grid-cols-3 gap-8">
         {caseStudies.map((study) => (
-          <a
-            href={study.href}
-            class="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-brand-blue-light transition-all group"
-          >
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-sm font-medium text-brand-blue bg-brand-blue-pale px-3 py-1 rounded-full">
-                {study.category}
-              </span>
-              {study.isDemo && (
-                <span class="text-xs text-slate-light bg-gray-100 px-2 py-1 rounded">
-                  Demo Project
-                </span>
-              )}
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="bg-brand-blue-pale px-6 py-4">
+              <span class="text-xs font-medium text-brand-blue uppercase tracking-wide">{study.category}</span>
+              <h2 class="mt-1 text-lg font-semibold text-slate">{study.title}</h2>
             </div>
-            <h2 class="text-xl font-semibold text-slate group-hover:text-brand-blue transition-colors">
-              {study.title}
-            </h2>
-            <p class="mt-2 text-slate-light text-sm">
-              {study.description}
-            </p>
-            <div class="mt-4 pt-4 border-t border-gray-100">
-              <span class="text-sm font-semibold text-success">{study.result}</span>
+            <div class="p-6 space-y-4">
+              <div>
+                <h3 class="text-sm font-semibold text-slate mb-1">Problem</h3>
+                <p class="text-sm text-slate-light">{study.problem}</p>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-slate mb-1">Solution</h3>
+                <p class="text-sm text-slate-light">{study.solution}</p>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-slate mb-2">Outcomes</h3>
+                <ul class="space-y-1">
+                  {study.outcomes.map((outcome) => (
+                    <li class="flex items-start gap-2 text-sm text-slate-light">
+                      <svg class="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span>{outcome}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
