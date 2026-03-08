@@ -52,6 +52,39 @@ const differentiators = [
 
 const sectors = ['Logistics', 'Distribution', 'Manufacturing', 'Retail', 'Professional Services', 'Facilities'];
 
+const dataScienceExamples = [
+  {
+    problem: 'Manual reporting is eating your team\'s time',
+    solution: 'Automated data pipelines that pull, clean, and format reports—daily or on-demand.',
+    outcome: 'Hours saved each week. Fewer errors. Faster decisions.',
+    icon: '📊'
+  },
+  {
+    problem: 'Demand fluctuates and you\'re always catching up',
+    solution: 'Forecasting models that predict demand at SKU, category, or aggregate level—with confidence intervals.',
+    outcome: 'Better inventory planning. Fewer stockouts. Less working capital tied up.',
+    icon: '📈'
+  },
+  {
+    problem: 'You treat all customers the same',
+    solution: 'Clustering and segmentation that identifies meaningful groups based on behaviour, value, and patterns.',
+    outcome: 'Targeted marketing. Prioritised sales effort. Higher conversion.',
+    icon: '🎯'
+  },
+  {
+    problem: 'Problems become visible only after they\'re expensive',
+    solution: 'Anomaly detection that spots unusual patterns in real-time—before they escalate.',
+    outcome: 'Earlier warnings. Faster response. Lower incident costs.',
+    icon: '🔔'
+  },
+  {
+    problem: 'Your team answers the same questions repeatedly',
+    solution: 'AI assistants trained on your business data—for internal knowledge retrieval and decision support.',
+    outcome: 'Faster onboarding. Consistent answers. Time freed for higher-value work.',
+    icon: '🤖'
+  }
+];
+
 const engagements = [
   {
     title: 'Data & Reporting Automation Sprint',
@@ -207,6 +240,45 @@ const projects = [
       <div class="mt-12 text-center">
         <a href="/services/" class="btn-secondary">
           View All Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Data Science Can Actually Do Section -->
+  <section class="py-16 lg:py-24">
+    <div class="container-wide">
+      <h2 class="text-3xl font-bold text-slate text-center">What Data Science Can Actually Do for Your Business</h2>
+      <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
+        Not sure what's possible? Here are five common problems we solve—and what the results look like.
+      </p>
+      <div class="mt-12 space-y-6">
+        {dataScienceExamples.map((example) => (
+          <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+            <div class="grid md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-1 flex justify-center md:justify-start">
+                <span class="text-3xl">{example.icon}</span>
+              </div>
+              <div class="md:col-span-3">
+                <h3 class="text-sm font-semibold text-red-600 uppercase tracking-wide mb-1">Problem</h3>
+                <p class="text-slate font-medium">{example.problem}</p>
+              </div>
+              <div class="md:col-span-4">
+                <h3 class="text-sm font-semibold text-brand-blue uppercase tracking-wide mb-1">Solution</h3>
+                <p class="text-slate-light">{example.solution}</p>
+              </div>
+              <div class="md:col-span-4">
+                <h3 class="text-sm font-semibold text-green-600 uppercase tracking-wide mb-1">Outcome</h3>
+                <p class="text-slate-light">{example.outcome}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <p class="text-slate-light mb-4">Not sure if your business is ready for data science?</p>
+        <a href="/diagnostic/" class="btn-primary">
+          Take the Data Opportunity Diagnostic
         </a>
       </div>
     </div>

@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const diagnosticQuestions = [
+  {
+    category: 'Data Collection & Storage',
+    questions: [
+      'Do you have transaction or activity data stored digitally (e.g. orders, bookings, jobs)?',
+      'Do you have at least 6 months of historical data?',
+      'Is your data stored in systems you can export from (spreadsheets, databases, CRM, ERP)?'
+    ]
+  },
+  {
+    category: 'Current Pain Points',
+    questions: [
+      'Does your team spend significant time on manual reporting or data entry?',
+      'Do you often wish you had earlier warning of problems?',
+      'Do you treat most customers/clients similarly, even though they\'re different?',
+      'Are decisions often made on gut feel rather than data?'
+    ]
+  },
+  {
+    category: 'Business Readiness',
+    questions: [
+      'Would improved forecasting directly impact your operations or planning?',
+      'Could better customer insights change how you market, sell, or prioritise?',
+      'Is there someone in your team who could act on data-driven recommendations?'
+    ]
+  }
+];
+
+const totalQuestions = diagnosticQuestions.reduce((sum, cat) => sum + cat.questions.length, 0);
+---
+
+<BaseLayout
+  title="Data Opportunity Diagnostic"
+  description="A quick self-assessment to help you understand whether your business is ready to benefit from data science, automation, or AI."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <h1 class="text-4xl font-bold text-slate">Data Opportunity Diagnostic</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        Not sure if data science is right for your business? This quick self-assessment helps you understand whether you're ready to benefit from automation, forecasting, ML, or AI.
+      </p>
+      <p class="mt-4 text-slate-light">
+        Answer honestly—there are no wrong answers. This diagnostic is designed to help you understand your current position, not to sell you something you don't need.
+      </p>
+
+      <div class="mt-12 bg-white border border-gray-200 rounded-xl p-8">
+        <form id="diagnostic-form" class="space-y-10">
+          {diagnosticQuestions.map((category, catIndex) => (
+            <div>
+              <h2 class="text-lg font-semibold text-slate border-b border-gray-200 pb-2 mb-4">
+                {category.category}
+              </h2>
+              <div class="space-y-4">
+                {category.questions.map((question, qIndex) => {
+                  const questionId = `q-${catIndex}-${qIndex}`;
+                  return (
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                      <div class="flex gap-4 mt-0.5">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name={questionId}
+                            value="yes"
+                            class="w-4 h-4 text-brand-blue border-gray-300 focus:ring-brand-blue"
+                          />
+                          <span class="text-sm font-medium text-green-600">Yes</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name={questionId}
+                            value="no"
+                            class="w-4 h-4 text-brand-blue border-gray-300 focus:ring-brand-blue"
+                          />
+                          <span class="text-sm font-medium text-slate-light">No</span>
+                        </label>
+                      </div>
+                      <p class="text-slate flex-1">{question}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+
+          <div class="pt-6 border-t border-gray-200">
+            <button
+              type="submit"
+              class="btn-primary w-full sm:w-auto"
+            >
+              See My Results
+            </button>
+          </div>
+        </form>
+
+        <!-- Results Section (Hidden by default) -->
+        <div id="results" class="hidden mt-10 pt-10 border-t border-gray-200">
+          <h2 class="text-2xl font-bold text-slate mb-6">Your Results</h2>
+
+          <div class="mb-8">
+            <div class="flex items-center gap-4 mb-2">
+              <span class="text-4xl font-bold text-brand-blue" id="score">0</span>
+              <span class="text-slate-light">out of {totalQuestions} indicators</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+              <div id="score-bar" class="bg-brand-blue h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Result Interpretation -->
+          <div id="result-low" class="hidden">
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+              <h3 class="font-semibold text-amber-800 mb-2">Building Foundations (0-3 Yes answers)</h3>
+              <p class="text-amber-700">
+                Your business may benefit from getting data fundamentals in place first. This often means consolidating data sources, improving data capture, or automating basic reporting. These foundational improvements often deliver quick wins and set you up for more advanced analytics later.
+              </p>
+            </div>
+            <p class="text-slate-light">
+              <strong>Recommended starting point:</strong> A Data & Reporting Automation Sprint to consolidate and structure your data.
+            </p>
+          </div>
+
+          <div id="result-medium" class="hidden">
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+              <h3 class="font-semibold text-blue-800 mb-2">Ready for Quick Wins (4-7 Yes answers)</h3>
+              <p class="text-blue-700">
+                You have enough data and clear enough pain points that focused data science work could deliver tangible value. The question is where to start—automation, forecasting, or customer intelligence—depending on which problems are most pressing.
+              </p>
+            </div>
+            <p class="text-slate-light">
+              <strong>Recommended next step:</strong> A discovery call to identify the highest-impact starting point for your specific situation.
+            </p>
+          </div>
+
+          <div id="result-high" class="hidden">
+            <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+              <h3 class="font-semibold text-green-800 mb-2">Strong Data Opportunity (8-10 Yes answers)</h3>
+              <p class="text-green-700">
+                Your business has the data, the pain points, and the readiness to benefit significantly from data science. Multiple opportunities likely exist—the challenge is prioritisation and sequencing to maximise ROI.
+              </p>
+            </div>
+            <p class="text-slate-light">
+              <strong>Recommended next step:</strong> A discovery call to map out a roadmap of high-value projects and identify quick wins.
+            </p>
+          </div>
+
+          <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+            <h3 class="font-semibold text-slate mb-2">Want to discuss your results?</h3>
+            <p class="text-slate-light mb-4">
+              Book a free 30-minute discovery call. We'll review your situation, discuss specific opportunities, and give you honest advice on whether data science makes sense for your business right now.
+            </p>
+            <a href="/call/" class="btn-primary">
+              Book a Discovery Call
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Prefer to talk it through?"
+    description="Skip the self-assessment and book a discovery call. We'll ask the right questions and give you honest advice."
+  />
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('diagnostic-form');
+  const results = document.getElementById('results');
+  const scoreDisplay = document.getElementById('score');
+  const scoreBar = document.getElementById('score-bar');
+  const resultLow = document.getElementById('result-low');
+  const resultMedium = document.getElementById('result-medium');
+  const resultHigh = document.getElementById('result-high');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form as HTMLFormElement);
+    let yesCount = 0;
+
+    formData.forEach((value) => {
+      if (value === 'yes') yesCount++;
+    });
+
+    // Update score display
+    if (scoreDisplay) scoreDisplay.textContent = yesCount.toString();
+    if (scoreBar) scoreBar.style.width = `${(yesCount / 10) * 100}%`;
+
+    // Show appropriate result
+    resultLow?.classList.add('hidden');
+    resultMedium?.classList.add('hidden');
+    resultHigh?.classList.add('hidden');
+
+    if (yesCount <= 3) {
+      resultLow?.classList.remove('hidden');
+    } else if (yesCount <= 7) {
+      resultMedium?.classList.remove('hidden');
+    } else {
+      resultHigh?.classList.remove('hidden');
+    }
+
+    // Show results section
+    results?.classList.remove('hidden');
+    results?.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
