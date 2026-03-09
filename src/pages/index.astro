@@ -6,28 +6,28 @@ import CTASection from '../components/CTASection.astro';
 const services = [
   {
     title: 'Operational Data Systems',
-    description: 'Automation pipelines, live dashboards, and data integration that eliminate manual work and give your team real-time visibility.',
+    description: 'Eliminate manual reporting and gain real-time visibility. Automated pipelines that save hours each week.',
     href: '/services/automation-workflow/',
     icon: '⚙️',
     timeline: '2–4 weeks'
   },
   {
     title: 'Predictive Analytics & Forecasting',
-    description: 'Demand forecasting, anomaly detection, and trend analysis that help you plan ahead and respond before problems escalate.',
+    description: 'Plan ahead with confidence. Demand forecasting and anomaly detection that help you respond before problems escalate.',
     href: '/services/forecasting-anomaly-detection/',
     icon: '📈',
     timeline: '3–6 weeks'
   },
   {
     title: 'Machine Learning & Pattern Discovery',
-    description: 'Customer clustering, recommendation systems, and ensemble models that uncover hidden patterns and drive better decisions.',
+    description: 'Uncover hidden patterns in customer behaviour. Clustering and recommendations that drive better commercial decisions.',
     href: '/services/customer-segmentation/',
     icon: '🔍',
     timeline: '4–8 weeks'
   },
   {
     title: 'AI & Generative Tools',
-    description: 'Neural networks, intelligent assistants, and AI-powered automation that bring advanced capabilities within reach of growing businesses.',
+    description: 'Bring advanced AI within reach. Intelligent assistants and automation that work with your existing workflows.',
     href: '/services/analytics-dashboards/',
     icon: '🤖',
     timeline: '3–6 weeks'
@@ -35,16 +35,16 @@ const services = [
 ];
 
 const processSteps = [
-  { title: 'Discovery', duration: '30 min call', description: 'We discuss your setup, pain points, and goals. No jargon, no hard sell.' },
-  { title: 'Assessment', duration: '1-3 days', description: 'We review your data and systems. You receive a written assessment with quick wins and opportunities.' },
-  { title: 'Build', duration: '2-4 weeks', description: 'We build a working solution you can test with real data. Results before the main investment.' },
+  { title: 'Discovery', duration: '30 min call', description: 'We map your current setup and identify quick wins. You leave with clarity, not a sales pitch.' },
+  { title: 'Assessment', duration: '1-3 days', description: 'We review your data and systems. You receive a written assessment with prioritised opportunities.' },
+  { title: 'Build', duration: '2-4 weeks', description: 'We deliver a working prototype you can test with real data. Value before the main investment.' },
   { title: 'Refine', duration: '1 week', description: 'We refine based on feedback and ensure everything works in your environment.' },
   { title: 'Deploy', duration: 'Ongoing', description: 'Full documentation and handover—or ongoing support. You choose.' }
 ];
 
 const differentiators = [
   { title: 'Rapid Time-to-Value', description: 'From discovery call to working prototype in 2-4 weeks. No six-month scoping phases.' },
-  { title: 'Signal Over Noise', description: 'Physics-trained rigour applied to business problems. You get clarity, not more dashboards.' },
+  { title: 'Signal Over Noise', description: 'Physics-trained rigour applied to business systems. We focus on clarity, modelling, and practical decisions—not unnecessary complexity. You get insight, not more dashboards.' },
   { title: 'Measurable Outcomes', description: 'Success metrics agreed upfront. You see the ROI before the final invoice.' },
   { title: 'Right-Sized Solutions', description: 'If a spreadsheet fix solves your problem, we\'ll say so. No overselling.' },
   { title: 'Founder Access', description: 'Work directly with the founder, not handed to junior staff.' }
@@ -85,6 +85,44 @@ const dataScienceExamples = [
   }
 ];
 
+const problemCards = [
+  {
+    id: 'reporting',
+    title: 'Reporting takes too long',
+    why: 'Data lives in multiple spreadsheets, systems don\'t talk to each other, and someone has to manually pull it all together every week or month.',
+    solution: 'Automated reporting pipelines that pull, clean, and format data—delivering reports on-demand or on schedule.',
+    outcome: 'Teams typically save 5–10 hours per week and eliminate copy-paste errors.'
+  },
+  {
+    id: 'demand',
+    title: 'Demand is hard to predict',
+    why: 'Historical patterns are buried in spreadsheets. Seasonal effects, trends, and anomalies aren\'t surfaced in time to act.',
+    solution: 'Forecasting models that analyse historical data and produce demand predictions with confidence intervals.',
+    outcome: 'Better inventory planning, fewer stockouts, and reduced working capital tied up in overstock.'
+  },
+  {
+    id: 'customers',
+    title: 'Customer data exists but insight is weak',
+    why: 'Customer information is stored but not analysed. Everyone gets treated the same way regardless of value or behaviour.',
+    solution: 'Clustering and segmentation models that identify meaningful customer groups based on actual patterns.',
+    outcome: 'Improved targeting, prioritised sales effort, and higher conversion from marketing spend.'
+  },
+  {
+    id: 'problems',
+    title: 'Problems appear too late',
+    why: 'Issues only surface after they\'ve become expensive—failed deliveries, quality problems, or operational breakdowns.',
+    solution: 'Anomaly detection systems that monitor for unusual patterns and alert your team early.',
+    outcome: 'Earlier warnings, faster response, and lower incident costs.'
+  },
+  {
+    id: 'manual',
+    title: 'Teams repeat the same manual work',
+    why: 'Processes that could be automated are still done by hand. Staff time is consumed by low-value repetitive tasks.',
+    solution: 'Workflow automation that handles routine data processing, freeing your team for higher-value work.',
+    outcome: 'Reduced manual workload and more consistent, reliable outputs.'
+  }
+];
+
 const engagements = [
   {
     title: 'Data & Reporting Automation Sprint',
@@ -97,7 +135,8 @@ const engagements = [
     ],
     investment: '£3k–£8k',
     timeline: '2–4 weeks',
-    icon: '⚡'
+    icon: '⚡',
+    typicalResult: 'Save 5–10 hours per week on reporting'
   },
   {
     title: 'Forecasting & Decision Support Project',
@@ -110,7 +149,8 @@ const engagements = [
     ],
     investment: '£5k–£15k',
     timeline: '3–6 weeks',
-    icon: '📊'
+    icon: '📊',
+    typicalResult: 'Earlier warning of demand changes and operational risks'
   },
   {
     title: 'Customer Intelligence & Recommendation System',
@@ -123,54 +163,31 @@ const engagements = [
     ],
     investment: '£6k–£20k',
     timeline: '4–8 weeks',
-    icon: '🎯'
+    icon: '🎯',
+    typicalResult: 'Clear customer segments and better sales prioritisation'
   }
 ];
 
-const projects = [
+const caseStudies = [
   {
-    title: 'AI Lesson Planner for Science Cover Teaching',
-    category: 'Workflow Automation & Intelligent Content',
-    problem: 'Teachers and cover staff often lose time preparing lessons at different difficulty levels and adapting content quickly.',
-    solution: 'Developed a Python-based lesson planning system that integrates educational best practice, syllabus content, challenge tasks, and knowledge-check questions to generate structured lesson plans efficiently.',
-    outcomes: [
-      'Reduces lesson preparation time',
-      'Improves consistency of lesson structure',
-      'Supports differentiated delivery across ability levels'
-    ]
+    title: 'Automated Data Processing for Acoustic Consultancy',
+    description: 'Python automation system that processes measurement data, performs calculations, and generates structured consultancy reports.',
+    result: 'Reduced reporting time significantly and improved calculation consistency'
   },
   {
     title: 'Estimating and MIS System for Bespoke Manufacturing',
-    category: 'Operational Data Systems',
-    problem: 'A bespoke packaging manufacturer relied on manual estimating processes and fragmented management information, making quoting and decision-making slow and inconsistent.',
-    solution: 'Designed and scoped a smarter estimating / MIS system to centralise operational variables, automate parts of the quoting process, and support more reliable management insight.',
-    outcomes: [
-      'Reduces estimating friction',
-      'Improves consistency in quoting',
-      'Lays the foundation for stronger operational reporting and future forecasting'
-    ]
+    description: 'Operational data system designed to automate quoting workflows and provide clearer management insight.',
+    result: 'Cut quoting turnaround from hours to minutes'
   },
   {
     title: 'Customer Clustering and Recommendation Modelling',
-    category: 'Machine Learning & Customer Intelligence',
-    problem: 'Businesses often hold customer data but lack clear ways to identify meaningful groups, prioritise opportunities, or understand which customers are likely to respond to different products or services.',
-    solution: 'Developed clustering and recommendation approaches to uncover behavioural patterns in customer data and support smarter targeting and prioritisation.',
-    outcomes: [
-      'Helps businesses understand customer segments',
-      'Improves targeting and prioritisation',
-      'Supports more informed commercial decision-making'
-    ]
+    description: 'Machine learning models to identify customer patterns and prioritise opportunities using clustering and recommendation logic.',
+    result: 'Improved targeting and sales prioritisation'
   },
   {
-    title: 'Automated Data Processing for Acoustic Consultancy',
-    category: 'Automation & Data Engineering',
-    problem: 'Noise and acoustic consultancies collect large volumes of measurement data during investigations. Processing this data and producing formal reports requires repetitive manual steps—importing data, filtering signals, performing calculations, and formatting results—which is time-consuming and prone to error.',
-    solution: 'Developed a Python-based automation system that imports and processes acoustic measurement datasets, performs required calculations and transformations, and generates formatted report sections referencing relevant regulatory standards.',
-    outcomes: [
-      'Reduced manual data processing effort',
-      'Improved consistency of calculations and reporting',
-      'Enabled faster turnaround of consultancy reports'
-    ]
+    title: 'AI Lesson Planner for Science Cover Teaching',
+    description: 'Automation system that generates structured lesson plans using curriculum inputs, difficulty levels, and knowledge checks.',
+    result: 'Reduced lesson planning effort and improved consistency'
   }
 ];
 ---
@@ -179,50 +196,142 @@ const projects = [
   title="Data Science & Automation for Growing UK SMEs"
   description="QSol Analytics builds practical data systems — automation, dashboards, forecasting, machine learning and AI tools — designed for real operational businesses. Measurable results in weeks."
 >
+  <!-- Sticky CTA -->
+  <div class="fixed bottom-6 right-6 z-40 hidden md:block">
+    <a
+      href="https://cal.com/q-types/30-minute-discovery-call"
+      class="flex items-center gap-2 bg-brand-blue text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      <span class="font-medium">Book a Call</span>
+    </a>
+  </div>
+
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-brand-blue-pale to-white py-20 lg:py-28">
+  <section class="bg-gradient-to-br from-brand-blue-pale to-white py-16 lg:py-24">
     <div class="container-wide">
-      <div class="max-w-3xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-slate leading-tight">
-          Data Science & Automation for Growing UK SMEs
-        </h1>
-        <p class="mt-6 text-xl text-slate-light leading-relaxed">
-          We build practical data systems — from automation and dashboards to forecasting, machine learning and AI tools — designed for real operational businesses.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-4">
-          <a href="https://cal.com/q-types/30-minute-discovery-call" class="btn-primary text-lg px-8 py-4">
-            Book a 30-Minute Discovery Call
-          </a>
-          <a href="/data-strategy/" class="btn-secondary text-lg px-8 py-4">
-            See How It Works
-          </a>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-slate leading-tight">
+            Stop Losing Hours to Spreadsheets.<br class="hidden sm:block" />
+            <span class="text-brand-blue">Automate Reporting, Forecast Demand, and Turn Data into Decisions.</span>
+          </h1>
+          <p class="mt-6 text-lg lg:text-xl text-slate-light leading-relaxed">
+            Practical data systems for UK SMEs — from automation and dashboards to forecasting and machine learning — built in weeks, not months.
+          </p>
+          <div class="mt-4 flex flex-col sm:flex-row gap-3 text-sm text-gray-500">
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Typical prototype delivered in 2–4 weeks
+            </span>
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Best suited for 10–500 employees
+            </span>
+          </div>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="https://cal.com/q-types/30-minute-discovery-call" class="btn-primary text-lg px-8 py-4">
+              Book a 30-Minute Discovery Call
+            </a>
+            <a href="/data-strategy/" class="btn-secondary text-lg px-8 py-4">
+              See How It Works
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-gray-500">
+            30-minute conversation • No preparation needed • No obligation
+          </p>
         </div>
-        <p class="mt-4 text-sm text-gray-500 text-center sm:text-left">
-          30-minute conversation • No preparation needed • No obligation
-        </p>
+
+        <!-- Hero Visual: Data Transformation Diagram -->
+        <div class="hidden lg:block">
+          <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+            <div class="flex items-center justify-between gap-4">
+              <!-- Spreadsheets -->
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-red-50 rounded-xl flex items-center justify-center mb-3">
+                  <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <span class="text-xs font-medium text-slate">Spreadsheets</span>
+              </div>
+
+              <!-- Arrow -->
+              <svg class="w-6 h-6 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+
+              <!-- Automated Pipeline -->
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-amber-50 rounded-xl flex items-center justify-center mb-3">
+                  <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </div>
+                <span class="text-xs font-medium text-slate">Pipeline</span>
+              </div>
+
+              <!-- Arrow -->
+              <svg class="w-6 h-6 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+
+              <!-- Dashboard -->
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-3">
+                  <svg class="w-8 h-8 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <span class="text-xs font-medium text-slate">Dashboard</span>
+              </div>
+
+              <!-- Arrow -->
+              <svg class="w-6 h-6 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+
+              <!-- Forecast -->
+              <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-green-50 rounded-xl flex items-center justify-center mb-3">
+                  <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <span class="text-xs font-medium text-slate">Forecast</span>
+              </div>
+            </div>
+            <p class="mt-6 text-center text-sm text-slate-light">From messy data to actionable insight</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Problem/Solution Section -->
-  <section class="py-16 lg:py-24">
+  <section class="py-16 lg:py-20">
     <div class="container-narrow">
       <h2 class="text-3xl font-bold text-slate">
         Your Data Should Work for You — Not the Other Way Around
       </h2>
       <div class="mt-8 space-y-4 text-slate-light">
-        <p>If you're running operations, finance, or commercial functions in a growing SME, you may recognise some of these problems:</p>
         <ul class="list-disc pl-6 space-y-2">
-          <li>Spreadsheets multiply faster than you can maintain them</li>
-          <li>"Quick" reports take hours to pull together</li>
-          <li>Problems become visible only after they've become expensive</li>
-          <li>Your team spends more time gathering data than acting on it</li>
+          <li>Spreadsheets multiply faster than you can manage</li>
+          <li>"Quick reports" take hours to assemble</li>
+          <li>Problems appear only after they become expensive</li>
+          <li>Teams spend more time gathering data than acting on it</li>
         </ul>
         <p class="pt-4">
-          Most growing businesses reach a point where manual reporting, disconnected spreadsheets, and limited visibility start slowing everything down.
+          Growing businesses often reach a point where manual reporting, disconnected spreadsheets, and limited visibility start slowing everything down.
         </p>
-        <p class="pt-2">
-          Large consultancies often propose six-figure transformation projects. Off-the-shelf tools rarely match how your business actually works.
+        <p>
+          Large consultancies often propose six-figure transformation projects. Off-the-shelf tools rarely fit how your business actually works.
         </p>
         <p class="pt-4">
           QSol Analytics builds practical data systems for operational SMEs, including:
@@ -240,54 +349,29 @@ const projects = [
     </div>
   </section>
 
-  <!-- Recent Work and Systems Built Section -->
-  <section class="py-16 lg:py-24 bg-gray-50">
+  <!-- Case Studies and Systems Built Section (Merged) -->
+  <section class="py-16 lg:py-20 bg-gray-50">
     <div class="container-wide">
-      <h2 class="text-3xl font-bold text-slate text-center">Recent Work and Systems Built</h2>
+      <h2 class="text-3xl font-bold text-slate text-center">Case Studies and Systems Built</h2>
       <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
-        Recent projects demonstrate how automation, analytics, and machine learning can improve operational workflows across different industries.
+        Recent projects demonstrating how automation, analytics, and machine learning improve operational workflows.
       </p>
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <a href="/case-studies/" class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-brand-blue transition-all group">
-          <h3 class="font-semibold text-slate group-hover:text-brand-blue transition-colors">Automated Data Processing for Acoustic Consultancy</h3>
-          <p class="mt-3 text-sm text-slate-light">Python automation system that processes measurement data, performs calculations, and generates structured consultancy reports.</p>
-          <span class="mt-4 inline-flex items-center text-sm text-brand-blue font-medium">
-            View case studies
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
-        <a href="/case-studies/" class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-brand-blue transition-all group">
-          <h3 class="font-semibold text-slate group-hover:text-brand-blue transition-colors">Estimating and MIS System for Manufacturing</h3>
-          <p class="mt-3 text-sm text-slate-light">Operational data system designed to automate quoting workflows and provide clearer management insight for a bespoke packaging manufacturer.</p>
-          <span class="mt-4 inline-flex items-center text-sm text-brand-blue font-medium">
-            View case studies
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
-        <a href="/case-studies/" class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-brand-blue transition-all group">
-          <h3 class="font-semibold text-slate group-hover:text-brand-blue transition-colors">Customer Clustering and Recommendation Models</h3>
-          <p class="mt-3 text-sm text-slate-light">Machine learning models used to identify customer patterns and prioritise opportunities using clustering and recommendation logic.</p>
-          <span class="mt-4 inline-flex items-center text-sm text-brand-blue font-medium">
-            View case studies
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
-        <a href="/case-studies/" class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-brand-blue transition-all group">
-          <h3 class="font-semibold text-slate group-hover:text-brand-blue transition-colors">AI Lesson Planning System</h3>
-          <p class="mt-3 text-sm text-slate-light">Automation system that generates structured science lesson plans using curriculum inputs, difficulty levels, and knowledge checks.</p>
-          <span class="mt-4 inline-flex items-center text-sm text-brand-blue font-medium">
-            View case studies
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
-        </a>
+        {caseStudies.map((study) => (
+          <a href="/case-studies/" class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-brand-blue transition-all group flex flex-col">
+            <h3 class="font-semibold text-slate group-hover:text-brand-blue transition-colors">{study.title}</h3>
+            <p class="mt-3 text-sm text-slate-light flex-grow">{study.description}</p>
+            <div class="mt-4 pt-3 border-t border-gray-100">
+              <p class="text-sm font-medium text-green-600">{study.result}</p>
+            </div>
+            <span class="mt-3 inline-flex items-center text-sm text-brand-blue font-medium">
+              View case studies
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </a>
+        ))}
       </div>
       <div class="mt-10 text-center">
         <a href="/case-studies/" class="btn-secondary">
@@ -297,19 +381,19 @@ const projects = [
     </div>
   </section>
 
-  <!-- What Happens in a Discovery Call Section -->
-  <section class="py-16 lg:py-24">
+  <!-- What You'll Get From the Call Section -->
+  <section class="py-16 lg:py-20">
     <div class="container-narrow">
-      <h2 class="text-3xl font-bold text-slate text-center">What Happens in a Discovery Call</h2>
+      <h2 class="text-3xl font-bold text-slate text-center">What You'll Get From the Call</h2>
       <div class="mt-8 text-slate-light">
-        <p>During a 30-minute discovery call we will:</p>
+        <p>During a 30-minute call we will:</p>
         <ul class="mt-4 list-disc pl-6 space-y-2">
-          <li>discuss how data currently flows through your business</li>
-          <li>identify areas where automation, analytics, or forecasting could help</li>
-          <li>explore practical next steps if improvements are possible</li>
+          <li>map how data currently flows through your business</li>
+          <li>identify where automation or analytics could save time</li>
+          <li>highlight 2–3 practical improvements you could implement quickly</li>
         </ul>
         <p class="mt-6">
-          There is no preparation required and no obligation to proceed with a project.
+          There is no preparation required and no obligation to proceed.
         </p>
         <p class="mt-4 text-slate font-medium">
           These conversations are most useful for operations-heavy SMEs with around 10–500 employees.
@@ -324,7 +408,7 @@ const projects = [
   </section>
 
   <!-- Services Section -->
-  <section class="py-16 lg:py-24 bg-gray-50">
+  <section class="py-16 lg:py-20 bg-gray-50">
     <div class="container-wide">
       <h2 class="text-3xl font-bold text-slate text-center">What We Do</h2>
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -340,88 +424,84 @@ const projects = [
     </div>
   </section>
 
-  <!-- What Data Science Can Actually Do Section -->
-  <section class="py-16 lg:py-24">
+  <!-- What Data Science Can Actually Do Section (Card-based) -->
+  <section class="py-16 lg:py-20">
     <div class="container-wide">
       <h2 class="text-3xl font-bold text-slate text-center">What Data Science Can Actually Do for Your Business</h2>
       <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
         Not sure what's possible? Here are five common problems we solve—and what the results look like.
       </p>
-      <div class="mt-12 space-y-6">
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {dataScienceExamples.map((example) => (
           <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
-            <div class="grid md:grid-cols-12 gap-6 items-start">
-              <div class="md:col-span-1 flex justify-center md:justify-start">
-                <span class="text-3xl">{example.icon}</span>
-              </div>
-              <div class="md:col-span-3">
-                <h3 class="text-sm font-semibold text-red-600 uppercase tracking-wide mb-1">Problem</h3>
-                <p class="text-slate font-medium">{example.problem}</p>
-              </div>
-              <div class="md:col-span-4">
-                <h3 class="text-sm font-semibold text-brand-blue uppercase tracking-wide mb-1">Solution</h3>
-                <p class="text-slate-light">{example.solution}</p>
-              </div>
-              <div class="md:col-span-4">
-                <h3 class="text-sm font-semibold text-green-600 uppercase tracking-wide mb-1">Outcome</h3>
-                <p class="text-slate-light">{example.outcome}</p>
+            <div class="flex items-start gap-4">
+              <span class="text-3xl flex-shrink-0">{example.icon}</span>
+              <div>
+                <h3 class="font-semibold text-slate">{example.problem}</h3>
+                <p class="mt-2 text-sm text-slate-light">{example.solution}</p>
+                <p class="mt-3 text-sm font-medium text-green-600">{example.outcome}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
       <div class="mt-10 text-center">
-        <p class="text-slate-light mb-4">Not sure if your business is ready for data science?</p>
-        <a href="/diagnostic/" class="btn-primary">
+        <p class="text-slate-light mb-4">Not sure where to start?</p>
+        <a href="/diagnostic/" class="btn-secondary">
           Take the Data Opportunity Diagnostic
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Real Problems We Solve Section -->
-  <section class="py-12 lg:py-16 border-y border-gray-200">
+  <!-- Self-Identification Loop Section -->
+  <section class="py-16 lg:py-20 bg-gray-50">
     <div class="container-wide">
-      <h2 class="text-xl font-semibold text-slate text-center mb-8">Real Problems We Solve</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="flex flex-col items-center">
-          <div class="w-12 h-12 bg-brand-blue-pale rounded-full flex items-center justify-center mb-3">
-            <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
+      <h2 class="text-3xl font-bold text-slate text-center">Where Is Data Slowing Your Business Down?</h2>
+      <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
+        Select the challenge that feels most familiar. We'll show what typically causes it and what kind of solution usually helps.
+      </p>
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="problem-cards">
+        {problemCards.map((card) => (
+          <div class="problem-card bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-brand-blue transition-colors cursor-pointer" data-card-id={card.id}>
+            <div class="p-5 flex items-center justify-between">
+              <h3 class="font-semibold text-slate">{card.title}</h3>
+              <svg class="w-5 h-5 text-gray-400 problem-arrow transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div class="problem-content hidden border-t border-gray-100 p-5 bg-gray-50">
+              <div class="space-y-4">
+                <div>
+                  <p class="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">Why this happens</p>
+                  <p class="text-sm text-slate-light">{card.why}</p>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-brand-blue uppercase tracking-wide mb-1">What usually helps</p>
+                  <p class="text-sm text-slate-light">{card.solution}</p>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-green-600 uppercase tracking-wide mb-1">Typical outcome</p>
+                  <p class="text-sm text-slate-light">{card.outcome}</p>
+                </div>
+                <div class="pt-2">
+                  <a href="https://cal.com/q-types/30-minute-discovery-call" class="inline-flex items-center text-sm font-medium text-brand-blue hover:underline">
+                    Discuss This Challenge
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="text-sm text-slate-light">Forecasting demand before it hits</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-12 h-12 bg-brand-blue-pale rounded-full flex items-center justify-center mb-3">
-            <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-          </div>
-          <p class="text-sm text-slate-light">Detecting anomalies before they escalate</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-12 h-12 bg-brand-blue-pale rounded-full flex items-center justify-center mb-3">
-            <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-          </div>
-          <p class="text-sm text-slate-light">Automating reporting pipelines</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <div class="w-12 h-12 bg-brand-blue-pale rounded-full flex items-center justify-center mb-3">
-            <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </div>
-          <p class="text-sm text-slate-light">Prioritising high-value customers</p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- Typical Engagements Section -->
-  <section class="py-16 lg:py-24">
+  <section class="py-16 lg:py-20">
     <div class="container-wide">
       <h2 class="text-3xl font-bold text-slate text-center">Typical Engagements</h2>
       <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
@@ -429,13 +509,13 @@ const projects = [
       </p>
       <div class="mt-12 grid md:grid-cols-3 gap-8">
         {engagements.map((engagement) => (
-          <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+          <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow flex flex-col">
             <div class="flex items-center gap-3 mb-4">
               <span class="text-3xl">{engagement.icon}</span>
               <h3 class="text-lg font-semibold text-slate">{engagement.title}</h3>
             </div>
             <p class="text-slate-light text-sm mb-4">{engagement.description}</p>
-            <ul class="space-y-2 mb-6">
+            <ul class="space-y-2 mb-4 flex-grow">
               {engagement.bullets.map((bullet) => (
                 <li class="flex items-start gap-2 text-sm text-slate-light">
                   <svg class="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -445,6 +525,10 @@ const projects = [
                 </li>
               ))}
             </ul>
+            <div class="bg-green-50 rounded-lg p-3 mb-4">
+              <p class="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Typical result</p>
+              <p class="text-sm text-green-800">{engagement.typicalResult}</p>
+            </div>
             <div class="border-t border-gray-100 pt-4 mt-auto">
               <div class="flex justify-between items-center text-sm">
                 <div>
@@ -464,11 +548,10 @@ const projects = [
   </section>
 
   <!-- Process Section -->
-  <section id="how-it-works" class="py-16 lg:py-24">
+  <section id="how-it-works" class="py-16 lg:py-20 bg-gray-50">
     <div class="container-wide">
       <h2 class="text-3xl font-bold text-slate text-center">How It Works</h2>
       <p class="mt-4 text-center text-slate-light">A lightweight process designed for busy teams</p>
-      <p class="mt-2 text-center text-slate-light text-sm">Many projects begin with a small diagnostic or prototype so you can see real value before committing to larger systems.</p>
       <div class="mt-12 grid md:grid-cols-5 gap-6">
         {processSteps.map((step, index) => (
           <div class="text-center">
@@ -484,56 +567,29 @@ const projects = [
     </div>
   </section>
 
-  <!-- Selected Projects Section -->
-  <section class="py-16 lg:py-24 bg-gray-50">
-    <div class="container-wide">
-      <h2 class="text-3xl font-bold text-slate text-center">Selected Projects</h2>
-      <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
-        Recent work across automation, machine learning, and intelligent systems.
+  <!-- Testimonial Section (Placeholder) -->
+  <section class="py-16 lg:py-20">
+    <div class="container-narrow">
+      <div class="bg-brand-blue-pale rounded-2xl p-8 lg:p-12 text-center">
+        <svg class="w-10 h-10 text-brand-blue mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+        </svg>
+        <blockquote class="text-xl lg:text-2xl text-slate font-medium leading-relaxed">
+          "Reduced our reporting workload and gave the team much better operational visibility."
+        </blockquote>
+        <div class="mt-6">
+          <p class="font-semibold text-slate">Operations Manager</p>
+          <p class="text-sm text-slate-light">Manufacturing Business</p>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-sm text-slate-light">
+        We typically run 3–4 projects at a time to maintain delivery speed.
       </p>
-      <div class="mt-12 grid md:grid-cols-2 gap-8">
-        {projects.map((project) => (
-          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
-            <div class="bg-brand-blue-pale px-6 py-4">
-              <span class="text-xs font-medium text-brand-blue uppercase tracking-wide">{project.category}</span>
-              <h3 class="mt-1 text-lg font-semibold text-slate">{project.title}</h3>
-            </div>
-            <div class="p-6 space-y-4">
-              <div>
-                <h4 class="text-sm font-semibold text-slate mb-1">Problem</h4>
-                <p class="text-sm text-slate-light">{project.problem}</p>
-              </div>
-              <div>
-                <h4 class="text-sm font-semibold text-slate mb-1">Solution</h4>
-                <p class="text-sm text-slate-light">{project.solution}</p>
-              </div>
-              <div>
-                <h4 class="text-sm font-semibold text-slate mb-2">Outcomes</h4>
-                <ul class="space-y-1">
-                  {project.outcomes.map((outcome) => (
-                    <li class="flex items-start gap-2 text-sm text-slate-light">
-                      <svg class="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                      </svg>
-                      <span>{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div class="mt-12 text-center">
-        <a href="/case-studies/" class="btn-secondary">
-          View All Case Studies
-        </a>
-      </div>
     </div>
   </section>
 
   <!-- Why QSol Section -->
-  <section class="py-16 lg:py-24">
+  <section class="py-16 lg:py-20 bg-gray-50">
     <div class="container-wide">
       <h2 class="text-3xl font-bold text-slate text-center">Why Work With QSol Analytics?</h2>
       <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -548,11 +604,11 @@ const projects = [
   </section>
 
   <!-- Sectors Section -->
-  <section class="py-16 lg:py-24">
+  <section class="py-16 lg:py-20">
     <div class="container-narrow text-center">
-      <h2 class="text-3xl font-bold text-slate">Built for Businesses Like Yours</h2>
+      <h2 class="text-3xl font-bold text-slate">Built for Industries Where Data Complexity Grows Faster Than Insight</h2>
       <p class="mt-4 text-slate-light">
-        We work with UK SMEs across industries where operations are complex and data is plentiful, but insights are scarce.
+        We work with UK SMEs where operations are complex and data is plentiful—but actionable insight is scarce.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         {sectors.map((sector) => (
@@ -578,15 +634,34 @@ const projects = [
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <CTASection
-    title="Ready to Explore What Data Could Do for Your Business?"
-    description="Most projects begin with a short conversation about the challenges your team is facing and where data systems could help."
-    primaryCTA={{ text: "Book a 30-Minute Discovery Call", href: "https://cal.com/q-types/30-minute-discovery-call" }}
-  />
+  <!-- Final CTA Section -->
+  <section class="bg-brand-blue py-16 lg:py-20">
+    <div class="container-narrow text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">
+        See What Data Could Do for Your Business
+      </h2>
+      <p class="mt-4 text-lg text-blue-100 max-w-2xl mx-auto">
+        Most discovery calls reveal quick automation opportunities, better visibility, or clearer next steps for improving decisions.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://cal.com/q-types/30-minute-discovery-call"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white text-brand-blue font-semibold rounded-md hover:bg-gray-100 transition-colors"
+        >
+          Book a 30-Minute Discovery Call
+        </a>
+        <a
+          href="/diagnostic/"
+          class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-md hover:bg-white hover:text-brand-blue transition-colors"
+        >
+          Take the Data Opportunity Diagnostic
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- FAQ Preview -->
-  <section class="py-16 lg:py-24">
+  <section class="py-16 lg:py-20">
     <div class="container-narrow">
       <h2 class="text-3xl font-bold text-slate text-center">Common Questions</h2>
       <div class="mt-12 space-y-6">
@@ -641,4 +716,27 @@ const projects = [
       "contactType": "sales"
     }
   })} />
+
+  <!-- Problem Cards Interaction Script -->
+  <script>
+    document.querySelectorAll('.problem-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const content = card.querySelector('.problem-content');
+        const arrow = card.querySelector('.problem-arrow');
+        const isOpen = !content?.classList.contains('hidden');
+
+        // Close all other cards
+        document.querySelectorAll('.problem-card').forEach(otherCard => {
+          if (otherCard !== card) {
+            otherCard.querySelector('.problem-content')?.classList.add('hidden');
+            otherCard.querySelector('.problem-arrow')?.classList.remove('rotate-180');
+          }
+        });
+
+        // Toggle this card
+        content?.classList.toggle('hidden');
+        arrow?.classList.toggle('rotate-180');
+      });
+    });
+  </script>
 </BaseLayout>
