@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const valueAreas = [
+  {
+    title: 'Automation',
+    description: 'Removing manual reporting, spreadsheet workflows, and repetitive administrative tasks.'
+  },
+  {
+    title: 'Analytics',
+    description: 'Providing dashboards and analytics systems that create a reliable single source of truth.'
+  },
+  {
+    title: 'Prediction',
+    description: 'Using forecasting and predictive models to anticipate operational changes.'
+  },
+  {
+    title: 'Intelligence',
+    description: 'Applying machine learning techniques such as clustering and anomaly detection to uncover patterns in operational or customer data.'
+  }
+];
+
+const maturityStages = [
+  {
+    stage: 1,
+    title: 'Manual Processes',
+    description: 'Spreadsheet-based reporting and manual data entry'
+  },
+  {
+    stage: 2,
+    title: 'Automated Reporting',
+    description: 'Automated data pipelines and operational dashboards'
+  },
+  {
+    stage: 3,
+    title: 'Predictive Models',
+    description: 'Forecasting, anomaly detection, and trend analysis'
+  },
+  {
+    stage: 4,
+    title: 'Intelligent Systems',
+    description: 'ML-powered decision support and automated workflows'
+  }
+];
+---
+
+<BaseLayout
+  title="How Operational SMEs Use Data to Gain Advantage"
+  description="Learn how growing UK SMEs evolve their data capabilities from manual processes to intelligent systems. A practical guide to data-driven operations."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow">
+      <h1 class="text-4xl font-bold text-slate">How Operational SMEs Use Data to Gain Advantage</h1>
+      <p class="mt-6 text-xl text-slate-light">
+        A practical guide to building data capability in operations-heavy businesses.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 1: Why SMEs Struggle -->
+  <section class="py-12 lg:py-16">
+    <div class="container-narrow">
+      <h2 class="text-2xl font-bold text-slate">Why Many SMEs Struggle With Data</h2>
+      <div class="mt-6 space-y-4 text-slate-light">
+        <p>
+          Most operational businesses collect large amounts of data across systems such as spreadsheets, finance tools, CRM platforms, and operational software.
+        </p>
+        <p>
+          However, this data often remains fragmented, making it difficult to turn into reliable insight.
+        </p>
+        <p>As a result, many organisations experience:</p>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li>slow reporting processes</li>
+          <li>limited operational visibility</li>
+          <li>difficulty forecasting demand or workload</li>
+          <li>missed patterns in customer behaviour</li>
+        </ul>
+        <p class="mt-6 font-medium text-slate">
+          The challenge is rarely the absence of data — it is the absence of systems designed to turn that data into useful feedback for decision-making.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Where Value Exists -->
+  <section class="py-12 lg:py-16 bg-gray-50">
+    <div class="container-wide">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold text-slate text-center">Where Data Science Creates Value</h2>
+        <p class="mt-4 text-center text-slate-light">
+          In most SMEs, the biggest opportunities for improvement come from four areas:
+        </p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {valueAreas.map((area) => (
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h3 class="font-semibold text-slate text-lg">{area.title}</h3>
+            <p class="mt-3 text-sm text-slate-light">{area.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Typical Evolution -->
+  <section class="py-12 lg:py-16">
+    <div class="container-narrow">
+      <h2 class="text-2xl font-bold text-slate text-center">How Data Capability Usually Develops</h2>
+      <p class="mt-4 text-center text-slate-light max-w-2xl mx-auto">
+        Most businesses move through these stages gradually as their data systems mature.
+      </p>
+      <div class="mt-10">
+        <div class="relative">
+          <!-- Progress line -->
+          <div class="hidden md:block absolute top-8 left-0 right-0 h-1 bg-gray-200">
+            <div class="absolute top-0 left-0 h-full bg-brand-blue" style="width: 100%"></div>
+          </div>
+
+          <div class="grid md:grid-cols-4 gap-6">
+            {maturityStages.map((item) => (
+              <div class="relative text-center">
+                <div class="w-16 h-16 bg-brand-blue text-white rounded-full flex items-center justify-center mx-auto font-bold text-xl relative z-10">
+                  {item.stage}
+                </div>
+                <h3 class="mt-4 font-semibold text-slate">{item.title}</h3>
+                <p class="mt-2 text-sm text-slate-light">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <p class="mt-10 text-center text-slate-light">
+        Each stage builds on the previous. The right starting point depends on where your business currently stands and what challenges are most pressing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 4: How QSol Helps -->
+  <section class="py-12 lg:py-16 bg-gray-50">
+    <div class="container-narrow">
+      <h2 class="text-2xl font-bold text-slate">How QSol Analytics Helps</h2>
+      <div class="mt-6 space-y-4 text-slate-light">
+        <p>
+          QSol Analytics helps operational SMEs move through these stages in a practical way — designing systems tailored to how your business actually operates.
+        </p>
+        <p>
+          Rather than proposing large transformation projects, we focus on focused improvements that create measurable operational benefit.
+        </p>
+        <p>This might mean:</p>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li>Automating a reporting workflow that currently takes hours</li>
+          <li>Building a dashboard that gives your team real-time visibility</li>
+          <li>Developing a forecasting model that improves planning</li>
+          <li>Creating a segmentation system that helps prioritise opportunities</li>
+        </ul>
+        <p class="mt-6">
+          Every project starts with understanding your current situation and identifying where the highest-value improvements lie.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: CTA -->
+  <section class="py-16 lg:py-24">
+    <div class="container-narrow text-center">
+      <h2 class="text-2xl font-bold text-slate">Explore What Data Could Do For Your Business</h2>
+      <p class="mt-4 text-slate-light max-w-2xl mx-auto">
+        Many businesses start with a short conversation to explore where automation, analytics, or machine learning could make the biggest difference.
+      </p>
+      <div class="mt-8">
+        <a href="https://cal.com/q-types/30-minute-discovery-call" class="btn-primary">
+          Book a Discovery Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Not sure where to start?"
+    description="A 30-minute discovery call helps identify the highest-impact opportunities for your specific situation."
+    primaryCTA={{ text: "Book a 30-Minute Discovery Call", href: "https://cal.com/q-types/30-minute-discovery-call" }}
+  />
+</BaseLayout>
