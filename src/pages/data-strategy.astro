@@ -181,4 +181,25 @@ const maturityStages = [
     description="A 30-minute discovery call helps identify the highest-impact opportunities for your specific situation."
     primaryCTA={{ text: "Book a 30-Minute Discovery Call", href: "https://cal.com/q-types/30-minute-discovery-call" }}
   />
+
+  <!-- Article Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Operational SMEs Use Data to Gain Advantage",
+    "description": "A practical guide to building data capability in operations-heavy businesses.",
+    "author": {
+      "@type": "Person",
+      "name": "David J. McCann"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://qsol-analytics.com/data-strategy/"
+    }
+  })} />
 </BaseLayout>

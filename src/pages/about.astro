@@ -71,4 +71,27 @@ import CTASection from '../components/CTASection.astro';
     title="Ready to talk?"
     description="Book a free discovery call to discuss your challenges and see if we're a fit."
   />
+
+  <!-- Person & Organization Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com",
+      "description": "Data science and AI consultancy for UK SMEs. Practical automation, machine learning, and intelligent systems.",
+      "founder": {
+        "@type": "Person",
+        "name": "David J. McCann",
+        "jobTitle": "Founder",
+        "description": "Physics-trained data scientist specialising in automation, machine learning, and AI for operational businesses."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "knowsAbout": ["Data Science", "Machine Learning", "Business Automation", "AI", "Forecasting", "Customer Segmentation"]
+    }
+  })} />
 </BaseLayout>

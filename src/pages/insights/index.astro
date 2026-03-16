@@ -84,4 +84,29 @@ const insights = [
       </div>
     </div>
   </section>
+
+  <!-- Blog Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Data Science Insights - QSol Analytics",
+    "description": "Practical articles on data science and automation for UK SMEs.",
+    "url": "https://qsol-analytics.com/insights/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    },
+    "blogPost": insights.map(post => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.description,
+      "url": `https://qsol-analytics.com${post.href}`,
+      "datePublished": post.date,
+      "author": {
+        "@type": "Person",
+        "name": "David J. McCann"
+      }
+    }))
+  })} />
 </BaseLayout>

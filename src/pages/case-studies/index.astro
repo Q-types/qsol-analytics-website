@@ -55,13 +55,13 @@ const caseStudies = [
 ---
 
 <BaseLayout
-  title="Selected Projects"
+  title="Case Studies | Data Science & Automation Projects for UK SMEs"
   description="Real data science projects across automation, machine learning, and AI — from workflow automation to customer intelligence systems."
 >
   <section class="py-16 lg:py-24">
     <div class="container-wide">
       <div class="max-w-3xl">
-        <h1 class="text-4xl font-bold text-slate">Selected Projects</h1>
+        <h1 class="text-4xl font-bold text-slate">Case Studies</h1>
         <p class="mt-6 text-xl text-slate-light">
           Recent work across automation, machine learning, and intelligent systems. Each project focused on practical business outcomes.
         </p>
@@ -107,4 +107,26 @@ const caseStudies = [
     title="Ready to see results like these?"
     description="Book a discovery call to discuss your specific challenges and opportunities."
   />
+
+  <!-- CollectionPage Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Case Studies - QSol Analytics",
+    "description": "Real data science projects across automation, machine learning, and AI for UK SMEs.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": caseStudies.map((study, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": study.title,
+        "description": study.problem
+      }))
+    }
+  })} />
 </BaseLayout>

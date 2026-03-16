@@ -166,6 +166,26 @@ const totalQuestions = diagnosticQuestions.reduce((sum, cat) => sum + cat.questi
     title="Prefer to talk it through?"
     description="Skip the self-assessment and book a discovery call. We'll ask the right questions and give you honest advice."
   />
+
+  <!-- WebApplication Schema for the diagnostic tool -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Data Opportunity Diagnostic",
+    "description": "A quick self-assessment to help you understand whether your business is ready to benefit from data science, automation, or AI.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    }
+  })} />
 </BaseLayout>
 
 <script>
