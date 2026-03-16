@@ -78,4 +78,31 @@ import CTASection from '../../components/CTASection.astro';
     title="Ready to start forecasting?"
     description="Book a discovery call to discuss your forecasting challenges."
   />
+
+  <!-- Service Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Predictive Analytics & Forecasting",
+    "description": "Models that forecast demand and detect operational risk. Time-series forecasting, anomaly detection, and predictive maintenance for UK SMEs.",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "serviceType": "Predictive Analytics",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "GBP",
+        "minPrice": "5000",
+        "maxPrice": "15000"
+      }
+    }
+  })} />
 </BaseLayout>

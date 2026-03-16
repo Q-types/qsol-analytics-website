@@ -79,4 +79,31 @@ import CTASection from '../../components/CTASection.astro';
     title="Ready to automate?"
     description="Book a discovery call to identify your highest-ROI automation opportunities."
   />
+
+  <!-- Service Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Operational Data Systems",
+    "description": "Automation pipelines, live dashboards, and data integration that eliminate manual work and give your team real-time visibility.",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "serviceType": "Business Automation",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "GBP",
+        "minPrice": "3000",
+        "maxPrice": "8000"
+      }
+    }
+  })} />
 </BaseLayout>

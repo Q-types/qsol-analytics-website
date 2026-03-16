@@ -72,4 +72,31 @@ import CTASection from '../../components/CTASection.astro';
     title="Ready to explore AI for your business?"
     description="Book a discovery call to discuss how intelligent automation could work for your operations."
   />
+
+  <!-- Service Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "AI & Intelligent Automation",
+    "description": "Custom AI tools integrated into operations. GenAI internal tools, AI assistants, agent workflows, and knowledge retrieval systems for UK SMEs.",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "serviceType": "AI Consulting",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "GBP",
+        "minPrice": "5000",
+        "maxPrice": "25000"
+      }
+    }
+  })} />
 </BaseLayout>

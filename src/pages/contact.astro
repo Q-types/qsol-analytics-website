@@ -4,7 +4,7 @@ import ContactForm from '../components/ContactForm.astro';
 ---
 
 <BaseLayout
-  title="Contact"
+  title="Contact QSol Analytics | Book a Discovery Call"
   description="Get in touch with QSol Analytics. Book a free discovery call or send us a message about your data science and automation needs."
 >
   <section class="py-16 lg:py-24">
@@ -12,7 +12,7 @@ import ContactForm from '../components/ContactForm.astro';
       <div class="grid lg:grid-cols-2 gap-16">
         <!-- Left Column: Info -->
         <div>
-          <h1 class="text-4xl font-bold text-slate">Let's Talk</h1>
+          <h1 class="text-4xl font-bold text-slate">Contact QSol Analytics</h1>
           <p class="mt-6 text-xl text-slate-light">
             Ready to put your data to work? Book a free 30-minute discovery call, or send us a message.
           </p>
@@ -83,4 +83,25 @@ import ContactForm from '../components/ContactForm.astro';
       </div>
     </div>
   </section>
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "QSol Analytics",
+    "description": "Data science and automation consultancy for UK SMEs. We build operational data systems, predictive analytics, machine learning solutions, and AI tools.",
+    "url": "https://qsol-analytics.com",
+    "email": "david@qsol-analytics.com",
+    "founder": {
+      "@type": "Person",
+      "name": "David J. McCann"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "priceRange": "££",
+    "serviceType": ["Data Science", "Machine Learning", "Business Automation", "AI Consulting"],
+    "knowsAbout": ["Data Analytics", "Forecasting", "Customer Segmentation", "Process Automation"]
+  })} />
 </BaseLayout>

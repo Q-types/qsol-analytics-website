@@ -29,6 +29,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://qsol-analytics.com/data-strategy/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qsol-analytics.com/diagnostic/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://qsol-analytics.com/contact/</loc>
     <priority>0.8</priority>
   </url>

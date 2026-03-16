@@ -81,4 +81,31 @@ import CTASection from '../../components/CTASection.astro';
     title="Ready to unlock patterns in your data?"
     description="Book a discovery call to discuss how machine learning could work for your business."
   />
+
+  <!-- Service Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Machine Learning Solutions",
+    "description": "Models that uncover patterns in complex business data. Clustering, segmentation, recommendation systems, and classification models for UK SMEs.",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "serviceType": "Machine Learning",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "GBP",
+        "minPrice": "6000",
+        "maxPrice": "20000"
+      }
+    }
+  })} />
 </BaseLayout>
