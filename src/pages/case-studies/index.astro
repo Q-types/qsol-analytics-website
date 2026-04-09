@@ -4,16 +4,19 @@ import CTASection from '../../components/CTASection.astro';
 
 const caseStudies = [
   {
-    title: 'AI Lesson Planner for Science Cover Teaching',
-    category: 'Workflow Automation & AI',
-    problem: 'Teachers and cover staff often lose time preparing lessons at different difficulty levels and adapting content quickly.',
-    solution: 'Developed a Python-based lesson planning system that integrates educational best practice, syllabus content, challenge tasks, and knowledge-check questions to generate structured lesson plans efficiently.',
+    title: 'Automated Data Processing for Acoustic Consultancy',
+    category: 'Automation & Data Engineering',
+    problem: 'Noise and acoustic consultancies collect large volumes of measurement data during investigations. Processing this data and producing formal reports requires repetitive manual steps—importing data, filtering signals, performing calculations, and formatting results—which is time-consuming and prone to error.',
+    solution: 'Developed a Python-based automation system that imports and processes acoustic measurement datasets, performs required calculations and transformations, and generates formatted report sections referencing relevant regulatory standards.',
     outcomes: [
-      'Reduces lesson preparation time',
-      'Improves consistency of lesson structure',
-      'Supports differentiated delivery across ability levels'
+      'Reduced manual data processing effort',
+      'Improved consistency of calculations and reporting',
+      'Enabled faster turnaround of consultancy reports'
     ],
-    href: '/case-studies/ai-lesson-planner/'
+    relatedServices: [
+      { name: 'Reporting & Workflow Automation', href: '/services/automation-workflow/#reporting-automation' }
+    ],
+    href: '/case-studies/acoustic-automation/'
   },
   {
     title: 'Estimating and MIS System for Bespoke Manufacturing',
@@ -24,6 +27,9 @@ const caseStudies = [
       'Reduces estimating friction',
       'Improves consistency in quoting',
       'Lays the foundation for stronger operational reporting'
+    ],
+    relatedServices: [
+      { name: 'Decision-Support Tools & Internal Apps', href: '/services/automation-workflow/#decision-tools' }
     ],
     href: '/case-studies/manufacturing-mis/'
   },
@@ -37,26 +43,32 @@ const caseStudies = [
       'Improves targeting and prioritisation',
       'Supports more informed commercial decision-making'
     ],
+    relatedServices: [
+      { name: 'Customer Segmentation & Commercial Insight', href: '/services/customer-segmentation/' }
+    ],
     href: '/case-studies/customer-clustering/'
   },
   {
-    title: 'Automated Data Processing for Acoustic Consultancy',
-    category: 'Automation & Data Engineering',
-    problem: 'Noise and acoustic consultancies collect large volumes of measurement data during investigations. Processing this data and producing formal reports requires repetitive manual steps—importing data, filtering signals, performing calculations, and formatting results—which is time-consuming and prone to error.',
-    solution: 'Developed a Python-based automation system that imports and processes acoustic measurement datasets, performs required calculations and transformations, and generates formatted report sections referencing relevant regulatory standards.',
+    title: 'AI Lesson Planner for Science Cover Teaching',
+    category: 'Workflow Automation & AI',
+    problem: 'Teachers and cover staff often lose time preparing lessons at different difficulty levels and adapting content quickly.',
+    solution: 'Developed a Python-based lesson planning system that integrates educational best practice, syllabus content, challenge tasks, and knowledge-check questions to generate structured lesson plans efficiently.',
     outcomes: [
-      'Reduced manual data processing effort',
-      'Improved consistency of calculations and reporting',
-      'Enabled faster turnaround of consultancy reports'
+      'Reduces lesson preparation time',
+      'Improves consistency of lesson structure',
+      'Supports differentiated delivery across ability levels'
     ],
-    href: '/case-studies/acoustic-automation/'
+    relatedServices: [
+      { name: 'Internal AI Assistants', href: '/services/analytics-dashboards/#ai-assistants' }
+    ],
+    href: '/case-studies/ai-lesson-planner/'
   }
 ];
 ---
 
 <BaseLayout
-  title="Case Studies | Data Science & Automation Projects for UK SMEs"
-  description="Real data science projects across automation, machine learning, and AI — from workflow automation to customer intelligence systems."
+  title="Case Studies | Data Science Projects | QSol Analytics"
+  description="Real data science projects: workflow automation, customer clustering, forecasting, and AI systems for UK SMEs. See measurable results."
 >
   <section class="py-16 lg:py-24">
     <div class="container-wide">
@@ -96,6 +108,19 @@ const caseStudies = [
                   ))}
                 </ul>
               </div>
+              {study.relatedServices && study.relatedServices.length > 0 && (
+                <div class="pt-3 border-t border-gray-100">
+                  <p class="text-xs font-medium text-slate-light mb-2">Related Service:</p>
+                  <div class="flex flex-wrap gap-2">
+                    {study.relatedServices.map((service) => (
+                      <a href={service.href} class="inline-flex items-center gap-1 text-xs font-medium text-brand-blue bg-brand-blue-pale px-2 py-1 rounded hover:bg-blue-100 transition-colors">
+                        {service.name}
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}

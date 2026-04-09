@@ -3,64 +3,138 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import CTASection from '../../components/CTASection.astro';
 
-const services = [
+// Service families with their concrete offers
+const serviceCategories = [
   {
     title: 'Operational Data Systems',
-    description: 'Automation and reporting systems that remove manual work. Workflow automation, reporting pipelines, dashboards, and MIS / operational systems that give your team real-time visibility.',
+    description: 'Automation and reporting systems that remove manual work and give your team real-time visibility.',
     href: '/services/automation-workflow/',
     icon: '⚙️',
-    timeline: '2–4 weeks'
+    offers: [
+      {
+        name: 'Reporting & Workflow Automation',
+        pain: 'Reports take hours to produce; manual copy-paste introduces errors',
+        outcome: 'Automated pipelines that save 10-15 hours per week',
+        timeline: '2–4 weeks'
+      },
+      {
+        name: 'Decision-Support Tools & Internal Apps',
+        pain: 'Important calculations live in fragile spreadsheets',
+        outcome: 'Estimators, quote builders, and calculators that embed your business logic',
+        timeline: '3–8 weeks'
+      },
+      {
+        name: 'Data & AI Readiness Audits',
+        pain: 'Not sure where to start with automation or AI',
+        outcome: 'Prioritised roadmap showing highest-ROI opportunities',
+        timeline: '1–5 days'
+      }
+    ]
   },
   {
     title: 'Predictive Analytics & Forecasting',
-    description: 'Models that forecast demand and detect operational risk. Time-series forecasting, anomaly detection, predictive maintenance, and demand modelling to help you plan ahead.',
+    description: 'Models that forecast demand and detect operational risk before problems escalate.',
     href: '/services/forecasting-anomaly-detection/',
     icon: '📈',
-    timeline: '3–6 weeks'
+    offers: [
+      {
+        name: 'Forecasting Services',
+        pain: 'Planning is based on gut feel; seasonal effects poorly understood',
+        outcome: 'Demand, sales, or workload forecasts with confidence intervals',
+        timeline: '3–6 weeks'
+      },
+      {
+        name: 'Anomaly Detection & Monitoring',
+        pain: 'Problems only noticed after they become expensive',
+        outcome: 'Early-warning systems that flag unusual patterns automatically',
+        timeline: '3–6 weeks'
+      }
+    ]
   },
   {
     title: 'Machine Learning Solutions',
-    description: 'Models that uncover patterns in complex business data. Clustering & segmentation, recommendation systems, classification models, and ensemble approaches for smarter decisions.',
+    description: 'Commercial insight from your customer and operational data.',
     href: '/services/customer-segmentation/',
     icon: '🔍',
-    timeline: '4–8 weeks'
+    offers: [
+      {
+        name: 'Customer Segmentation & Commercial Insight',
+        pain: 'Marketing treats all customers the same; sales don\'t know who to prioritise',
+        outcome: 'Actionable segments, churn-risk views, and prioritised account lists',
+        timeline: '4–8 weeks'
+      }
+    ]
   },
   {
     title: 'AI & Intelligent Automation',
-    description: 'Custom AI tools integrated into operations. GenAI internal tools, AI assistants, agent workflows, and knowledge retrieval systems that bring advanced capabilities within reach.',
+    description: 'Practical AI tools that work with your existing workflows.',
     href: '/services/analytics-dashboards/',
     icon: '🤖',
-    timeline: '3–6 weeks'
+    offers: [
+      {
+        name: 'Lightweight NLP Solutions',
+        pain: 'Useful information trapped in emails, feedback, and documents',
+        outcome: 'Text classification, search, and extraction that scales',
+        timeline: '2–6 weeks'
+      },
+      {
+        name: 'Internal AI Assistants',
+        pain: 'Staff struggle to find answers in documents, manuals, and SOPs',
+        outcome: 'Grounded Q&A tools that cite your approved sources',
+        timeline: '3–6 weeks'
+      }
+    ]
   }
 ];
 ---
 
 <BaseLayout
-  title="Data Science & Automation Consultant UK | Services for SMEs"
-  description="Business automation, analytics dashboards, demand forecasting, and machine learning services for UK SMEs. Stop manual reporting—get measurable results in weeks."
+  title="Data Analytics Services for SMEs | QSol Analytics"
+  description="Automation, forecasting, machine learning, and AI services for UK SMEs. Eight practical solutions with clear deliverables. Results in weeks, not months."
 >
   <section class="py-16 lg:py-24">
     <div class="container-wide">
       <div class="max-w-3xl">
         <h1 class="text-4xl font-bold text-slate">Data Science & AI Services for UK SMEs</h1>
         <p class="mt-6 text-xl text-slate-light">
-          From automation and dashboards to machine learning and AI tools—practical data science solutions designed for UK SMEs. Every service delivers measurable outcomes, agreed upfront.
+          Practical solutions for operational challenges—from automated reporting to forecasting, customer insight, and AI tools. Every service delivers measurable outcomes, agreed upfront.
         </p>
       </div>
 
-      <div class="mt-16 grid md:grid-cols-2 gap-8">
-        {services.map((service) => (
-          <a href={service.href} class="block bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-brand-blue-light transition-all group">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="text-3xl">{service.icon}</span>
-              <h2 class="text-xl font-semibold text-slate group-hover:text-brand-blue transition-colors">{service.title}</h2>
+      <!-- Two-layer service architecture -->
+      <div class="mt-16 space-y-12">
+        {serviceCategories.map((category) => (
+          <div class="bg-white border border-gray-200 rounded-xl p-6 lg:p-8">
+            <!-- Layer 1: Service Family Header -->
+            <a href={category.href} class="flex items-start gap-4 group">
+              <span class="text-4xl">{category.icon}</span>
+              <div class="flex-grow">
+                <h2 class="text-2xl font-bold text-slate group-hover:text-brand-blue transition-colors">
+                  {category.title}
+                  <span class="inline-block ml-2 text-brand-blue opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
+                </h2>
+                <p class="mt-2 text-slate-light">{category.description}</p>
+              </div>
+            </a>
+
+            <!-- Layer 2: Concrete Offers -->
+            <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {category.offers.map((offer) => (
+                <a href={category.href} class="block bg-gray-50 hover:bg-brand-blue-pale border border-gray-100 hover:border-brand-blue-light rounded-lg p-4 transition-all group/offer">
+                  <h3 class="font-semibold text-slate group-hover/offer:text-brand-blue transition-colors text-sm">
+                    {offer.name}
+                  </h3>
+                  <p class="mt-2 text-xs text-slate-light leading-relaxed">
+                    <span class="text-red-500 font-medium">Pain:</span> {offer.pain}
+                  </p>
+                  <p class="mt-1 text-xs text-slate-light leading-relaxed">
+                    <span class="text-green-600 font-medium">Outcome:</span> {offer.outcome}
+                  </p>
+                  <p class="mt-2 text-xs text-brand-blue font-medium">{offer.timeline}</p>
+                </a>
+              ))}
             </div>
-            <p class="text-slate-light">{service.description}</p>
-            <div class="mt-4 flex items-center justify-between">
-              <span class="text-sm text-brand-blue font-medium">Typical timeline: {service.timeline}</span>
-              <span class="text-brand-blue group-hover:translate-x-1 transition-transform">→</span>
-            </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
@@ -96,4 +170,59 @@ const services = [
   </section>
 
   <CTASection />
+
+  <!-- Service Catalog Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Data Science & AI Services",
+    "description": "Practical data science and AI services for UK SMEs: automation, forecasting, machine learning, and intelligent tools.",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "QSol Analytics",
+      "url": "https://qsol-analytics.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Data Science Services for SMEs",
+      "itemListElement": [
+        {
+          "@type": "OfferCatalog",
+          "name": "Operational Data Systems",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reporting & Workflow Automation" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Decision-Support Tools & Internal Apps" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Data & AI Readiness Audits" }}
+          ]
+        },
+        {
+          "@type": "OfferCatalog",
+          "name": "Predictive Analytics & Forecasting",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Forecasting Services" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Anomaly Detection & Monitoring" }}
+          ]
+        },
+        {
+          "@type": "OfferCatalog",
+          "name": "Machine Learning Solutions",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Customer Segmentation & Commercial Insight" }}
+          ]
+        },
+        {
+          "@type": "OfferCatalog",
+          "name": "AI & Intelligent Automation",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lightweight NLP Solutions" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Internal AI Assistants" }}
+          ]
+        }
+      ]
+    }
+  })} />
 </BaseLayout>
