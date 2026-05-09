@@ -1,0 +1,560 @@
+---
+/**
+ * DataProjectFinder Component
+ * LLM-powered diagnostic tool for classifying business problems
+ * into data/AI/automation project opportunities
+ */
+
+const exampleChips = [
+  'We spend hours making the same report every month',
+  'Our quotes take too long and depend on one spreadsheet',
+  'We have customer data but do not know what to do with it',
+  'We need better demand or workload forecasts',
+  'Staff keep searching through documents for the same answers',
+  'We want to use AI but do not know where to start',
+  'Our spreadsheets are becoming hard to trust',
+];
+---
+
+<section id="project-finder" class="py-16 lg:py-24 bg-slate-900">
+  <div class="container-narrow">
+    <!-- Section Header -->
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">
+        Find Your First Useful Data Project
+      </h2>
+      <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
+        Describe one messy report, spreadsheet, process, forecast, or AI idea.
+        Get an instant first read on what kind of project it really is.
+      </p>
+    </div>
+
+    <!-- Diagnostic Tool Container -->
+    <div class="max-w-2xl mx-auto">
+      <!-- Input State -->
+      <div id="finder-input" class="space-y-6">
+        <!-- Privacy Note -->
+        <p class="text-gray-500 text-sm text-center">
+          Do not include passwords, sensitive customer data, or confidential files. A short description is enough.
+        </p>
+
+        <!-- Text Area -->
+        <div>
+          <textarea
+            id="problem-input"
+            placeholder="Example: We spend hours every month copying spreadsheet data into reports..."
+            rows="5"
+            minlength="20"
+            maxlength="3000"
+            class="w-full px-4 py-4 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 resize-none text-base"
+          ></textarea>
+          <div class="flex justify-between mt-2 text-sm">
+            <span id="char-count" class="text-gray-500">0 / 3000</span>
+            <span id="char-warning" class="text-amber-400 hidden">Minimum 20 characters</span>
+          </div>
+        </div>
+
+        <!-- Example Chips -->
+        <div>
+          <p class="text-gray-400 text-sm mb-3">Not sure what counts as a data project? Try one:</p>
+          <div class="flex flex-wrap gap-2">
+            {exampleChips.map((chip) => (
+              <button
+                type="button"
+                class="example-chip px-3 py-2 text-sm bg-slate-700 hover:bg-slate-600 text-gray-300 rounded-lg transition-colors border border-slate-600 hover:border-green-500"
+                data-text={chip}
+              >
+                {chip}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          id="analyse-btn"
+          type="button"
+          disabled
+          class="w-full px-6 py-4 bg-green-500 hover:bg-green-600 disabled:bg-slate-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-colors text-lg"
+        >
+          Analyse My Problem
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div id="finder-loading" class="hidden text-center py-12">
+        <div class="inline-flex items-center justify-center">
+          <svg class="animate-spin h-8 w-8 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+        <p class="mt-4 text-gray-300">Analysing your problem...</p>
+        <p class="mt-2 text-gray-500 text-sm">This usually takes 5-10 seconds</p>
+      </div>
+
+      <!-- Result State -->
+      <div id="finder-result" class="hidden space-y-6">
+        <!-- Classification Card -->
+        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-green-400 text-sm font-medium uppercase tracking-wide">Classification</span>
+              <h3 id="result-classification" class="mt-1 text-xl font-bold text-white">Reporting Automation</h3>
+            </div>
+            <div class="text-right">
+              <span class="text-gray-400 text-sm">Project Fit</span>
+              <div id="result-fit" class="text-2xl font-bold text-green-400">High</div>
+            </div>
+          </div>
+
+          <!-- Confidence Badge -->
+          <div class="mt-4">
+            <span id="result-confidence" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-900/50 text-green-400">
+              High Confidence
+            </span>
+          </div>
+
+          <!-- Summary -->
+          <div class="mt-6">
+            <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Summary</h4>
+            <p id="result-summary" class="text-gray-200 leading-relaxed">
+              Your description suggests a recurring reporting problem that can likely be automated...
+            </p>
+          </div>
+
+          <!-- Likely First Project -->
+          <div class="mt-6">
+            <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Likely First Project</h4>
+            <p id="result-first-project" class="text-white font-medium">
+              An automated reporting workflow that pulls data from existing exports...
+            </p>
+          </div>
+
+          <!-- What NOT to do first -->
+          <div class="mt-6 p-4 bg-amber-900/20 border border-amber-700/50 rounded-lg">
+            <h4 class="text-amber-400 text-sm font-medium uppercase tracking-wide mb-2">What NOT to do first</h4>
+            <p id="result-avoid" class="text-amber-200 text-sm">
+              Don't start with advanced AI. The immediate value is reducing manual data movement...
+            </p>
+          </div>
+        </div>
+
+        <!-- Roadmap Preview (Faded) -->
+        <div class="relative">
+          <div id="roadmap-preview" class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+            <h4 class="text-white font-semibold mb-4">Implementation Roadmap</h4>
+            <div id="roadmap-content" class="space-y-3 text-gray-300 text-sm">
+              <p><strong>Phase 1:</strong> Clarify workflow and decision goal...</p>
+              <p><strong>Phase 2:</strong> Review existing data sources...</p>
+              <p><strong>Phase 3:</strong> Build prototype...</p>
+            </div>
+          </div>
+
+          <!-- Fade Overlay -->
+          <div id="roadmap-fade" class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/70 to-slate-900 rounded-xl pointer-events-none"></div>
+
+          <!-- Email Capture Overlay -->
+          <div id="email-capture" class="absolute inset-x-0 bottom-0 p-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-green-500/50 shadow-lg shadow-green-500/10">
+              <h4 class="text-white font-semibold text-center mb-2">Unlock your full project map</h4>
+              <p class="text-gray-400 text-sm text-center mb-6">
+                Get the suggested build phases, data needed, likely tools, risks, and the most realistic first step.
+              </p>
+
+              <form id="unlock-form" class="space-y-3">
+                <input type="hidden" id="diagnosis-id" value="" />
+                <div>
+                  <input
+                    type="text"
+                    id="unlock-name"
+                    placeholder="Your name"
+                    required
+                    minlength="1"
+                    maxlength="100"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    id="unlock-email"
+                    placeholder="Work email"
+                    required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  />
+                  <p id="email-error" class="hidden mt-1 text-red-400 text-sm">Please enter a valid email address</p>
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    id="unlock-company"
+                    placeholder="Company name (optional)"
+                    maxlength="200"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  />
+                </div>
+                <label class="flex items-start gap-3 text-sm text-gray-300 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="unlock-privacy"
+                    required
+                    class="mt-1 w-4 h-4 rounded border-gray-600 bg-slate-700 text-green-500 focus:ring-green-500"
+                  />
+                  <span>I have read and accept the <a href="/privacy/" target="_blank" class="text-green-400 underline hover:text-green-300">Privacy Policy</a></span>
+                </label>
+                <label class="flex items-start gap-3 text-sm text-gray-300 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="unlock-consent"
+                    required
+                    class="mt-1 w-4 h-4 rounded border-gray-600 bg-slate-700 text-green-500 focus:ring-green-500"
+                  />
+                  <span>I agree to be contacted about my project map</span>
+                </label>
+                <p id="unlock-error" class="hidden text-red-400 text-sm text-center"></p>
+                <button
+                  type="submit"
+                  id="unlock-btn"
+                  class="w-full px-6 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+                >
+                  Unlock My Project Map
+                </button>
+              </form>
+              <p class="mt-3 text-center text-gray-500 text-xs">
+                We'll use your email to send your project map and follow up about your enquiry. No spam.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Try Again Link -->
+        <div class="text-center">
+          <button id="try-again-btn" type="button" class="text-gray-400 hover:text-white text-sm underline">
+            Analyse a different problem
+          </button>
+        </div>
+      </div>
+
+      <!-- Full Roadmap State (after unlock) -->
+      <div id="finder-unlocked" class="hidden space-y-6">
+        <!-- Success Message -->
+        <div class="bg-green-900/30 border border-green-500/50 rounded-xl p-6 text-center">
+          <svg class="w-12 h-12 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <h3 class="mt-4 text-lg font-semibold text-white">Your project map is unlocked!</h3>
+          <p class="mt-2 text-gray-300 text-sm">We've also sent a copy to your email.</p>
+        </div>
+
+        <!-- Full Roadmap -->
+        <div id="full-roadmap" class="bg-slate-800 rounded-xl p-6 border border-slate-700 space-y-6">
+          <!-- Content will be populated by JS -->
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center space-y-4">
+          <p class="text-gray-300">Ready to discuss your project?</p>
+          <a
+            href="https://cal.com/q-types/30-minute-discovery-call"
+            class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+          >
+            Book a Discovery Call
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Try Again Link -->
+        <div class="text-center">
+          <button id="try-again-btn-2" type="button" class="text-gray-400 hover:text-white text-sm underline">
+            Analyse a different problem
+          </button>
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div id="finder-error" class="hidden">
+        <div class="bg-red-900/30 border border-red-500/50 rounded-xl p-6 text-center">
+          <svg class="w-12 h-12 text-red-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <h3 class="mt-4 text-lg font-semibold text-white">Something went wrong</h3>
+          <p id="error-message" class="mt-2 text-gray-300 text-sm">Please try again in a moment.</p>
+          <button id="error-retry-btn" type="button" class="mt-4 px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors">
+            Try Again
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // State management
+  const states = {
+    INPUT: 'input',
+    LOADING: 'loading',
+    RESULT: 'result',
+    UNLOCKED: 'unlocked',
+    ERROR: 'error'
+  };
+
+  let currentState = states.INPUT;
+  let currentDiagnosisId: string | null = null;
+
+  // DOM elements
+  const problemInput = document.getElementById('problem-input') as HTMLTextAreaElement;
+  const charCount = document.getElementById('char-count') as HTMLSpanElement;
+  const charWarning = document.getElementById('char-warning') as HTMLSpanElement;
+  const analyseBtn = document.getElementById('analyse-btn') as HTMLButtonElement;
+  const exampleChips = document.querySelectorAll('.example-chip');
+
+  const finderInput = document.getElementById('finder-input') as HTMLDivElement;
+  const finderLoading = document.getElementById('finder-loading') as HTMLDivElement;
+  const finderResult = document.getElementById('finder-result') as HTMLDivElement;
+  const finderUnlocked = document.getElementById('finder-unlocked') as HTMLDivElement;
+  const finderError = document.getElementById('finder-error') as HTMLDivElement;
+
+  const unlockForm = document.getElementById('unlock-form') as HTMLFormElement;
+  const diagnosisIdInput = document.getElementById('diagnosis-id') as HTMLInputElement;
+
+  const tryAgainBtn = document.getElementById('try-again-btn') as HTMLButtonElement;
+  const tryAgainBtn2 = document.getElementById('try-again-btn-2') as HTMLButtonElement;
+  const errorRetryBtn = document.getElementById('error-retry-btn') as HTMLButtonElement;
+
+  // State switcher
+  function setState(state: string) {
+    currentState = state;
+    finderInput.classList.toggle('hidden', state !== states.INPUT);
+    finderLoading.classList.toggle('hidden', state !== states.LOADING);
+    finderResult.classList.toggle('hidden', state !== states.RESULT);
+    finderUnlocked.classList.toggle('hidden', state !== states.UNLOCKED);
+    finderError.classList.toggle('hidden', state !== states.ERROR);
+  }
+
+  // Character counter and validation
+  function updateCharCount() {
+    const length = problemInput.value.length;
+    charCount.textContent = `${length} / 3000`;
+
+    const isValid = length >= 20 && length <= 3000;
+    analyseBtn.disabled = !isValid;
+    charWarning.classList.toggle('hidden', length === 0 || length >= 20);
+  }
+
+  problemInput.addEventListener('input', updateCharCount);
+
+  // Example chips auto-fill
+  exampleChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const text = (chip as HTMLButtonElement).dataset.text || '';
+      problemInput.value = text;
+      updateCharCount();
+      problemInput.focus();
+    });
+  });
+
+  // Analyse button click
+  analyseBtn.addEventListener('click', async () => {
+    const problem = problemInput.value.trim();
+    if (problem.length < 20) return;
+
+    setState(states.LOADING);
+
+    try {
+      const response = await fetch('/api/diagnose', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ problem_description: problem })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Unable to analyse your problem');
+      }
+
+      currentDiagnosisId = data.diagnosis_id;
+      diagnosisIdInput.value = data.diagnosis_id;
+
+      // Update result UI
+      (document.getElementById('result-classification') as HTMLElement).textContent = data.classification_label;
+      (document.getElementById('result-fit') as HTMLElement).textContent = data.scores.project_fit_label;
+
+      // Confidence badge styling
+      const confidenceEl = document.getElementById('result-confidence') as HTMLElement;
+      const confidenceText = data.confidence.charAt(0).toUpperCase() + data.confidence.slice(1);
+      confidenceEl.textContent = `${confidenceText} Confidence`;
+
+      // Update confidence badge color based on level
+      confidenceEl.className = 'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium';
+      if (data.confidence === 'high') {
+        confidenceEl.classList.add('bg-green-900/50', 'text-green-400');
+      } else if (data.confidence === 'medium') {
+        confidenceEl.classList.add('bg-amber-900/50', 'text-amber-400');
+      } else {
+        confidenceEl.classList.add('bg-slate-700', 'text-gray-400');
+      }
+
+      (document.getElementById('result-summary') as HTMLElement).textContent = data.instant_result.summary;
+      (document.getElementById('result-first-project') as HTMLElement).textContent = data.instant_result.likely_first_project;
+      (document.getElementById('result-avoid') as HTMLElement).textContent = data.instant_result.what_not_to_do_first;
+      (document.getElementById('roadmap-content') as HTMLElement).innerHTML = data.roadmap_preview.visible_preview;
+
+      // Show follow-up question if low confidence
+      if (data.follow_up_question && data.confidence === 'low') {
+        const summaryEl = document.getElementById('result-summary') as HTMLElement;
+        summaryEl.innerHTML = `${data.instant_result.summary}<br><br><span class="text-amber-400">To give better guidance: ${data.follow_up_question}</span>`;
+      }
+
+      setState(states.RESULT);
+
+    } catch (error) {
+      console.error('Diagnosis error:', error);
+      const errorMsg = error instanceof Error ? error.message : 'Unable to analyse your problem. Please try again.';
+      (document.getElementById('error-message') as HTMLElement).textContent = errorMsg;
+      setState(states.ERROR);
+    }
+  });
+
+  // Unlock form submit
+  unlockForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = (document.getElementById('unlock-name') as HTMLInputElement).value;
+    const email = (document.getElementById('unlock-email') as HTMLInputElement).value;
+    const company = (document.getElementById('unlock-company') as HTMLInputElement).value;
+    const privacyAccepted = (document.getElementById('unlock-privacy') as HTMLInputElement).checked;
+    const consent = (document.getElementById('unlock-consent') as HTMLInputElement).checked;
+
+    const unlockError = document.getElementById('unlock-error') as HTMLParagraphElement;
+    const emailError = document.getElementById('email-error') as HTMLParagraphElement;
+    const emailInput = document.getElementById('unlock-email') as HTMLInputElement;
+
+    // Reset errors
+    unlockError.classList.add('hidden');
+    emailError.classList.add('hidden');
+    emailInput.classList.remove('border-red-500');
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      emailError.classList.remove('hidden');
+      emailInput.classList.add('border-red-500');
+      emailInput.focus();
+      return;
+    }
+
+    if (!privacyAccepted) {
+      unlockError.textContent = 'Please read and accept the Privacy Policy to continue.';
+      unlockError.classList.remove('hidden');
+      return;
+    }
+
+    if (!consent) {
+      unlockError.textContent = 'Please agree to be contacted to unlock your project map.';
+      unlockError.classList.remove('hidden');
+      return;
+    }
+
+    const unlockBtn = document.getElementById('unlock-btn') as HTMLButtonElement;
+    unlockBtn.disabled = true;
+    unlockBtn.textContent = 'Unlocking...';
+
+    try {
+      const response = await fetch('/api/unlock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          diagnosis_id: currentDiagnosisId,
+          name,
+          email,
+          company: company || undefined,
+          privacy_accepted: privacyAccepted,
+          consent_to_contact: consent
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.status === 'error') {
+        throw new Error(data.error || 'Unable to unlock your roadmap');
+      }
+
+      // Render full roadmap
+      const fullRoadmapEl = document.getElementById('full-roadmap') as HTMLDivElement;
+      const roadmap = data.full_roadmap;
+
+      fullRoadmapEl.innerHTML = `
+        <div>
+          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Executive Summary</h4>
+          <p class="text-gray-200">${roadmap.executive_summary}</p>
+        </div>
+
+        <div>
+          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-3">Implementation Phases</h4>
+          <div class="space-y-4">
+            ${roadmap.implementation_phases.map((phase: any, i: number) => `
+              <div class="border-l-2 border-green-500 pl-4">
+                <h5 class="text-white font-medium">Phase ${i + 1}: ${phase.phase}</h5>
+                <p class="text-gray-400 text-sm mt-1">${phase.goal}</p>
+                <div class="mt-2 text-sm text-gray-300">
+                  <p class="font-medium text-gray-400">Activities:</p>
+                  <ul class="list-disc list-inside ml-2">${phase.activities.map((a: string) => `<li>${a}</li>`).join('')}</ul>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Data Needed</h4>
+          <ul class="list-disc list-inside text-gray-300 text-sm">${roadmap.data_needed.map((d: string) => `<li>${d}</li>`).join('')}</ul>
+        </div>
+
+        <div>
+          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Recommended Tools</h4>
+          <ul class="list-disc list-inside text-gray-300 text-sm">${roadmap.recommended_tools.map((t: string) => `<li>${t}</li>`).join('')}</ul>
+        </div>
+
+        <div>
+          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Risks & Assumptions</h4>
+          <ul class="list-disc list-inside text-gray-300 text-sm">${roadmap.risks_and_assumptions.map((r: string) => `<li>${r}</li>`).join('')}</ul>
+        </div>
+
+        <div class="bg-green-900/30 border border-green-500/30 rounded-lg p-4">
+          <h4 class="text-green-400 text-sm font-medium uppercase tracking-wide mb-2">Suggested First Step</h4>
+          <p class="text-white font-medium">${roadmap.first_step}</p>
+        </div>
+      `;
+
+      setState(states.UNLOCKED);
+
+    } catch (error) {
+      console.error('Unlock error:', error);
+      unlockBtn.disabled = false;
+      unlockBtn.textContent = 'Unlock My Project Map';
+      const errorMsg = error instanceof Error ? error.message : 'Unable to unlock your project map. Please try again.';
+      unlockError.textContent = errorMsg;
+      unlockError.classList.remove('hidden');
+    }
+  });
+
+  // Try again buttons
+  function resetToInput() {
+    problemInput.value = '';
+    updateCharCount();
+    currentDiagnosisId = null;
+    setState(states.INPUT);
+    document.getElementById('project-finder')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  tryAgainBtn.addEventListener('click', resetToInput);
+  tryAgainBtn2.addEventListener('click', resetToInput);
+  errorRetryBtn.addEventListener('click', resetToInput);
+
+  // Initial state
+  updateCharCount();
+</script>

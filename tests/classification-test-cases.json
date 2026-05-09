@@ -1,0 +1,155 @@
+{
+  "description": "Test cases for classification accuracy - target >80%",
+  "test_cases": [
+    {
+      "id": 1,
+      "problem": "We spend hours every month copying data from 5 different spreadsheets into a summary report for management.",
+      "expected_classification": "reporting_automation",
+      "notes": "Clear recurring reporting pattern"
+    },
+    {
+      "id": 2,
+      "problem": "Our sales team uses a complex Excel spreadsheet to create customer quotes. Only Sarah knows how to update the formulas and it breaks when she's on holiday.",
+      "expected_classification": "spreadsheet_to_system",
+      "notes": "Fragile spreadsheet with key-person dependency"
+    },
+    {
+      "id": 3,
+      "problem": "We keep running out of stock on popular items and overstocking slow movers. We need to predict what to order.",
+      "expected_classification": "forecasting_early_warning",
+      "notes": "Inventory forecasting need"
+    },
+    {
+      "id": 4,
+      "problem": "We have 10 years of customer purchase data but don't know who our best customers are or which ones might leave.",
+      "expected_classification": "customer_intelligence",
+      "notes": "Customer segmentation and churn analysis"
+    },
+    {
+      "id": 5,
+      "problem": "New employees spend weeks searching through our policy documents and SOPs. We wish they could just ask questions and get answers.",
+      "expected_classification": "ai_knowledge_assistant",
+      "notes": "Document Q&A use case"
+    },
+    {
+      "id": 6,
+      "problem": "Every invoice that comes in, someone has to manually enter the details into our accounting system. It takes 2 hours a day.",
+      "expected_classification": "workflow_automation",
+      "notes": "Repetitive data entry automation"
+    },
+    {
+      "id": 7,
+      "problem": "We have data in Salesforce, QuickBooks, Google Sheets, and a custom access database. None of them talk to each other.",
+      "expected_classification": "data_readiness",
+      "notes": "Data integration and infrastructure needed"
+    },
+    {
+      "id": 8,
+      "problem": "I want to use AI",
+      "expected_classification": "not_enough_information",
+      "notes": "Too vague, no clear problem"
+    },
+    {
+      "id": 9,
+      "problem": "Our finance team creates the same cash flow report every week, pulling numbers from the bank and two other systems.",
+      "expected_classification": "reporting_automation",
+      "notes": "Weekly recurring report"
+    },
+    {
+      "id": 10,
+      "problem": "We track all our projects in a Google Sheet with 50 tabs. It crashes and formulas break regularly.",
+      "expected_classification": "spreadsheet_to_system",
+      "notes": "Overloaded spreadsheet as project management tool"
+    },
+    {
+      "id": 11,
+      "problem": "We need to know how many staff to roster for each day based on expected customer traffic.",
+      "expected_classification": "forecasting_early_warning",
+      "notes": "Demand/staffing forecast"
+    },
+    {
+      "id": 12,
+      "problem": "Our sales reps don't know which leads to call first. We want to prioritize based on likelihood to close.",
+      "expected_classification": "customer_intelligence",
+      "notes": "Lead scoring / sales prioritization"
+    },
+    {
+      "id": 13,
+      "problem": "Engineers keep asking the same questions about our technical documentation. We have 500 pages of manuals.",
+      "expected_classification": "ai_knowledge_assistant",
+      "notes": "Technical documentation assistant"
+    },
+    {
+      "id": 14,
+      "problem": "When a customer emails a support request, someone has to copy it into Zendesk, tag it, and route it to the right team.",
+      "expected_classification": "workflow_automation",
+      "notes": "Email routing automation"
+    },
+    {
+      "id": 15,
+      "problem": "We don't know what data we have or where it lives. Everything is in different places.",
+      "expected_classification": "data_readiness",
+      "notes": "Data audit/inventory needed"
+    },
+    {
+      "id": 16,
+      "problem": "Something with data",
+      "expected_classification": "not_enough_information",
+      "notes": "Completely vague"
+    },
+    {
+      "id": 17,
+      "problem": "Every quarter we compile a board report with KPIs from 8 different systems. It takes a full week.",
+      "expected_classification": "reporting_automation",
+      "notes": "Executive reporting automation"
+    },
+    {
+      "id": 18,
+      "problem": "Our pricing is calculated in a master spreadsheet. When we add new products, someone has to manually update all the linked sheets.",
+      "expected_classification": "spreadsheet_to_system",
+      "notes": "Pricing system in spreadsheet"
+    },
+    {
+      "id": 19,
+      "problem": "We want to predict which machines will break down before they fail so we can do preventive maintenance.",
+      "expected_classification": "forecasting_early_warning",
+      "notes": "Predictive maintenance"
+    },
+    {
+      "id": 20,
+      "problem": "We have no idea which customers are likely to renew their contracts and which are at risk.",
+      "expected_classification": "customer_intelligence",
+      "notes": "Renewal prediction / churn risk"
+    },
+    {
+      "id": 21,
+      "problem": "Our HR team answers the same policy questions 50 times a week. All the answers are in the employee handbook.",
+      "expected_classification": "ai_knowledge_assistant",
+      "notes": "HR policy assistant"
+    },
+    {
+      "id": 22,
+      "problem": "Files arrive in a shared folder and need to be renamed, moved to the right location, and logged in a tracker.",
+      "expected_classification": "workflow_automation",
+      "notes": "File processing automation"
+    },
+    {
+      "id": 23,
+      "problem": "Our data is messy and we don't trust the numbers. Before we can do anything useful, we need to clean it up.",
+      "expected_classification": "data_readiness",
+      "notes": "Data quality issue"
+    },
+    {
+      "id": 24,
+      "problem": "Can you help with my business?",
+      "expected_classification": "not_enough_information",
+      "notes": "No specific problem described"
+    },
+    {
+      "id": 25,
+      "problem": "We export data from our CRM every day, combine it with marketing data, and create a dashboard in Google Sheets. It's all manual.",
+      "expected_classification": "reporting_automation",
+      "notes": "Daily data pipeline + dashboard"
+    }
+  ]
+}
