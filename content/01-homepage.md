@@ -286,7 +286,7 @@ Data, Automation, Segmentation & Forecasting for SMEs
 **Contact:**
 hello@qsol-analytics.co.uk
 
-© 2024 QSol Analytics. All rights reserved.
+© 2026 QSol Analytics. All rights reserved.
 
 ---
 
