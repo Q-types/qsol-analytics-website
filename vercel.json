@@ -1,5 +1,13 @@
 {
   "framework": "astro",
+  "functions": {
+    "api/**/*.ts": {
+      "runtime": "nodejs20.x"
+    },
+    "_render": {
+      "runtime": "nodejs20.x"
+    }
+  },
   "redirects": [
     {
       "source": "/call",
