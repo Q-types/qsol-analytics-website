@@ -8,6 +8,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.95.1",
     "@astrojs/mdx": "^3.1.0",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^5.1.0",

@@ -10,9 +10,10 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   noindex?: boolean;
+  hideHeader?: boolean;
 }
 
-const { title, description, canonical, ogImage, noindex } = Astro.props;
+const { title, description, canonical, ogImage, noindex, hideHeader = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@ const { title, description, canonical, ogImage, noindex } = Astro.props;
   <!-- <script defer data-domain="qsol-analytics.com" src="https://plausible.io/js/script.js"></script> -->
 </head>
 <body class="min-h-screen flex flex-col">
-  <Header />
+  {!hideHeader && <Header />}
   <main class="flex-grow">
     <slot />
   </main>
