@@ -213,7 +213,7 @@ function generateRoadmapPreview(fullRoadmap: FullRoadmap): RoadmapPreview {
 
 export async function classifyProblem(problemDescription: string): Promise<ClassificationResult> {
   const response = await openai.chat.completions.create({
-    model: 'gpt-4o',
+    model: 'gpt-5.5-2026-04-23',
     messages: [
       { role: 'system', content: SYSTEM_PROMPT },
       { role: 'user', content: `Analyse this business problem and provide classification:\n\n"${problemDescription}"` }
