@@ -385,28 +385,80 @@ function calculateProjectFit(scores: Omit<DiagnosisScores, 'overall' | 'project_
   return { overall, project_fit_label };
 }
 
-function generateRoadmapPreview(fullRoadmap: FullRoadmap): RoadmapPreview {
-  const phases = fullRoadmap.implementation_phases;
-  const previewPhases = phases.slice(0, 2);
+function generateRoadmapPreview(fullRoadmap: FullRoadmap, methodology?: MethodologyRecommendation): RoadmapPreview {
+  // Build a teaser that shows all 8 section headings from the full report
+  // This gives users a clear view of the value they'll unlock
 
-  const visible_preview = previewPhases
-    .map((p, i) => {
-      // Remove any existing "Phase X" prefix from the phase name to avoid duplication
-      const cleanPhaseName = p.phase.replace(/^Phase\s*\d+\s*[-–:]\s*/i, '');
-      return `<p><strong>Phase ${i + 1}: ${cleanPhaseName}</strong> - ${p.goal}</p>`;
-    })
-    .join('');
+  const phaseCount = fullRoadmap.implementation_phases.length;
+  const firstPhase = fullRoadmap.implementation_phases[0];
+  const cleanFirstPhaseName = firstPhase?.phase.replace(/^Phase\s*\d+\s*[-–:]\s*/i, '') || 'Discovery';
+
+  // Section 1 teaser: show truncated executive summary
+  const execSummaryTeaser = fullRoadmap.executive_summary.length > 120
+    ? fullRoadmap.executive_summary.substring(0, 120) + '...'
+    : fullRoadmap.executive_summary;
+
+  const visible_preview = `
+    <div class="space-y-3">
+      <!-- Teaser content -->
+      <div class="text-gray-300 text-sm">
+        <p class="text-gray-400 italic mb-3">"${execSummaryTeaser}"</p>
+      </div>
+
+      <!-- Section headers showing what's in the full report -->
+      <div class="border-t border-slate-600/50 pt-3 mt-3">
+        <p class="text-gray-400 text-xs uppercase tracking-wide mb-3 font-medium">Your full report includes:</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+          <div class="flex items-center gap-2 text-gray-300">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Executive Summary</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Why This Classification</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Methodology & Algorithms</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>${phaseCount} Implementation Phases</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Data Requirements</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Recommended Tools</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Risks & Sharp Edges</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Your First Step</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 
   const locked_sections = [
-    'Full implementation phases',
-    'Data requirements',
-    'Recommended tools',
-    'Risks and assumptions',
-    'Suggested first step'
+    'Executive Summary',
+    'Classification Explanation',
+    'Methodology Recommendations',
+    `${phaseCount} Implementation Phases`,
+    'Data Requirements',
+    'Recommended Tools',
+    'Risks & Sharp Edges',
+    'Your First Step'
   ];
 
   return {
-    title: 'Implementation Roadmap',
+    title: 'Full Diagnostic Report',
     visible_preview,
     locked_sections
   };
@@ -440,7 +492,7 @@ export async function classifyProblem(problemDescription: string): Promise<Class
     project_fit_label
   };
 
-  const roadmap_preview = generateRoadmapPreview(parsed.full_roadmap);
+  const roadmap_preview = generateRoadmapPreview(parsed.full_roadmap, methodology);
 
   // Provide fallback methodology if not present
   const methodology: MethodologyRecommendation = parsed.methodology || {

@@ -5,91 +5,109 @@
  * into data/AI/automation project opportunities
  */
 
+// Compact labels shown on chips, full text filled into textarea on click
 const exampleChips = [
-  'We spend hours making the same report every month',
-  'Our quotes take too long and depend on one spreadsheet',
-  'We have customer data but do not know what to do with it',
-  'We need better demand or workload forecasts',
-  'Staff keep searching through documents for the same answers',
-  'We want to use AI but do not know where to start',
-  'Our spreadsheets are becoming hard to trust',
+  { label: 'Copying data between systems', full: 'We spend too much time copying data between spreadsheets and systems. It feels like we are always moving the same information around manually.' },
+  { label: 'Repetitive reporting', full: 'We make the same reports every week or month, but they still take hours. The data is scattered and we have to pull it together manually each time.' },
+  { label: 'Customer or product profitability', full: 'We do not know which customers, jobs, or products are actually most profitable. We have data but cannot easily see where we are making or losing money.' },
+  { label: 'Forecasting needs', full: 'We need better forecasts for sales, demand, workload, stock, or cash flow. Right now we are mostly guessing or using gut feel.' },
+  { label: 'Quoting and estimating', full: 'Our quote, pricing, or estimating process is slow and hard to trust. It depends on spreadsheets or one person who knows the system.' },
+  { label: 'Buried information', full: 'Important information is buried in emails, documents, folders, or staff knowledge. People spend too much time searching for answers that already exist somewhere.' },
+  { label: 'Practical AI use case', full: 'We want to use AI, but we need a practical first use case that will actually help. We are not sure where to start or what would give us real value.' },
+  { label: 'Messy or scattered data', full: 'Our data is messy, duplicated, or spread across too many tools. We do not have a single source of truth and it is hard to trust any of it.' },
 ];
 ---
 
-<section id="project-finder" class="py-16 lg:py-24 bg-slate-900">
-  <div class="container-narrow">
+<section id="project-finder" class="py-16 lg:py-24 bg-slate-950">
+  <div class="container-wide">
     <!-- Section Header -->
     <div class="text-center mb-10">
       <h2 class="text-2xl md:text-3xl font-bold text-white">
-        Find Your First Useful Data Project
+        Find Your First Useful Data Solution
       </h2>
       <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
-        Describe one messy report, spreadsheet, process, forecast, or AI idea.
-        Get an instant first read on what kind of project it really is.
+        Describe a messy report, spreadsheet, process, or forecast problem.
+        Get an instant read on what it really is and where to start.
       </p>
     </div>
 
-    <!-- Diagnostic Tool Container -->
-    <div class="max-w-2xl mx-auto">
-      <!-- Input State -->
-      <div id="finder-input" class="space-y-6">
-        <!-- Privacy Note -->
-        <p class="text-gray-500 text-sm text-center">
-          Do not include passwords, sensitive customer data, or confidential files. A short description is enough.
+    <!-- Diagnostic Tool Card - Full width, inviting -->
+    <div class="bg-gradient-to-b from-slate-900 to-slate-900/95 rounded-2xl border border-slate-700/80 shadow-2xl shadow-slate-950/50 p-6 md:p-10">
+      <!-- Soft prompt banner (shown after multiple uses) -->
+      <div id="soft-prompt-banner" class="hidden mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
+        <p class="text-green-400 text-sm text-center">
+          Finding this useful? For a deeper conversation about your specific situation,
+          <a href="https://cal.com/q-types/30-minute-discovery-call" class="underline hover:text-green-300 font-medium">book a quick call with David</a>.
         </p>
+      </div>
 
-        <!-- Text Area -->
-        <div>
-          <textarea
-            id="problem-input"
-            placeholder="Example: We spend hours every month copying spreadsheet data into reports..."
-            rows="5"
-            minlength="20"
-            maxlength="3000"
-            class="w-full px-4 py-4 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 resize-none text-base"
-          ></textarea>
-          <div class="flex justify-between mt-2 text-sm">
-            <span id="char-count" class="text-gray-500">0 / 3000</span>
-            <span id="char-warning" class="text-amber-400 hidden">Minimum 20 characters</span>
-          </div>
-        </div>
+      <!-- Input State - with min-height to prevent layout shift when switching states -->
+      <div id="finder-input" class="space-y-6 min-h-[400px]">
 
-        <!-- Example Chips -->
+        <!-- Example Chips - Compact, above textarea -->
         <div>
-          <p class="text-gray-400 text-sm mb-3">Not sure what counts as a data project? Try one:</p>
+          <p class="text-gray-400 text-sm mb-3 font-medium">Not sure where to start? Try one of these:</p>
           <div class="flex flex-wrap gap-2">
             {exampleChips.map((chip) => (
               <button
                 type="button"
-                class="example-chip px-3 py-2 text-sm bg-slate-700 hover:bg-slate-600 text-gray-300 rounded-lg transition-colors border border-slate-600 hover:border-green-500"
-                data-text={chip}
+                class="example-chip px-3 py-1.5 text-sm bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white rounded-lg transition-all duration-150 ease-out border border-slate-700 hover:border-green-500/50 active:scale-[0.98]"
+                data-text={chip.full}
               >
-                {chip}
+                {chip.label}
               </button>
             ))}
           </div>
         </div>
 
-        <!-- Submit Button -->
+        <!-- Text Area - Fixed height to prevent layout shift -->
+        <div>
+          <textarea
+            id="problem-input"
+            placeholder="Describe your data challenge here...
+
+For example: We spend hours every month manually copying data from multiple spreadsheets into reports for management. It's error-prone and takes one person almost a full day each time."
+            rows="8"
+            minlength="20"
+            maxlength="3000"
+            class="w-full min-h-[220px] px-5 py-5 rounded-xl border-2 border-slate-600/50 bg-slate-800/50 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500/50 resize-none text-base leading-relaxed transition-all duration-200 hover:border-slate-500/50"
+          ></textarea>
+          <div class="flex justify-between mt-3 text-xs text-gray-500">
+            <span id="char-count" class="font-medium">0 / 3000</span>
+            <span id="char-warning" class="text-amber-500 hidden font-medium">Minimum 20 characters</span>
+          </div>
+        </div>
+
+        <!-- Submit Button - Polished CTA -->
         <button
           id="analyse-btn"
           type="button"
           disabled
-          class="w-full px-6 py-4 bg-green-500 hover:bg-green-600 disabled:bg-slate-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-colors text-lg"
+          class="group relative w-full px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 disabled:from-slate-700 disabled:to-slate-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-200 ease-out text-base shadow-[0_4px_14px_0_rgba(34,197,94,0.4)] hover:shadow-[0_6px_20px_0_rgba(34,197,94,0.5)] disabled:shadow-none hover:-translate-y-0.5 disabled:hover:translate-y-0 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-slate-900"
         >
-          Analyse My Problem
+          <span class="flex items-center justify-center gap-2">
+            Find My First Solution
+            <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </span>
         </button>
+
+        <!-- Privacy Note - Small and quiet -->
+        <p class="text-gray-600 text-xs text-center">
+          Do not include passwords or sensitive data. A short description is enough.
+        </p>
       </div>
 
-      <!-- Loading State -->
-      <div id="finder-loading" class="hidden text-center py-12">
+      <!-- Loading State - with min-height to prevent layout shift -->
+      <div id="finder-loading" class="hidden text-center py-12 min-h-[400px] flex flex-col items-center justify-center">
         <div class="inline-flex items-center justify-center">
-          <svg class="animate-spin h-8 w-8 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <svg class="spinner-animation h-10 w-10 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
         </div>
-        <p class="mt-4 text-gray-300">Analysing your problem...</p>
+        <p class="mt-4 text-gray-300 text-lg">Analysing your problem...</p>
         <p class="mt-2 text-gray-500 text-sm">This usually takes 5-10 seconds</p>
       </div>
 
@@ -131,6 +149,13 @@ const exampleChips = [
             </p>
           </div>
 
+          <!-- Methodology Preview -->
+          <div class="mt-6 p-4 bg-slate-900 border border-slate-600 rounded-lg">
+            <h4 class="text-green-400 text-sm font-medium uppercase tracking-wide mb-2">Recommended Approach</h4>
+            <p id="result-methodology-approach" class="text-white font-medium mb-2">Time Series Forecasting</p>
+            <p id="result-methodology-baseline" class="text-gray-400 text-sm">Start with: Simple baseline model...</p>
+          </div>
+
           <!-- What NOT to do first -->
           <div class="mt-6 p-4 bg-amber-900/20 border border-amber-700/50 rounded-lg">
             <h4 class="text-amber-400 text-sm font-medium uppercase tracking-wide mb-2">What NOT to do first</h4>
@@ -140,31 +165,33 @@ const exampleChips = [
           </div>
         </div>
 
-        <!-- Roadmap Preview (Faded) -->
-        <div class="relative">
-          <div id="roadmap-preview" class="bg-slate-800 rounded-xl p-6 border border-slate-700">
-            <h4 class="text-white font-semibold mb-4">Implementation Roadmap</h4>
-            <div id="roadmap-content" class="space-y-3 text-gray-300 text-sm">
-              <p><strong>Phase 1:</strong> Clarify workflow and decision goal...</p>
-              <p><strong>Phase 2:</strong> Review existing data sources...</p>
-              <p><strong>Phase 3:</strong> Build prototype...</p>
+        <!-- Roadmap Preview with Email Wall -->
+        <div class="space-y-0">
+          <!-- Preview Content -->
+          <div id="roadmap-preview" class="bg-slate-800 rounded-t-xl p-6 border border-b-0 border-slate-700">
+            <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+              </svg>
+              Full Diagnostic Report
+            </h4>
+            <div id="roadmap-content" class="text-gray-300 text-sm">
+              <!-- Populated dynamically with teaser content showing all 8 sections -->
+              <p class="text-gray-400 italic">Loading report preview...</p>
             </div>
           </div>
 
-          <!-- Fade Overlay -->
-          <div id="roadmap-fade" class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/70 to-slate-900 rounded-xl pointer-events-none"></div>
-
-          <!-- Email Capture Overlay -->
-          <div id="email-capture" class="absolute inset-x-0 bottom-0 p-6">
-            <div class="bg-slate-800 rounded-xl p-6 border border-green-500/50 shadow-lg shadow-green-500/10">
+          <!-- Email Capture Form - Full width, not absolute positioned -->
+          <div id="email-capture" class="bg-slate-800 rounded-b-xl p-6 border border-t-0 border-slate-700 border-t border-green-500/30">
+            <div class="max-w-md mx-auto">
               <h4 class="text-white font-semibold text-center mb-2">Unlock your full project map</h4>
-              <p class="text-gray-400 text-sm text-center mb-6">
+              <p class="text-gray-400 text-sm text-center mb-5">
                 Get the suggested build phases, data needed, likely tools, risks, and the most realistic first step.
               </p>
 
               <form id="unlock-form" class="space-y-3">
                 <input type="hidden" id="diagnosis-id" value="" />
-                <div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input
                     type="text"
                     id="unlock-name"
@@ -174,8 +201,6 @@ const exampleChips = [
                     maxlength="100"
                     class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
-                </div>
-                <div>
                   <input
                     type="email"
                     id="unlock-email"
@@ -183,46 +208,51 @@ const exampleChips = [
                     required
                     class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
-                  <p id="email-error" class="hidden mt-1 text-red-400 text-sm">Please enter a valid email address</p>
                 </div>
-                <div>
-                  <input
-                    type="text"
-                    id="unlock-company"
-                    placeholder="Company name (optional)"
-                    maxlength="200"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  />
+                <p id="email-error" class="hidden text-red-400 text-sm">Please enter a valid email address</p>
+                <input
+                  type="text"
+                  id="unlock-company"
+                  placeholder="Company name (optional)"
+                  maxlength="200"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+                <div class="space-y-2 pt-2">
+                  <label class="flex items-start gap-3 text-sm text-gray-300 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      id="unlock-privacy"
+                      required
+                      class="mt-0.5 w-4 h-4 rounded border-gray-600 bg-slate-700 text-green-500 focus:ring-green-500"
+                    />
+                    <span>I accept the <a href="/privacy/" target="_blank" class="text-green-400 underline hover:text-green-300">Privacy Policy</a></span>
+                  </label>
+                  <label class="flex items-start gap-3 text-sm text-gray-300 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      id="unlock-consent"
+                      required
+                      class="mt-0.5 w-4 h-4 rounded border-gray-600 bg-slate-700 text-green-500 focus:ring-green-500"
+                    />
+                    <span>I agree to be contacted about my project</span>
+                  </label>
                 </div>
-                <label class="flex items-start gap-3 text-sm text-gray-300 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    id="unlock-privacy"
-                    required
-                    class="mt-1 w-4 h-4 rounded border-gray-600 bg-slate-700 text-green-500 focus:ring-green-500"
-                  />
-                  <span>I have read and accept the <a href="/privacy/" target="_blank" class="text-green-400 underline hover:text-green-300">Privacy Policy</a></span>
-                </label>
-                <label class="flex items-start gap-3 text-sm text-gray-300 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    id="unlock-consent"
-                    required
-                    class="mt-1 w-4 h-4 rounded border-gray-600 bg-slate-700 text-green-500 focus:ring-green-500"
-                  />
-                  <span>I agree to be contacted about my project map</span>
-                </label>
                 <p id="unlock-error" class="hidden text-red-400 text-sm text-center"></p>
                 <button
                   type="submit"
                   id="unlock-btn"
-                  class="w-full px-6 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+                  class="group relative w-full px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white font-semibold rounded-lg transition-all duration-200 ease-out shadow-[0_4px_14px_0_rgba(34,197,94,0.4)] hover:shadow-[0_6px_20px_0_rgba(34,197,94,0.5)] hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-slate-800 disabled:opacity-70 disabled:cursor-wait disabled:hover:translate-y-0"
                 >
-                  Unlock My Project Map
+                  <span class="flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                    </svg>
+                    Unlock My Project Map
+                  </span>
                 </button>
               </form>
               <p class="mt-3 text-center text-gray-500 text-xs">
-                We'll use your email to send your project map and follow up about your enquiry. No spam.
+                We'll send your project map and follow up about your enquiry. No spam.
               </p>
             </div>
           </div>
@@ -230,7 +260,7 @@ const exampleChips = [
 
         <!-- Try Again Link -->
         <div class="text-center">
-          <button id="try-again-btn" type="button" class="text-gray-400 hover:text-white text-sm underline">
+          <button id="try-again-btn" type="button" class="text-gray-400 hover:text-green-400 text-sm font-medium transition-colors duration-150 hover:underline underline-offset-4">
             Analyse a different problem
           </button>
         </div>
@@ -243,46 +273,50 @@ const exampleChips = [
           <svg class="w-12 h-12 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <h3 class="mt-4 text-lg font-semibold text-white">Your project map is unlocked!</h3>
-          <p class="mt-2 text-gray-300 text-sm">We've also sent a copy to your email.</p>
+          <h3 class="mt-4 text-lg font-semibold text-white">Your diagnostic report is ready!</h3>
+          <p class="mt-2 text-gray-300 text-sm">We have also sent a detailed copy to your email.</p>
         </div>
 
-        <!-- Full Roadmap -->
-        <div id="full-roadmap" class="bg-slate-800 rounded-xl p-6 border border-slate-700 space-y-6">
-          <!-- Content will be populated by JS -->
+        <!-- Full Report Container -->
+        <div id="full-roadmap" class="space-y-4">
+          <!-- Content will be populated by JS with all 8 sections -->
         </div>
 
         <!-- CTA -->
-        <div class="text-center space-y-4">
-          <p class="text-gray-300">Ready to discuss your project?</p>
+        <div class="text-center space-y-4 pt-4">
+          <p class="text-gray-300 font-medium">Ready to implement this?</p>
           <a
             href="https://cal.com/q-types/30-minute-discovery-call"
-            class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+            class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white font-semibold rounded-lg transition-all duration-200 ease-out shadow-[0_4px_14px_0_rgba(34,197,94,0.4)] hover:shadow-[0_6px_20px_0_rgba(34,197,94,0.5)] hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-slate-900"
           >
-            Book a Discovery Call
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Book a Quick Scoping Call
+            <svg class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </a>
+          <p class="text-gray-500 text-xs">No commitment. Just clarity.</p>
         </div>
 
         <!-- Try Again Link -->
-        <div class="text-center">
-          <button id="try-again-btn-2" type="button" class="text-gray-400 hover:text-white text-sm underline">
+        <div class="text-center pt-2">
+          <button id="try-again-btn-2" type="button" class="text-gray-400 hover:text-green-400 text-sm font-medium transition-colors duration-150 hover:underline underline-offset-4">
             Analyse a different problem
           </button>
         </div>
       </div>
 
-      <!-- Error State -->
-      <div id="finder-error" class="hidden">
-        <div class="bg-red-900/30 border border-red-500/50 rounded-xl p-6 text-center">
-          <svg class="w-12 h-12 text-red-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Error State - with min-height to prevent layout shift -->
+      <div id="finder-error" class="hidden min-h-[400px] flex items-center justify-center">
+        <div class="bg-amber-900/30 border border-amber-500/50 rounded-xl p-8 text-center max-w-md">
+          <svg class="w-12 h-12 text-amber-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
-          <h3 class="mt-4 text-lg font-semibold text-white">Something went wrong</h3>
-          <p id="error-message" class="mt-2 text-gray-300 text-sm">Please try again in a moment.</p>
-          <button id="error-retry-btn" type="button" class="mt-4 px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors">
+          <h3 id="error-title" class="mt-4 text-lg font-semibold text-white">Something went wrong</h3>
+          <p id="error-message" class="mt-3 text-gray-300 text-sm leading-relaxed">Please try again in a moment.</p>
+          <button id="error-retry-btn" type="button" class="mt-6 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors">
             Try Again
           </button>
         </div>
@@ -290,6 +324,21 @@ const exampleChips = [
     </div>
   </div>
 </section>
+
+<style>
+  /* Explicit spinner animation - ensures animation works even if Tailwind's animate-spin doesn't load */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .spinner-animation {
+    animation: spin 1s linear infinite;
+  }
+</style>
 
 <script>
   // State management
@@ -303,6 +352,34 @@ const exampleChips = [
 
   let currentState = states.INPUT;
   let currentDiagnosisId: string | null = null;
+  let currentMethodology: any = null;
+  let currentInstantResult: any = null;
+
+  // Session tracking for soft prompt after multiple uses
+  const SESSION_USAGE_KEY = 'qsol_diagnosis_count';
+  const SESSION_SOFT_PROMPT_THRESHOLD = 5;
+
+  function getSessionUsageCount(): number {
+    try {
+      return parseInt(localStorage.getItem(SESSION_USAGE_KEY) || '0', 10);
+    } catch {
+      return 0;
+    }
+  }
+
+  function incrementSessionUsage(): number {
+    const count = getSessionUsageCount() + 1;
+    try {
+      localStorage.setItem(SESSION_USAGE_KEY, String(count));
+    } catch {
+      // localStorage not available
+    }
+    return count;
+  }
+
+  function shouldShowSoftPrompt(): boolean {
+    return getSessionUsageCount() >= SESSION_SOFT_PROMPT_THRESHOLD;
+  }
 
   // DOM elements
   const problemInput = document.getElementById('problem-input') as HTMLTextAreaElement;
@@ -361,6 +438,14 @@ const exampleChips = [
     const problem = problemInput.value.trim();
     if (problem.length < 20) return;
 
+    // Soft prompt after multiple uses (non-blocking, just informative)
+    if (shouldShowSoftPrompt()) {
+      const softPromptEl = document.getElementById('soft-prompt-banner');
+      if (softPromptEl) {
+        softPromptEl.classList.remove('hidden');
+      }
+    }
+
     setState(states.LOADING);
 
     try {
@@ -376,7 +461,12 @@ const exampleChips = [
         throw new Error(data.error || 'Unable to analyse your problem');
       }
 
+      // Track session usage
+      incrementSessionUsage();
+
       currentDiagnosisId = data.diagnosis_id;
+      currentMethodology = data.methodology;
+      currentInstantResult = data.instant_result;
       diagnosisIdInput.value = data.diagnosis_id;
 
       // Update result UI
@@ -403,6 +493,12 @@ const exampleChips = [
       (document.getElementById('result-avoid') as HTMLElement).textContent = data.instant_result.what_not_to_do_first;
       (document.getElementById('roadmap-content') as HTMLElement).innerHTML = data.roadmap_preview.visible_preview;
 
+      // Update methodology preview
+      if (data.methodology) {
+        (document.getElementById('result-methodology-approach') as HTMLElement).textContent = data.methodology.recommended_approach;
+        (document.getElementById('result-methodology-baseline') as HTMLElement).textContent = `Start with: ${data.methodology.baseline_first}`;
+      }
+
       // Show follow-up question if low confidence
       if (data.follow_up_question && data.confidence === 'low') {
         const summaryEl = document.getElementById('result-summary') as HTMLElement;
@@ -414,7 +510,20 @@ const exampleChips = [
     } catch (error) {
       console.error('Diagnosis error:', error);
       const errorMsg = error instanceof Error ? error.message : 'Unable to analyse your problem. Please try again.';
-      (document.getElementById('error-message') as HTMLElement).textContent = errorMsg;
+      const errorTitleEl = document.getElementById('error-title') as HTMLElement;
+      const errorMsgEl = document.getElementById('error-message') as HTMLElement;
+
+      // Check if it's a rate limit error (contains "try again in" or "minutes")
+      const isRateLimit = errorMsg.toLowerCase().includes('try again') || errorMsg.toLowerCase().includes('minutes');
+
+      if (isRateLimit) {
+        errorTitleEl.textContent = "You're exploring fast!";
+        errorMsgEl.textContent = errorMsg;
+      } else {
+        errorTitleEl.textContent = 'Something went wrong';
+        errorMsgEl.textContent = errorMsg;
+      }
+
       setState(states.ERROR);
     }
   });
@@ -483,50 +592,156 @@ const exampleChips = [
         throw new Error(data.error || 'Unable to unlock your roadmap');
       }
 
-      // Render full roadmap
+      // Render full 8-section diagnostic report
       const fullRoadmapEl = document.getElementById('full-roadmap') as HTMLDivElement;
       const roadmap = data.full_roadmap;
+      const methodology = data.methodology;
+      const instantResult = data.instant_result;
+
+      // Helper for complexity badge color
+      const getComplexityColor = (complexity: string) => {
+        if (complexity === 'low') return 'bg-green-900/50 text-green-400';
+        if (complexity === 'medium') return 'bg-amber-900/50 text-amber-400';
+        return 'bg-red-900/50 text-red-400';
+      };
+
+      // Build algorithms HTML if methodology exists
+      const algorithmsHtml = methodology?.algorithms?.length > 0
+        ? methodology.algorithms.map((algo: any) => `
+            <div class="bg-slate-900 rounded-lg p-3 mb-2">
+              <div class="flex justify-between items-center">
+                <span class="text-white font-medium text-sm">${algo.name}</span>
+                <span class="text-xs px-2 py-0.5 rounded ${getComplexityColor(algo.complexity)}">${algo.complexity}</span>
+              </div>
+              <p class="text-gray-400 text-xs mt-1">${algo.why}</p>
+            </div>
+          `).join('')
+        : '<p class="text-gray-400 text-sm">Focus on automation and process improvement.</p>';
 
       fullRoadmapEl.innerHTML = `
-        <div>
-          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Executive Summary</h4>
-          <p class="text-gray-200">${roadmap.executive_summary}</p>
+        <!-- Section 1: Executive Summary -->
+        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+          <h4 class="text-green-400 text-xs font-medium uppercase tracking-wide mb-3 pb-2 border-b border-slate-600">1. Executive Summary</h4>
+          <p class="text-gray-200 text-sm leading-relaxed">${roadmap.executive_summary}</p>
+          ${instantResult ? `<p class="mt-3 text-white font-medium">${instantResult.headline}</p>` : ''}
         </div>
 
-        <div>
-          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-3">Implementation Phases</h4>
+        <!-- Section 2: Classification Explanation -->
+        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+          <h4 class="text-green-400 text-xs font-medium uppercase tracking-wide mb-3 pb-2 border-b border-slate-600">2. Why This Classification</h4>
+          <p class="text-gray-200 text-sm leading-relaxed">${roadmap.classification_explanation}</p>
+        </div>
+
+        <!-- Section 3: Methodology Recommendations -->
+        ${methodology ? `
+        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+          <h4 class="text-green-400 text-xs font-medium uppercase tracking-wide mb-3 pb-2 border-b border-slate-600">3. Methodology Recommendations</h4>
+
+          <div class="mb-4">
+            <p class="text-gray-400 text-xs uppercase mb-1">Recommended Approach</p>
+            <p class="text-white font-semibold">${methodology.recommended_approach}</p>
+            <p class="text-gray-500 text-xs mt-1">Techniques: ${methodology.techniques?.join(', ') || 'N/A'}</p>
+          </div>
+
+          <div class="mb-4">
+            <p class="text-gray-400 text-xs uppercase mb-2">Recommended Algorithms</p>
+            ${algorithmsHtml}
+          </div>
+
+          <div class="bg-green-900/30 border border-green-500/30 rounded-lg p-3 mb-4">
+            <p class="text-green-400 text-xs uppercase font-medium mb-1">Start With This Baseline</p>
+            <p class="text-white text-sm">${methodology.baseline_first}</p>
+          </div>
+
+          <div class="mb-4">
+            <p class="text-gray-400 text-xs uppercase mb-2">Success Metrics</p>
+            <ul class="list-disc list-inside text-gray-300 text-sm space-y-1">
+              ${methodology.success_metrics?.map((m: string) => `<li>${m}</li>`).join('') || '<li>To be defined</li>'}
+            </ul>
+          </div>
+
+          <div class="bg-red-900/30 border border-red-500/30 rounded-lg p-3">
+            <p class="text-red-400 text-xs uppercase font-medium mb-2">Sharp Edges - Watch Out For</p>
+            <ul class="list-disc list-inside text-red-200 text-sm space-y-1">
+              ${methodology.sharp_edges?.map((e: string) => `<li>${e}</li>`).join('') || '<li>No specific pitfalls identified</li>'}
+            </ul>
+          </div>
+        </div>
+        ` : ''}
+
+        <!-- Section 4: Implementation Phases -->
+        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+          <h4 class="text-green-400 text-xs font-medium uppercase tracking-wide mb-3 pb-2 border-b border-slate-600">4. Implementation Phases</h4>
           <div class="space-y-4">
             ${roadmap.implementation_phases.map((phase: any, i: number) => `
               <div class="border-l-2 border-green-500 pl-4">
-                <h5 class="text-white font-medium">Phase ${i + 1}: ${phase.phase}</h5>
-                <p class="text-gray-400 text-sm mt-1">${phase.goal}</p>
-                <div class="mt-2 text-sm text-gray-300">
+                <h5 class="text-white font-medium text-sm">Phase ${i + 1}: ${phase.phase}</h5>
+                <p class="text-gray-400 text-xs mt-1">${phase.goal}</p>
+                <div class="mt-2 text-xs text-gray-300">
                   <p class="font-medium text-gray-400">Activities:</p>
                   <ul class="list-disc list-inside ml-2">${phase.activities.map((a: string) => `<li>${a}</li>`).join('')}</ul>
+                </div>
+                <div class="mt-2 text-xs text-gray-300">
+                  <p class="font-medium text-gray-400">Deliverables:</p>
+                  <ul class="list-disc list-inside ml-2">${phase.deliverables.map((d: string) => `<li>${d}</li>`).join('')}</ul>
                 </div>
               </div>
             `).join('')}
           </div>
         </div>
 
-        <div>
-          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Data Needed</h4>
-          <ul class="list-disc list-inside text-gray-300 text-sm">${roadmap.data_needed.map((d: string) => `<li>${d}</li>`).join('')}</ul>
+        <!-- Section 5: Data Requirements -->
+        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+          <h4 class="text-green-400 text-xs font-medium uppercase tracking-wide mb-3 pb-2 border-b border-slate-600">5. Data Requirements</h4>
+          <div class="mb-4">
+            <p class="text-gray-400 text-xs uppercase mb-2">Data You Will Need</p>
+            <ul class="list-disc list-inside text-gray-300 text-sm space-y-1">${roadmap.data_needed.map((d: string) => `<li>${d}</li>`).join('')}</ul>
+          </div>
+          ${methodology?.data_requirements ? `
+          <div class="grid grid-cols-2 gap-3 text-sm">
+            <div class="bg-slate-900 rounded-lg p-3">
+              <p class="text-gray-400 text-xs">Minimum Data</p>
+              <p class="text-white font-medium">${methodology.data_requirements.minimum_rows} rows</p>
+            </div>
+            <div class="bg-slate-900 rounded-lg p-3">
+              <p class="text-gray-400 text-xs">Key Features</p>
+              <p class="text-gray-300 text-xs">${methodology.data_requirements.key_features?.join(', ') || 'TBD'}</p>
+            </div>
+          </div>
+          <div class="mt-3 bg-amber-900/20 border border-amber-700/30 rounded-lg p-3">
+            <p class="text-amber-400 text-xs uppercase mb-1">Quality Concerns</p>
+            <ul class="list-disc list-inside text-amber-200 text-xs">
+              ${methodology.data_requirements.quality_concerns?.map((c: string) => `<li>${c}</li>`).join('') || '<li>Check for missing values</li>'}
+            </ul>
+          </div>
+          ` : ''}
         </div>
 
-        <div>
-          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Recommended Tools</h4>
-          <ul class="list-disc list-inside text-gray-300 text-sm">${roadmap.recommended_tools.map((t: string) => `<li>${t}</li>`).join('')}</ul>
+        <!-- Section 6: Recommended Tools -->
+        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+          <h4 class="text-green-400 text-xs font-medium uppercase tracking-wide mb-3 pb-2 border-b border-slate-600">6. Recommended Tools</h4>
+          <ul class="list-disc list-inside text-gray-300 text-sm space-y-1">${roadmap.recommended_tools.map((t: string) => `<li>${t}</li>`).join('')}</ul>
         </div>
 
-        <div>
-          <h4 class="text-gray-400 text-sm font-medium uppercase tracking-wide mb-2">Risks & Assumptions</h4>
-          <ul class="list-disc list-inside text-gray-300 text-sm">${roadmap.risks_and_assumptions.map((r: string) => `<li>${r}</li>`).join('')}</ul>
+        <!-- Section 7: Risks & Assumptions -->
+        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+          <h4 class="text-green-400 text-xs font-medium uppercase tracking-wide mb-3 pb-2 border-b border-slate-600">7. Risks & Assumptions</h4>
+          <ul class="list-disc list-inside text-gray-300 text-sm space-y-1">${roadmap.risks_and_assumptions.map((r: string) => `<li>${r}</li>`).join('')}</ul>
+          ${instantResult ? `
+          <div class="mt-4 bg-amber-900/20 border border-amber-700/30 rounded-lg p-3">
+            <p class="text-amber-400 text-xs uppercase mb-1">What NOT to Do First</p>
+            <p class="text-amber-200 text-sm">${instantResult.what_not_to_do_first}</p>
+          </div>
+          ` : ''}
         </div>
 
-        <div class="bg-green-900/30 border border-green-500/30 rounded-lg p-4">
-          <h4 class="text-green-400 text-sm font-medium uppercase tracking-wide mb-2">Suggested First Step</h4>
-          <p class="text-white font-medium">${roadmap.first_step}</p>
+        <!-- Section 8: First Step -->
+        <div class="bg-green-900/30 border-2 border-green-500/50 rounded-xl p-5">
+          <h4 class="text-green-400 text-xs font-medium uppercase tracking-wide mb-3">8. Your First Step</h4>
+          <p class="text-white font-semibold text-base">${roadmap.first_step}</p>
+          ${instantResult ? `
+          <p class="mt-3 text-green-200 text-sm"><strong>Likely First Project:</strong> ${instantResult.likely_first_project}</p>
+          ` : ''}
         </div>
       `;
 
@@ -547,6 +762,8 @@ const exampleChips = [
     problemInput.value = '';
     updateCharCount();
     currentDiagnosisId = null;
+    currentMethodology = null;
+    currentInstantResult = null;
     setState(states.INPUT);
     document.getElementById('project-finder')?.scrollIntoView({ behavior: 'smooth' });
   }
