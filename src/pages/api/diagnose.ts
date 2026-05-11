@@ -5,38 +5,29 @@ import { classifyProblem } from '../../lib/classifier';
 import { getServiceClient } from '../../lib/supabase';
 import type { DiagnoseResponse } from '../../lib/types';
 import { CLASSIFICATION_LABELS } from '../../lib/types';
+import { checkDiagnosisRateLimit } from '../../lib/ratelimit';
 
 export const prerender = false;
 
-// Simple rate limiting map (in production, use Redis or similar)
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 10; // requests per window
-const RATE_WINDOW = 60 * 1000; // 1 minute
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const record = rateLimitMap.get(ip);
-
-  if (!record || now > record.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
-    return true;
-  }
-
-  if (record.count >= RATE_LIMIT) {
-    return false;
-  }
-
-  record.count++;
-  return true;
-}
-
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  // Rate limiting
+  // IP-based rate limiting: 10 diagnosis requests per hour
   const ip = clientAddress || 'unknown';
-  if (!checkRateLimit(ip)) {
+  const rateLimit = checkDiagnosisRateLimit(ip);
+
+  if (!rateLimit.allowed) {
+    const resetInMinutes = Math.ceil((rateLimit.resetAt - Date.now()) / 60000);
     return new Response(
-      JSON.stringify({ error: 'Too many requests. Please wait a moment and try again.' }),
-      { status: 429, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({
+        error: `You've been exploring lots of ideas! Please try again in ${resetInMinutes} minutes, or reach out to David directly with your question.`,
+        retryAfter: resetInMinutes
+      }),
+      {
+        status: 429,
+        headers: {
+          'Content-Type': 'application/json',
+          'Retry-After': String(resetInMinutes * 60)
+        }
+      }
     );
   }
 
@@ -69,6 +60,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         confidence: classification.confidence,
         scores: classification.scores,
         instant_result: classification.instant_result,
+        methodology: classification.methodology,
         full_roadmap: classification.full_roadmap,
         source,
         utm_data: utm_source || utm_campaign ? { utm_source, utm_campaign } : null,
@@ -93,6 +85,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       confidence: classification.confidence,
       scores: classification.scores,
       instant_result: classification.instant_result,
+      methodology: classification.methodology,
       roadmap_preview: classification.roadmap_preview,
       follow_up_question: classification.follow_up_question
     };
@@ -116,8 +109,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
+    // Return actual error message for debugging
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return new Response(
-      JSON.stringify({ error: 'Unable to analyse your problem. Please try again.' }),
+      JSON.stringify({ error: `Unable to analyse your problem: ${errorMessage}` }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }

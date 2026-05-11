@@ -5,38 +5,29 @@ import { getServiceClient } from '../../lib/supabase';
 import { sendRoadmapEmail } from '../../lib/email';
 import { sendLeadNotification } from '../../lib/telegram';
 import type { UnlockResponse, Diagnosis } from '../../lib/types';
+import { checkUnlockIpRateLimit, checkEmailRateLimit, getEmailHash } from '../../lib/ratelimit';
 
 export const prerender = false;
 
-// Rate limiting for unlock endpoint (stricter than diagnose)
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 5; // requests per window
-const RATE_WINDOW = 60 * 1000; // 1 minute
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const record = rateLimitMap.get(ip);
-
-  if (!record || now > record.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
-    return true;
-  }
-
-  if (record.count >= RATE_LIMIT) {
-    return false;
-  }
-
-  record.count++;
-  return true;
-}
-
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  // Rate limiting
+  // IP-based rate limiting: 10 unlock requests per hour
   const ip = clientAddress || 'unknown';
-  if (!checkRateLimit(ip)) {
+  const ipRateLimit = checkUnlockIpRateLimit(ip);
+
+  if (!ipRateLimit.allowed) {
+    const resetInMinutes = Math.ceil((ipRateLimit.resetAt - Date.now()) / 60000);
     return new Response(
-      JSON.stringify({ status: 'error', error: 'Too many requests. Please wait a moment and try again.' }),
-      { status: 429, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({
+        status: 'error',
+        error: `You've requested several project maps recently. Please try again in ${resetInMinutes} minutes, or reach out to David directly.`
+      }),
+      {
+        status: 429,
+        headers: {
+          'Content-Type': 'application/json',
+          'Retry-After': String(resetInMinutes * 60)
+        }
+      }
     );
   }
 
@@ -73,23 +64,42 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     const typedDiagnosis = diagnosis as Diagnosis;
 
-    // Check if already unlocked with this email
+    // Generate email hash for privacy-preserving rate limiting
+    const emailHash = await getEmailHash(email);
+
+    // Check if already unlocked with this email (check both email and hash for backwards compat)
     const { data: existingLead } = await supabase
       .from('leads')
       .select('id')
       .eq('diagnosis_id', diagnosis_id)
-      .eq('email', email.toLowerCase())
+      .or(`email.eq.${email.toLowerCase()},email_hash.eq.${emailHash}`)
       .single();
 
     if (existingLead) {
-      // Already unlocked - just return the roadmap
+      // Already unlocked - just return the roadmap with methodology
       const response: UnlockResponse = {
         status: 'success',
-        full_roadmap: typedDiagnosis.full_roadmap
+        full_roadmap: typedDiagnosis.full_roadmap,
+        methodology: typedDiagnosis.methodology,
+        instant_result: typedDiagnosis.instant_result
       };
       return new Response(
         JSON.stringify(response),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Email-based rate limiting: 5 per day, 15 per month (generous to start)
+    const emailRateLimit = await checkEmailRateLimit(email);
+    if (!emailRateLimit.allowed) {
+      return new Response(
+        JSON.stringify({
+          status: 'error',
+          error: emailRateLimit.reason,
+          dailyRemaining: emailRateLimit.dailyRemaining,
+          monthlyRemaining: emailRateLimit.monthlyRemaining
+        }),
+        { status: 429, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
@@ -102,12 +112,14 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     );
 
     // Insert lead with privacy acceptance timestamp (GDPR compliance)
+    // Store email_hash for rate limiting, keep email for contact purposes
     const { error: insertError } = await supabase
       .from('leads')
       .insert({
         diagnosis_id,
         name,
         email: email.toLowerCase(),
+        email_hash: emailHash,
         company: company || null,
         privacy_accepted,
         privacy_accepted_at: new Date().toISOString(),
@@ -131,48 +143,62 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       .update({ email_unlocked: true })
       .eq('id', diagnosis_id);
 
-    // Send email (non-blocking - don't fail if email fails)
-    sendRoadmapEmail({
-      to: email,
-      name,
-      classification: typedDiagnosis.classification,
-      scores: typedDiagnosis.scores,
-      roadmap: typedDiagnosis.full_roadmap,
-      problemSummary: typedDiagnosis.problem_description.substring(0, 200)
-    }).then(async (result) => {
-      if (result.success) {
-        await supabase
-          .from('leads')
-          .update({ email_sent: true })
-          .eq('diagnosis_id', diagnosis_id)
-          .eq('email', email.toLowerCase());
-      }
-    }).catch(console.error);
+    // Send email and telegram in parallel, but AWAIT them
+    // (Vercel kills serverless functions after response, so fire-and-forget doesn't work)
+    const [emailResult, telegramResult] = await Promise.all([
+      sendRoadmapEmail({
+        to: email,
+        name,
+        classification: typedDiagnosis.classification,
+        scores: typedDiagnosis.scores,
+        roadmap: typedDiagnosis.full_roadmap,
+        methodology: typedDiagnosis.methodology,
+        instantResult: typedDiagnosis.instant_result,
+        problemSummary: typedDiagnosis.problem_description.substring(0, 200)
+      }).catch((err) => {
+        console.error('Email send exception:', err);
+        return { success: false, error: String(err) };
+      }),
+      sendLeadNotification({
+        name,
+        email,
+        company: company || null,
+        classification: typedDiagnosis.classification,
+        scores: typedDiagnosis.scores,
+        confidence: typedDiagnosis.confidence,
+        problemDescription: typedDiagnosis.problem_description,
+        likelyFirstProject: typedDiagnosis.instant_result.likely_first_project
+      }).catch((err) => {
+        console.error('Telegram send exception:', err);
+        return { success: false };
+      })
+    ]);
 
-    // Send Telegram notification (non-blocking)
-    sendLeadNotification({
-      name,
-      email,
-      company: company || null,
-      classification: typedDiagnosis.classification,
-      scores: typedDiagnosis.scores,
-      confidence: typedDiagnosis.confidence,
-      problemDescription: typedDiagnosis.problem_description,
-      likelyFirstProject: typedDiagnosis.instant_result.likely_first_project
-    }).then(async (result) => {
-      if (result.success) {
-        await supabase
-          .from('leads')
-          .update({ telegram_notified: true })
-          .eq('diagnosis_id', diagnosis_id)
-          .eq('email', email.toLowerCase());
-      }
-    }).catch(console.error);
+    // Update lead record with send statuses
+    console.log('Email send result:', emailResult);
+    console.log('Telegram send result:', telegramResult);
 
-    // Return success with full roadmap
+    if (emailResult.success || telegramResult.success) {
+      await supabase
+        .from('leads')
+        .update({
+          email_sent: emailResult.success,
+          telegram_notified: telegramResult.success
+        })
+        .eq('diagnosis_id', diagnosis_id)
+        .eq('email', email.toLowerCase());
+    }
+
+    if (!emailResult.success) {
+      console.error('Failed to send email:', emailResult.error);
+    }
+
+    // Return success with full roadmap and methodology
     const response: UnlockResponse = {
       status: 'success',
-      full_roadmap: typedDiagnosis.full_roadmap
+      full_roadmap: typedDiagnosis.full_roadmap,
+      methodology: typedDiagnosis.methodology,
+      instant_result: typedDiagnosis.instant_result
     };
 
     return new Response(
