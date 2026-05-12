@@ -91,7 +91,7 @@ function cleanPhaseName(phaseName: string): string {
   return phaseName.replace(/^Phase\s*\d+\s*[-–:]\s*/i, '');
 }
 
-// Determine if this is an automation problem (not ML)
+// Category type helpers for conditional template rendering
 function isAutomationProblem(classification: Classification): boolean {
   const automationTypes: Classification[] = [
     'reporting_automation',
@@ -99,6 +99,53 @@ function isAutomationProblem(classification: Classification): boolean {
     'spreadsheet_to_system'
   ];
   return automationTypes.includes(classification);
+}
+
+function isMLProblem(classification: Classification): boolean {
+  const mlTypes: Classification[] = [
+    'forecasting_early_warning',
+    'customer_intelligence',
+    'ai_knowledge_assistant'
+  ];
+  return mlTypes.includes(classification);
+}
+
+function isAssessmentProblem(classification: Classification): boolean {
+  return classification === 'data_readiness';
+}
+
+function needsClarification(classification: Classification): boolean {
+  return classification === 'not_enough_information';
+}
+
+// Get appropriate section labels based on classification type
+function getMethodologyLabel(classification: Classification): string {
+  if (isAutomationProblem(classification)) return 'Automation Approach';
+  if (isAssessmentProblem(classification)) return 'Assessment Approach';
+  return 'Methodology Recommendations';
+}
+
+function getTechnicalApproachLabel(classification: Classification): string {
+  if (isAutomationProblem(classification)) return 'Automation tools and patterns';
+  if (isAssessmentProblem(classification)) return 'Assessment techniques';
+  return 'Recommended technical approach';
+}
+
+function getDataSectionLabel(classification: Classification): string {
+  if (isAutomationProblem(classification)) return 'Inputs & Sources';
+  if (isAssessmentProblem(classification)) return 'Data to Review';
+  return 'Data Requirements';
+}
+
+function getKeyFeaturesLabel(classification: Classification): string {
+  if (isAutomationProblem(classification)) return 'Required inputs';
+  if (isAssessmentProblem(classification)) return 'Key areas to assess';
+  return 'Key features required';
+}
+
+function getPhasesLabel(classification: Classification): string {
+  if (isAssessmentProblem(classification)) return 'Assessment Steps';
+  return 'Implementation Phases';
 }
 
 function generateEmailHtml(params: SendRoadmapEmailParams): string {
@@ -243,9 +290,9 @@ function generateEmailHtml(params: SendRoadmapEmailParams): string {
       </div>
     </div>
 
-    <!-- SECTION 3: METHODOLOGY RECOMMENDATIONS -->
+    <!-- SECTION 3: METHODOLOGY/APPROACH (adaptive based on classification) -->
     <div style="background-color: ${COLORS.cardBg}; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid ${COLORS.borderLight};">
-      <h3 style="color: ${COLORS.brandGreen}; margin: 0 0 16px 0; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; border-bottom: 1px solid ${COLORS.borderLight}; padding-bottom: 12px;">3. Methodology Recommendations</h3>
+      <h3 style="color: ${COLORS.brandGreen}; margin: 0 0 16px 0; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; border-bottom: 1px solid ${COLORS.borderLight}; padding-bottom: 12px;">3. ${getMethodologyLabel(classification)}</h3>
 
       <div style="margin-bottom: 20px;">
         <p style="color: ${COLORS.textMuted}; margin: 0 0 8px 0; font-size: 12px; font-weight: 500;">Recommended approach</p>
@@ -253,10 +300,12 @@ function generateEmailHtml(params: SendRoadmapEmailParams): string {
         <p style="color: ${COLORS.textMuted}; margin: 4px 0 0 0; font-size: 13px;">${techniquesFormatted}</p>
       </div>
 
+      ${methodology.algorithms.length > 0 ? `
       <div style="margin-bottom: 20px;">
-        <p style="color: ${COLORS.textMuted}; margin: 0 0 12px 0; font-size: 12px; font-weight: 500;">Recommended technical approach</p>
+        <p style="color: ${COLORS.textMuted}; margin: 0 0 12px 0; font-size: 12px; font-weight: 500;">${getTechnicalApproachLabel(classification)}</p>
         ${technicalApproachHtml}
       </div>
+      ` : ''}
 
       <div style="margin-bottom: 20px; padding: 16px; background-color: ${COLORS.softGreenBg}; border: 1px solid ${COLORS.softGreenBorder}; border-radius: 8px;">
         <p style="color: ${COLORS.softGreenText}; margin: 0 0 8px 0; font-size: 12px; font-weight: 600;">Recommended starting point</p>
@@ -278,37 +327,44 @@ function generateEmailHtml(params: SendRoadmapEmailParams): string {
       </div>
     </div>
 
-    <!-- SECTION 4: IMPLEMENTATION PHASES -->
+    <!-- SECTION 4: IMPLEMENTATION/ASSESSMENT PHASES (adaptive) -->
     <div style="background-color: ${COLORS.cardBg}; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid ${COLORS.borderLight};">
-      <h3 style="color: ${COLORS.brandGreen}; margin: 0 0 20px 0; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; border-bottom: 1px solid ${COLORS.borderLight}; padding-bottom: 12px;">4. Implementation Phases</h3>
+      <h3 style="color: ${COLORS.brandGreen}; margin: 0 0 20px 0; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; border-bottom: 1px solid ${COLORS.borderLight}; padding-bottom: 12px;">4. ${getPhasesLabel(classification)}</h3>
       ${phasesHtml}
     </div>
 
-    <!-- SECTION 5: DATA REQUIREMENTS -->
+    <!-- SECTION 5: DATA REQUIREMENTS (adaptive based on classification) -->
     <div style="background-color: ${COLORS.cardBg}; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid ${COLORS.borderLight};">
-      <h3 style="color: ${COLORS.brandGreen}; margin: 0 0 16px 0; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; border-bottom: 1px solid ${COLORS.borderLight}; padding-bottom: 12px;">5. Data Requirements</h3>
+      <h3 style="color: ${COLORS.brandGreen}; margin: 0 0 16px 0; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; border-bottom: 1px solid ${COLORS.borderLight}; padding-bottom: 12px;">5. ${getDataSectionLabel(classification)}</h3>
 
       <div style="margin-bottom: 20px;">
-        <p style="color: ${COLORS.textMuted}; margin: 0 0 12px 0; font-size: 12px; font-weight: 500;">Data you will need</p>
+        <p style="color: ${COLORS.textMuted}; margin: 0 0 12px 0; font-size: 12px; font-weight: 500;">${isAutomationProblem(classification) ? 'Data sources and inputs needed' : isAssessmentProblem(classification) ? 'Data to gather and review' : 'Data you will need'}</p>
         <ul style="color: ${COLORS.textBody}; margin: 0; padding-left: 20px; line-height: 1.8; font-size: 14px;">
           ${roadmap.data_needed.map(d => `<li>${d}</li>`).join('')}
         </ul>
       </div>
 
+      ${isMLProblem(classification) ? `
       <div style="margin-top: 16px; padding: 12px; background-color: ${COLORS.subtleBg}; border: 1px solid ${COLORS.borderMedium}; border-radius: 8px;">
         <p style="color: ${COLORS.textMuted}; margin: 0 0 4px 0; font-size: 12px; font-weight: 500;">Minimum data size</p>
         <p style="color: ${COLORS.textBody}; margin: 0; font-size: 14px;">${dataSizeText}</p>
       </div>
+      ` : `
+      <div style="margin-top: 16px; padding: 12px; background-color: ${COLORS.subtleBg}; border: 1px solid ${COLORS.borderMedium}; border-radius: 8px;">
+        <p style="color: ${COLORS.textMuted}; margin: 0 0 4px 0; font-size: 12px; font-weight: 500;">${isAssessmentProblem(classification) ? 'Scope of review' : 'Data volume guidance'}</p>
+        <p style="color: ${COLORS.textBody}; margin: 0; font-size: 14px;">${dataSizeText}</p>
+      </div>
+      `}
 
       <div style="margin-top: 16px;">
-        <p style="color: ${COLORS.textMuted}; margin: 0 0 8px 0; font-size: 12px; font-weight: 500;">Key features required</p>
+        <p style="color: ${COLORS.textMuted}; margin: 0 0 8px 0; font-size: 12px; font-weight: 500;">${getKeyFeaturesLabel(classification)}</p>
         <ul style="color: ${COLORS.textBody}; margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.6;">
           ${methodology.data_requirements.key_features.map(f => `<li>${f}</li>`).join('')}
         </ul>
       </div>
 
       <div style="margin-top: 16px; padding: 12px; background-color: ${COLORS.amberBg}; border: 1px solid ${COLORS.amberBorder}; border-radius: 8px;">
-        <p style="color: ${COLORS.amberText}; margin: 0 0 8px 0; font-size: 12px; font-weight: 500;">Quality concerns to check</p>
+        <p style="color: ${COLORS.amberText}; margin: 0 0 8px 0; font-size: 12px; font-weight: 500;">${isAssessmentProblem(classification) ? 'Common issues to look for' : 'Quality concerns to check'}</p>
         <ul style="color: ${COLORS.amberText}; margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6;">
           ${methodology.data_requirements.quality_concerns.map(c => `<li>${c}</li>`).join('')}
         </ul>
@@ -429,3 +485,138 @@ export async function sendRoadmapEmail(params: SendRoadmapEmailParams): Promise<
     return { success: false, error: error instanceof Error ? error.message : 'Failed to send email' };
   }
 }
+
+// Separate email template for "not_enough_information" classification
+// This asks for clarification rather than providing a full roadmap
+interface SendClarificationEmailParams {
+  to: string;
+  name: string;
+  problemSummary: string;
+  followUpQuestion?: string;
+}
+
+function generateClarificationEmailHtml(params: SendClarificationEmailParams): string {
+  const { name, problemSummary, followUpQuestion } = params;
+
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QSol - We'd Like to Learn More</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: ${COLORS.pageBg}; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
+
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 32px;">
+      <h1 style="color: ${COLORS.brandGreen}; margin: 0; font-size: 28px;">QSol Analytics</h1>
+      <p style="color: ${COLORS.textSecondary}; margin: 8px 0 0 0; font-size: 14px;">We'd Like to Learn More</p>
+    </div>
+
+    <!-- Greeting -->
+    <div style="background-color: ${COLORS.cardBg}; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid ${COLORS.borderLight};">
+      <p style="color: ${COLORS.textPrimary}; margin: 0 0 16px 0; font-size: 18px;">Hi ${name},</p>
+      <p style="color: ${COLORS.textBody}; margin: 0 0 16px 0; line-height: 1.6;">
+        Thank you for using the QSol Data Solution Finder. We've received your enquiry but need a bit more information to provide useful guidance.
+      </p>
+      <p style="color: ${COLORS.textBody}; margin: 0; line-height: 1.6;">
+        You described:
+      </p>
+      <div style="margin-top: 12px; padding: 16px; background-color: ${COLORS.subtleBg}; border-radius: 8px; border-left: 3px solid ${COLORS.brandGreen};">
+        <p style="color: ${COLORS.textSecondary}; margin: 0; font-style: italic; font-size: 14px;">"${problemSummary}"</p>
+      </div>
+    </div>
+
+    <!-- What we need -->
+    <div style="background-color: ${COLORS.cardBg}; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid ${COLORS.borderLight};">
+      <h3 style="color: ${COLORS.brandGreen}; margin: 0 0 16px 0; font-size: 16px; font-weight: 600;">What would help us give you better guidance:</h3>
+
+      ${followUpQuestion ? `
+      <div style="margin-bottom: 20px; padding: 16px; background-color: ${COLORS.softGreenBg}; border: 1px solid ${COLORS.softGreenBorder}; border-radius: 8px;">
+        <p style="color: ${COLORS.softGreenText}; margin: 0; font-size: 14px;">${followUpQuestion}</p>
+      </div>
+      ` : ''}
+
+      <ul style="color: ${COLORS.textBody}; margin: 0; padding-left: 20px; line-height: 2; font-size: 14px;">
+        <li>What specific task or process is causing the most pain?</li>
+        <li>How often does this problem occur (daily, weekly, monthly)?</li>
+        <li>What data or systems are involved?</li>
+        <li>What would "solved" look like for you?</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align: center; margin-bottom: 24px; padding: 32px; background-color: ${COLORS.cardBg}; border-radius: 12px; border: 1px solid ${COLORS.borderLight};">
+      <p style="color: ${COLORS.textPrimary}; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">Let's talk through it</p>
+      <p style="color: ${COLORS.textBody}; margin: 0 0 20px 0; font-size: 14px;">A quick call is often the fastest way to understand your situation and point you in the right direction.</p>
+      <a href="https://cal.com/q-types/30-minute-discovery-call" style="display: inline-block; background-color: ${COLORS.brandGreen}; color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: 600; font-size: 16px;">Book a Quick Call</a>
+      <p style="color: ${COLORS.textMuted}; margin: 16px 0 0 0; font-size: 12px;">No commitment. Just clarity.</p>
+    </div>
+
+    <!-- Alternative -->
+    <div style="background-color: ${COLORS.subtleBg}; border-radius: 8px; padding: 20px; margin-bottom: 24px; border: 1px solid ${COLORS.borderMedium};">
+      <p style="color: ${COLORS.textBody}; margin: 0; font-size: 14px; line-height: 1.6;">
+        Alternatively, reply to this email with more details about your situation and we'll get back to you with a more specific assessment.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; padding-top: 24px; border-top: 1px solid ${COLORS.borderLight};">
+      <p style="color: ${COLORS.textSecondary}; margin: 0; font-size: 12px;">
+        QSol Analytics | Big-company data tools for small-business teams
+      </p>
+      <p style="color: ${COLORS.textSecondary}; margin: 8px 0 0 0; font-size: 12px;">
+        <a href="https://qsol-analytics.com" style="color: ${COLORS.brandGreen}; text-decoration: none;">qsol-analytics.com</a>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
+  `.trim();
+}
+
+export async function sendClarificationEmail(params: SendClarificationEmailParams): Promise<{ success: boolean; error?: string }> {
+  if (!RESEND_API_KEY) {
+    console.error('RESEND_API_KEY not configured - email will not be sent');
+    return { success: false, error: 'Email not configured' };
+  }
+
+  try {
+    console.log(`Sending clarification email to ${params.to}`);
+
+    const emailHtml = generateClarificationEmailHtml(params);
+
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: FROM_EMAIL,
+        to: params.to,
+        subject: 'QSol Analytics - We\'d Like to Learn More About Your Project',
+        html: emailHtml
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Resend API error:', response.status, errorText);
+      return { success: false, error: `Resend API error: ${response.status}` };
+    }
+
+    const result = await response.json();
+    console.log('Clarification email sent successfully:', result.id);
+    return { success: true };
+  } catch (error) {
+    console.error('Clarification email send error:', error);
+    return { success: false, error: error instanceof Error ? error.message : 'Failed to send email' };
+  }
+}
+
+// Export helper to check if clarification email should be sent instead
+export { needsClarification };
