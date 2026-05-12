@@ -1,98 +1,21 @@
 ---
 const currentYear = new Date().getFullYear();
-
-const footerLinks = {
-  services: [
-    { href: '/services/automation-workflow/', label: 'Operational Data Systems' },
-    { href: '/services/forecasting-anomaly-detection/', label: 'Predictive Analytics & Forecasting' },
-    { href: '/services/customer-segmentation/', label: 'Machine Learning Solutions' },
-    { href: '/services/analytics-dashboards/', label: 'AI & Intelligent Automation' },
-  ],
-  resources: [
-    { href: '/case-studies/', label: 'Case Studies' },
-    { href: '/data-strategy/', label: 'Data Strategy' },
-    { href: '/diagnostic/', label: 'Diagnostic' },
-    { href: '/insights/', label: 'Insights' },
-    { href: '/faq/', label: 'FAQ' },
-  ],
-  company: [
-    { href: '/about/', label: 'About' },
-    { href: '/contact/', label: 'Contact' },
-  ],
-  legal: [
-    { href: '/privacy/', label: 'Privacy Policy' },
-    { href: '/cookies/', label: 'Cookie Policy' },
-  ],
-};
 ---
 
-<footer class="bg-slate text-white mt-auto">
-  <div class="container-wide py-12">
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
-      <!-- Brand -->
-      <div class="col-span-2 md:col-span-1">
-        <span class="text-xl font-bold">QSol Analytics</span>
-        <p class="mt-4 text-sm text-gray-300">
-          Practical data science and automation for UK SMEs.
-        </p>
-        <p class="mt-4 text-sm text-gray-300">
-          <a href="mailto:david@qsol-analytics.com" class="hover:text-white">
-            david@qsol-analytics.com
-          </a>
-        </p>
+<footer class="py-8 bg-slate-950">
+  <div class="container-wide">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+        <span class="text-white font-medium">QSol Analytics</span>
+        <a href="mailto:david@qsol-analytics.com" class="text-gray-400 hover:text-gray-300 text-sm transition-colors">david@qsol-analytics.com</a>
       </div>
-
-      <!-- Services -->
-      <div>
-        <h3 class="font-semibold mb-4">Services</h3>
-        <ul class="space-y-2 text-sm text-gray-300">
-          {footerLinks.services.map((link) => (
-            <li>
-              <a href={link.href} class="hover:text-white">{link.label}</a>
-            </li>
-          ))}
-        </ul>
+      <div class="flex items-center gap-4 text-gray-500 text-sm">
+        <a href="/privacy/" class="hover:text-gray-300 transition-colors">Privacy</a>
+        <span class="text-gray-700">|</span>
+        <a href="/cookies/" class="hover:text-gray-300 transition-colors">Cookies</a>
+        <span class="text-gray-700">|</span>
+        <span>&copy; {currentYear} QSol Analytics</span>
       </div>
-
-      <!-- Resources -->
-      <div>
-        <h3 class="font-semibold mb-4">Resources</h3>
-        <ul class="space-y-2 text-sm text-gray-300">
-          {footerLinks.resources.map((link) => (
-            <li>
-              <a href={link.href} class="hover:text-white">{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Company -->
-      <div>
-        <h3 class="font-semibold mb-4">Company</h3>
-        <ul class="space-y-2 text-sm text-gray-300">
-          {footerLinks.company.map((link) => (
-            <li>
-              <a href={link.href} class="hover:text-white">{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Legal -->
-      <div>
-        <h3 class="font-semibold mb-4">Legal</h3>
-        <ul class="space-y-2 text-sm text-gray-300">
-          {footerLinks.legal.map((link) => (
-            <li>
-              <a href={link.href} class="hover:text-white">{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-
-    <div class="mt-12 pt-8 border-t border-gray-600 text-sm text-gray-400">
-      <p>&copy; {currentYear} QSol Analytics. All rights reserved.</p>
     </div>
   </div>
 </footer>

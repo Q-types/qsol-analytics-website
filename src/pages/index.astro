@@ -4,36 +4,27 @@ import DataProjectFinder from '../components/DataProjectFinder.astro';
 
 const caseStudies = [
   {
-    headline: 'Cut quote times from hours to minutes',
-    description: 'Bespoke manufacturer automated their estimating workflow, eliminating manual lookups and calculations.',
-    outcome: 'Faster quotes, fewer errors, more capacity'
+    outcome: 'Quote times cut from hours to minutes',
+    situation: 'Bespoke manufacturer drowning in manual estimating lookups.',
+    result: '3x faster quotes, fewer pricing errors'
   },
   {
-    headline: 'Turned customer data into sales priorities',
-    description: 'Retail business used clustering to identify their most valuable customer segments and focus sales effort.',
-    outcome: 'Better targeting, improved conversion'
+    outcome: 'Customer data turned into sales priorities',
+    situation: 'Retail business couldn\'t tell valuable customers from one-time buyers.',
+    result: 'Focused effort on segments that actually convert'
   },
   {
-    headline: 'Reduced repetitive reporting work',
-    description: 'Consultancy automated data processing and report generation that was consuming hours each week.',
-    outcome: 'Hours saved weekly, consistent outputs'
+    outcome: 'Weekly reporting reduced to a single click',
+    situation: 'Consultancy spending hours copying data into the same reports.',
+    result: '8+ hours saved weekly, zero manual errors'
   },
   {
-    headline: 'Built practical AI tools around real workflows',
-    description: 'Education provider created an AI lesson planner that generates structured content from curriculum inputs.',
-    outcome: 'Faster planning, better consistency'
+    outcome: 'AI lesson planner built around real workflow',
+    situation: 'Education provider needed structured content from curriculum inputs.',
+    result: 'Faster planning, consistent quality across team'
   }
 ];
 
-const frustrationOptions = [
-  'Reports take too long to produce',
-  'Spreadsheets are getting out of control',
-  'We can\'t forecast or plan ahead',
-  'Customer data exists but insight is weak',
-  'Too much manual, repetitive work',
-  'Not sure where to start with AI/ML',
-  'Something else'
-];
 ---
 
 <BaseLayout
@@ -47,9 +38,12 @@ const frustrationOptions = [
       <a href="/" class="text-xl font-bold text-white">QSol Analytics</a>
       <a
         href="#project-finder"
-        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm"
+        class="group inline-flex items-center gap-1.5 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 ease-out text-sm shadow-[0_2px_8px_0_rgba(34,197,94,0.3)] hover:shadow-[0_4px_12px_0_rgba(34,197,94,0.4)] hover:-translate-y-0.5 active:translate-y-0"
       >
-        Find Your First Useful Data Solution
+        Find Your First Data Solution
+        <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
       </a>
     </div>
   </header>
@@ -79,23 +73,23 @@ const frustrationOptions = [
           The Data Team<br/>You Wish You Had.
         </h1>
 
-        <!-- Rotating Taglines -->
-        <div class="mt-8 h-8 relative overflow-hidden">
-          <div id="rotating-taglines" class="absolute inset-0">
-            <p class="tagline text-xl text-gray-200 font-medium opacity-0 absolute inset-0 transition-opacity duration-500">Fix slow reports.</p>
-            <p class="tagline text-xl text-gray-200 font-medium opacity-0 absolute inset-0 transition-opacity duration-500">Tame messy spreadsheets.</p>
-            <p class="tagline text-xl text-gray-200 font-medium opacity-0 absolute inset-0 transition-opacity duration-500">Forecast with confidence.</p>
-            <p class="tagline text-xl text-gray-200 font-medium opacity-0 absolute inset-0 transition-opacity duration-500">Make AI useful.</p>
-          </div>
+        <!-- Typewriter Taglines -->
+        <div class="mt-8 h-8">
+          <p id="typewriter" class="text-xl text-gray-200 font-medium">
+            <span id="typewriter-text"></span><span id="typewriter-cursor" class="inline-block w-0.5 h-6 bg-green-400 ml-0.5 animate-pulse"></span>
+          </p>
         </div>
 
         <!-- CTA -->
         <div class="mt-10 flex flex-col sm:flex-row gap-4">
           <a
             href="#project-finder"
-            class="inline-flex items-center justify-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors text-lg"
+            class="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white font-semibold rounded-lg transition-all duration-200 ease-out text-lg shadow-[0_4px_14px_0_rgba(34,197,94,0.4)] hover:shadow-[0_6px_20px_0_rgba(34,197,94,0.5)] hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-slate-900"
           >
             Find Your First Useful Data Solution
+            <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
           </a>
         </div>
       </div>
@@ -114,12 +108,12 @@ const frustrationOptions = [
           Real projects. Real outcomes. No fluff.
         </p>
       </div>
-      <div class="mt-12 grid md:grid-cols-2 gap-8">
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
         {caseStudies.map((study) => (
           <div class="bg-slate-900 border border-slate-700 rounded-xl p-6 hover:border-green-500/50 transition-colors">
-            <h3 class="text-lg font-semibold text-green-400">{study.headline}</h3>
-            <p class="mt-3 text-gray-400 text-sm">{study.description}</p>
-            <p class="mt-4 text-sm font-medium text-white">{study.outcome}</p>
+            <h3 class="text-lg font-semibold text-white">{study.outcome}</h3>
+            <p class="mt-2 text-gray-400 text-sm">{study.situation}</p>
+            <p class="mt-3 text-sm font-medium text-green-400">{study.result}</p>
           </div>
         ))}
       </div>
@@ -134,21 +128,38 @@ const frustrationOptions = [
           Who's behind QSol Analytics
         </h2>
         <div class="mt-8">
-          <div class="w-20 h-20 bg-green-500 rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold">
-            DM
-          </div>
-          <h3 class="mt-4 text-lg font-semibold text-white">David McCann</h3>
-          <p class="text-gray-400 text-sm">Founder</p>
+          <h3 class="text-xl font-semibold text-white">David McCann</h3>
+          <p class="text-gray-400 text-sm mt-1">Founder</p>
+          <a
+            href="https://www.linkedin.com/in/david-j-mccann/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 mt-3 text-green-400 hover:text-green-300 text-sm font-medium transition-colors"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            Connect on LinkedIn
+          </a>
         </div>
-        <p class="mt-6 text-gray-300 leading-relaxed">
-          Physics-trained data science practitioner with applied machine learning and data science training from the University of Cambridge Institute of Continuing Education.
+
+        <!-- Credentials badges -->
+        <div class="mt-6 flex flex-wrap gap-3 justify-center">
+          <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-gray-300">Physics background</span>
+          <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-gray-300">Cambridge ML/Data Science</span>
+          <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-gray-300">SME focus</span>
+        </div>
+
+        <p class="mt-8 text-gray-300 leading-relaxed">
+          I build practical forecasting, reporting automation, and AI tools for small businesses—making data science accessible without the cost of a full data team.
         </p>
-        <p class="mt-4 text-gray-300 leading-relaxed">
-          I build practical forecasting, reporting automation, and AI tools for small businesses, helping make data science and AI capability accessible without the cost of a full data team.
-        </p>
-        <p class="mt-4 text-gray-300 leading-relaxed">
-          You work directly with me from diagnosis to implementation. No handoff to junior staff, no bloated consultancy process, and no overselling. If a spreadsheet fix is the right answer, I'll say so.
-        </p>
+
+        <!-- Highlighted callout -->
+        <div class="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
+          <p class="text-green-400 font-medium text-sm">
+            You work directly with me from diagnosis to implementation. No handoff to junior staff, no bloated consultancy process. If a spreadsheet fix is the right answer, I'll say so.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -158,88 +169,65 @@ const frustrationOptions = [
     <div class="container-narrow">
       <div class="text-center">
         <h2 class="text-2xl md:text-3xl font-bold text-white">
-          Ready to talk about your data?
+          Ready to find the first useful fix?
         </h2>
         <p class="mt-4 text-gray-300">
-          Send a quick question or book a call—whichever feels easier.
+          Book a quick scoping call. We'll identify your highest-value starting point.
         </p>
       </div>
       <div class="mt-10 max-w-lg mx-auto">
-        <form class="space-y-4" action="https://formspree.io/f/your-form-id" method="POST">
-          <div class="grid md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your name"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Work email"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-          </div>
-          <input
-            type="text"
-            name="company"
-            placeholder="Company name"
-            class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-          />
-          <select
-            name="frustration"
-            class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-          >
-            <option value="" disabled selected>What's your biggest data challenge?</option>
-            {frustrationOptions.map((option) => (
-              <option value={option}>{option}</option>
-            ))}
-          </select>
-          <textarea
-            name="message"
-            placeholder="Tell me a bit about what you're dealing with... (optional)"
-            rows="3"
-            class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-          ></textarea>
-          <button
-            type="submit"
-            class="w-full px-6 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
-          >
-            Send a Quick Project Question
-          </button>
-        </form>
-        <div class="mt-8 text-center">
-          <p class="text-gray-400 text-sm mb-3">Or if you prefer to talk:</p>
+        <div class="text-center">
           <a
             href="https://cal.com/q-types/30-minute-discovery-call"
-            class="inline-flex items-center text-green-400 hover:text-green-300 font-medium"
+            class="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white font-semibold rounded-lg transition-all duration-200 ease-out text-lg shadow-[0_4px_14px_0_rgba(34,197,94,0.4)] hover:shadow-[0_6px_20px_0_rgba(34,197,94,0.5)] hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-slate-900"
           >
-            Book a 30-minute discovery call
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Book a Quick Scoping Call
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </a>
+          <p class="mt-4 text-gray-500 text-sm">No commitment. Just clarity.</p>
+        </div>
+
+        <div class="mt-10 pt-8 border-t border-slate-800">
+          <p class="text-gray-400 text-sm text-center mb-4">Or send a quick question:</p>
+          <form class="space-y-4" action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="grid md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Work email"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+            </div>
+            <textarea
+              name="message"
+              placeholder="What's the data problem you're trying to solve?"
+              rows="3"
+              class="w-full px-4 py-3 rounded-lg border border-gray-700 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+            ></textarea>
+            <button
+              type="submit"
+              class="w-full px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium rounded-lg transition-colors"
+            >
+              Send Question
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Simple Footer -->
-  <footer class="py-8 bg-slate-950">
-    <div class="container-wide">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-gray-500 text-sm">
-          &copy; 2026 QSol Analytics. All rights reserved.
-        </p>
-        <div class="flex gap-6 text-gray-500 text-sm">
-          <a href="/privacy/" class="hover:text-gray-300">Privacy</a>
-          <a href="/cookies/" class="hover:text-gray-300">Cookies</a>
-        </div>
-      </div>
-    </div>
-  </footer>
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -256,42 +244,75 @@ const frustrationOptions = [
     "contactPoint": {
       "@type": "ContactPoint",
       "email": "david@qsol-analytics.com",
-      "contactType": "sales"
-    }
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/david-j-mccann/"
+    ]
   })} />
 
-  <!-- Rotating Taglines Animation -->
+  <!-- Typewriter Animation -->
   <script>
-    // Rotating taglines with fade animation
-    const taglines = document.querySelectorAll('#rotating-taglines .tagline');
+    const taglines = [
+      'Fix slow reports.',
+      'Tame messy spreadsheets.',
+      'Forecast with confidence.',
+      'Make AI useful.'
+    ];
+
+    const typewriterText = document.getElementById('typewriter-text');
+    const cursor = document.getElementById('typewriter-cursor');
     let currentIndex = 0;
-    const duration = 3000; // 3 seconds per tagline
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typeSpeed = 80;      // Speed of typing
+    const deleteSpeed = 40;    // Speed of deleting
+    const pauseEnd = 2000;     // Pause at end of word
+    const pauseStart = 500;    // Pause before typing next
 
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function showTagline(index: number) {
-      taglines.forEach((tagline, i) => {
-        if (i === index) {
-          (tagline as HTMLElement).style.opacity = '1';
-        } else {
-          (tagline as HTMLElement).style.opacity = '0';
+    function type() {
+      if (!typewriterText) return;
+
+      const currentTagline = taglines[currentIndex];
+
+      if (isDeleting) {
+        // Deleting
+        typewriterText.textContent = currentTagline.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          currentIndex = (currentIndex + 1) % taglines.length;
+          setTimeout(type, pauseStart);
+          return;
         }
-      });
+        setTimeout(type, deleteSpeed);
+      } else {
+        // Typing
+        typewriterText.textContent = currentTagline.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentTagline.length) {
+          isDeleting = true;
+          setTimeout(type, pauseEnd);
+          return;
+        }
+        setTimeout(type, typeSpeed);
+      }
     }
 
-    function rotateTaglines() {
-      currentIndex = (currentIndex + 1) % taglines.length;
-      showTagline(currentIndex);
-    }
-
-    // Initialize first tagline
-    if (taglines.length > 0) {
-      showTagline(0);
-
-      // Only animate if user doesn't prefer reduced motion
-      if (!prefersReducedMotion) {
-        setInterval(rotateTaglines, duration);
+    // Initialize
+    if (typewriterText) {
+      if (prefersReducedMotion) {
+        // Just show first tagline without animation
+        typewriterText.textContent = taglines[0];
+        if (cursor) cursor.style.display = 'none';
+      } else {
+        type();
       }
     }
   </script>

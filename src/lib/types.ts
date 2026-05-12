@@ -76,6 +76,29 @@ export interface RoadmapPreview {
   locked_sections: string[];
 }
 
+// Methodology recommendation (grounded in Cambridge DS Course)
+export interface MethodologyAlgorithm {
+  name: string;
+  why: string;
+  complexity: 'low' | 'medium' | 'high';
+}
+
+export interface MethodologyDataRequirements {
+  minimum_rows: string;
+  key_features: string[];
+  quality_concerns: string[];
+}
+
+export interface MethodologyRecommendation {
+  recommended_approach: string;
+  techniques: string[];
+  algorithms: MethodologyAlgorithm[];
+  baseline_first: string;
+  sharp_edges: string[];
+  success_metrics: string[];
+  data_requirements: MethodologyDataRequirements;
+}
+
 // Database row types
 export interface Diagnosis {
   id: string;
@@ -86,6 +109,7 @@ export interface Diagnosis {
   confidence: Confidence;
   scores: DiagnosisScores;
   instant_result: InstantResult;
+  methodology: MethodologyRecommendation;
   full_roadmap: FullRoadmap;
   source: string;
   utm_data: Record<string, string> | null;
@@ -118,6 +142,7 @@ export interface DiagnoseRequest {
 export interface DiagnoseResponse {
   diagnosis_id: string;
   instant_result: InstantResult;
+  methodology: MethodologyRecommendation;
   roadmap_preview: RoadmapPreview;
   classification: Classification;
   classification_label: string;
@@ -138,6 +163,8 @@ export interface UnlockRequest {
 export interface UnlockResponse {
   status: 'success' | 'error';
   full_roadmap?: FullRoadmap;
+  methodology?: MethodologyRecommendation;
+  instant_result?: InstantResult;
   error?: string;
 }
 
