@@ -5,6 +5,7 @@ import { CLASSIFICATION_LABELS } from './types';
 
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 const FROM_EMAIL = 'QSol Analytics <noreply@qsol-analytics.com>';
+const REPLY_TO_EMAIL = 'david@qsol-analytics.com';
 
 interface SendRoadmapEmailParams {
   to: string;
@@ -465,6 +466,7 @@ export async function sendRoadmapEmail(params: SendRoadmapEmailParams): Promise<
       },
       body: JSON.stringify({
         from: FROM_EMAIL,
+        reply_to: REPLY_TO_EMAIL,
         to: params.to,
         subject: `Your QSol Project Map: ${CLASSIFICATION_LABELS[params.classification]}`,
         html: emailHtml
@@ -597,6 +599,7 @@ export async function sendClarificationEmail(params: SendClarificationEmailParam
       },
       body: JSON.stringify({
         from: FROM_EMAIL,
+        reply_to: REPLY_TO_EMAIL,
         to: params.to,
         subject: 'QSol Analytics - We\'d Like to Learn More About Your Project',
         html: emailHtml
