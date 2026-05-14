@@ -50,6 +50,14 @@ export interface InstantResult {
   data_likely_needed: string[];
 }
 
+// Business impact - grounded, realistic justification for non-technical decision makers
+export interface BusinessImpact {
+  primary_benefit: string;
+  supporting_points: string[];
+  realistic_timeframe: string;
+  why_now: string;
+}
+
 // Implementation phase for roadmap
 export interface ImplementationPhase {
   phase: string;
@@ -109,6 +117,7 @@ export interface Diagnosis {
   confidence: Confidence;
   scores: DiagnosisScores;
   instant_result: InstantResult;
+  business_impact: BusinessImpact;
   methodology: MethodologyRecommendation;
   full_roadmap: FullRoadmap;
   source: string;
@@ -165,6 +174,7 @@ export interface UnlockResponse {
   full_roadmap?: FullRoadmap;
   methodology?: MethodologyRecommendation;
   instant_result?: InstantResult;
+  business_impact?: BusinessImpact;
   error?: string;
 }
 

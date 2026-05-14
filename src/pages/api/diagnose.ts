@@ -60,6 +60,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         confidence: classification.confidence,
         scores: classification.scores,
         instant_result: classification.instant_result,
+        business_impact: classification.business_impact,
         methodology: classification.methodology,
         full_roadmap: classification.full_roadmap,
         source,

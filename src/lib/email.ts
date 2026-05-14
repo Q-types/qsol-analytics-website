@@ -1,6 +1,6 @@
 // Email service using Resend for QSol Data Solution Finder
 // Informed by applied data science training and practical SME implementation
-import type { FullRoadmap, Classification, DiagnosisScores, MethodologyRecommendation, InstantResult } from './types';
+import type { FullRoadmap, Classification, DiagnosisScores, MethodologyRecommendation, InstantResult, BusinessImpact } from './types';
 import { CLASSIFICATION_LABELS } from './types';
 
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
@@ -15,6 +15,7 @@ interface SendRoadmapEmailParams {
   roadmap: FullRoadmap;
   methodology: MethodologyRecommendation;
   instantResult: InstantResult;
+  businessImpact: BusinessImpact;
   problemSummary: string;
 }
 
@@ -150,7 +151,7 @@ function getPhasesLabel(classification: Classification): string {
 }
 
 function generateEmailHtml(params: SendRoadmapEmailParams): string {
-  const { name, classification, scores, roadmap, methodology, instantResult } = params;
+  const { name, classification, scores, roadmap, methodology, instantResult, businessImpact } = params;
   const classificationLabel = CLASSIFICATION_LABELS[classification];
   const fitColor = getScoreColor(scores.project_fit_label);
 
@@ -232,6 +233,30 @@ function generateEmailHtml(params: SendRoadmapEmailParams): string {
       <p style="color: ${COLORS.textBody}; margin: 0; line-height: 1.6;">
         Thank you for using the QSol Data Solution Finder. This report gives you a practical first read on the likely solution type, recommended approach, data needed, risks to watch, and the most sensible first step.
       </p>
+    </div>
+
+    <!-- WHY THIS MATTERS - Business Impact Summary -->
+    <div style="background-color: ${COLORS.softGreenBg}; border: 2px solid ${COLORS.softGreenBorder}; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+      <h3 style="color: ${COLORS.softGreenText}; margin: 0 0 16px 0; font-size: 16px; font-weight: 600;">Why This Matters for Your Business</h3>
+
+      <p style="color: ${COLORS.textPrimary}; margin: 0 0 16px 0; font-size: 16px; font-weight: 500; line-height: 1.5;">
+        ${businessImpact.primary_benefit}
+      </p>
+
+      <ul style="color: ${COLORS.textBody}; margin: 0 0 16px 0; padding-left: 20px; line-height: 1.8; font-size: 14px;">
+        ${businessImpact.supporting_points.map(point => `<li style="margin-bottom: 6px;">${point}</li>`).join('')}
+      </ul>
+
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; padding-top: 16px; border-top: 1px solid ${COLORS.softGreenBorder};">
+        <div style="flex: 1; min-width: 200px;">
+          <p style="color: ${COLORS.textMuted}; margin: 0 0 4px 0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">Realistic Timeframe</p>
+          <p style="color: ${COLORS.textBody}; margin: 0; font-size: 13px; line-height: 1.5;">${businessImpact.realistic_timeframe}</p>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <p style="color: ${COLORS.textMuted}; margin: 0 0 4px 0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">Why Address This Now</p>
+          <p style="color: ${COLORS.textBody}; margin: 0; font-size: 13px; line-height: 1.5;">${businessImpact.why_now}</p>
+        </div>
+      </div>
     </div>
 
     <!-- SECTION 1: EXECUTIVE SUMMARY -->

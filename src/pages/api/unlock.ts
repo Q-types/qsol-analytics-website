@@ -81,7 +81,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         status: 'success',
         full_roadmap: typedDiagnosis.full_roadmap,
         methodology: typedDiagnosis.methodology,
-        instant_result: typedDiagnosis.instant_result
+        instant_result: typedDiagnosis.instant_result,
+        business_impact: typedDiagnosis.business_impact
       };
       return new Response(
         JSON.stringify(response),
@@ -154,6 +155,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         roadmap: typedDiagnosis.full_roadmap,
         methodology: typedDiagnosis.methodology,
         instantResult: typedDiagnosis.instant_result,
+        businessImpact: typedDiagnosis.business_impact,
         problemSummary: typedDiagnosis.problem_description.substring(0, 200)
       }).catch((err) => {
         console.error('Email send exception:', err);
@@ -198,7 +200,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       status: 'success',
       full_roadmap: typedDiagnosis.full_roadmap,
       methodology: typedDiagnosis.methodology,
-      instant_result: typedDiagnosis.instant_result
+      instant_result: typedDiagnosis.instant_result,
+      business_impact: typedDiagnosis.business_impact
     };
 
     return new Response(

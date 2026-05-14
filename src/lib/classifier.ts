@@ -267,6 +267,22 @@ ${SCORING_GUIDE}
 5. **First project focus**: Suggest the smallest valuable step, not the full vision
 6. **Sharp edges awareness**: Always warn about relevant pitfalls for the recommended approach
 
+## Business Impact Writing Guidelines
+
+The business_impact field should answer "why do this" for non-technical decision makers. Follow these principles:
+
+1. **Be specific to their problem**: Reference details from their description, not generic benefits
+2. **Use grounded language**: "typically", "often", "can help", "tends to" - never "will" or "guaranteed"
+3. **Focus on tangible outcomes**:
+   - Time: Hours/days freed for higher-value work
+   - Reliability: Fewer errors, less rework, consistent execution
+   - Decisions: Faster access to information, better-informed choices
+   - Risk: Reduced key-person dependency, business continuity
+   - Scale: Handle growth without proportional effort increase
+4. **Honest timeframes**: Don't oversell speed. Most SME projects take weeks, not days.
+5. **No percentage claims**: Never say "reduce errors by 80%" or "save 10 hours per week" - these require actual measurement
+6. **Contextual "why now"**: Connect to their situation (e.g., "before the next reporting cycle" or "while the process is still fresh in mind")
+
 ## Response Format
 
 Return a JSON object with this exact structure:
@@ -290,6 +306,16 @@ Return a JSON object with this exact structure:
     "likely_first_project": "1-2 sentence description of realistic first project",
     "what_not_to_do_first": "Warning about common overreach for this problem type",
     "data_likely_needed": ["list", "of", "3-5", "data", "items"]
+  },
+  "business_impact": {
+    "primary_benefit": "One sentence describing the main business benefit in plain language (e.g., 'Free up staff time currently spent on repetitive data work')",
+    "supporting_points": [
+      "2-3 specific, realistic benefits grounded in the problem described",
+      "Use phrases like 'typically', 'often', 'can help' - never guarantees",
+      "Focus on: time savings, error reduction, better decisions, reduced risk, scalability"
+    ],
+    "realistic_timeframe": "Honest expectation setter (e.g., 'Initial automation can often be built in 2-4 weeks; full value emerges as the team adapts workflows')",
+    "why_now": "Brief reason why addressing this sooner rather than later makes sense (without being pushy)"
   },
   "methodology": {
     "recommended_approach": "Simple name of the approach (e.g., 'Time Series Forecasting', 'Customer Segmentation', 'Report Automation')",
@@ -347,12 +373,20 @@ export interface MethodologyRecommendation {
   };
 }
 
+export interface BusinessImpact {
+  primary_benefit: string;
+  supporting_points: string[];
+  realistic_timeframe: string;
+  why_now: string;
+}
+
 export interface ClassificationResult {
   classification: Classification;
   secondary_classifications: Classification[];
   confidence: Confidence;
   scores: DiagnosisScores;
   instant_result: InstantResult;
+  business_impact: BusinessImpact;
   methodology: MethodologyRecommendation;
   full_roadmap: FullRoadmap;
   roadmap_preview: RoadmapPreview;
@@ -492,8 +526,6 @@ export async function classifyProblem(problemDescription: string): Promise<Class
     project_fit_label
   };
 
-  const roadmap_preview = generateRoadmapPreview(parsed.full_roadmap, methodology);
-
   // Provide fallback methodology if not present
   const methodology: MethodologyRecommendation = parsed.methodology || {
     recommended_approach: 'Data Assessment',
@@ -509,12 +541,27 @@ export async function classifyProblem(problemDescription: string): Promise<Class
     }
   };
 
+  const roadmap_preview = generateRoadmapPreview(parsed.full_roadmap, methodology);
+
+  // Provide fallback business_impact if not present
+  const business_impact: BusinessImpact = parsed.business_impact || {
+    primary_benefit: 'Reduce manual effort and improve consistency in your data processes',
+    supporting_points: [
+      'Free up staff time currently spent on repetitive tasks',
+      'Reduce errors from manual data handling',
+      'Create a foundation for future improvements'
+    ],
+    realistic_timeframe: 'Initial assessment and planning typically takes 1-2 weeks; implementation varies based on complexity',
+    why_now: 'Addressing data challenges early prevents them from becoming more costly to fix later'
+  };
+
   return {
     classification: parsed.classification,
     secondary_classifications: parsed.secondary_classifications || [],
     confidence: parsed.confidence,
     scores,
     instant_result: parsed.instant_result,
+    business_impact,
     methodology,
     full_roadmap: parsed.full_roadmap,
     roadmap_preview,
